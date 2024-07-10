@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Estilo base para todos os elementos antes e depois */
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove sublinhado de todos os links */
+a {
+    text-decoration: none;
+}
+
+/* Remove as bolinhas das listas */
+li {
+    list-style: none;
+}
+
+/* Estilo para títulos h1 */
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Fonte padrão do corpo do documento */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Define que o wrapper será um flex container */
+.wrapper {
+    display: flex;
+}
+
+/* Estilo para a seção principal */
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.95s ease-in-out;
+    background-color: #fafbfa;
+}
+
+/* Estilo para a barra lateral */
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #e38144;
+}
+
+/* Estilo para a barra lateral quando expandida */
+#sidebar.expanded {
+    width: 260px;
+    min-width: 260px;
+}
+
+/* Estilo para o botão de toggle */
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+/* Estilo para o ícone dentro do botão de toggle */
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #000;
+}
+
+/* Estilo para o logo da barra lateral */
+.sidebar-logo {
+    color: #000;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+/* Estilo para o link dentro do logo da barra lateral */
+.sidebar-logo a {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Esconde o logo e os spans dos links quando a barra lateral não está expandida */
+#sidebar:not(.expanded) .sidebar-logo,
+#sidebar:not(.expanded) a.sidebar-link span {
+    display: none;
+}
+
+/* Estilo para a navegação da barra lateral */
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+/* Estilo para os spans dos links da barra lateral */
+a.sidebar-link span {
+    font-weight: 600;
+    opacity: 0;
+}
+
+
+/* Define a opacidade e a posição dos spans dos links para quando a barra lateral está expandida */
+#sidebar.expanded a.sidebar-link span {
+    opacity: 1;
+    transform: translateX(0); /* Volta o span para a posição original */
+}
+
+/* Estilo base para os links da barra lateral */
+a.sidebar-link {
+    padding-block-end: 1.625rem;
+    color: #242222;
+    display: block;
+    font-size: 1rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+/* Estilo para os ícones dentro dos links da barra lateral */
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .76rem;
+}
+
+/* Estilo para os links da barra lateral ao passar o mouse */
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+/* Estilo para os itens da barra lateral */
+.sidebar-item {
+    position: relative;
+}
+
+/* Esconde os dropdowns da barra lateral quando não está expandida */
+#sidebar:not(.expanded) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #e38144;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid black;
+}
+
+/* Mostra os dropdowns ao passar o mouse sobre os itens da barra lateral quando não está expandida */
+#sidebar:not(.expanded) .sidebar-item:hover .has-dropdown + .sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+/* Adiciona um ícone de seta para os links com dropdowns quando a barra lateral está expandida */
+#sidebar.expanded .sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-in-out;
+}
+
+/* Rotaciona a seta para indicar a expansão do dropdown quando a barra lateral está expandida */
+#sidebar.expanded .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-in-out;
+}
