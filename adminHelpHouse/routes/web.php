@@ -1,14 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\AdminController;
 
 
-// routes/web.php
-Route::get('/main', function () {
-    return view('main');
-});
 
+Route::get('/admin/DashboardAdmin', [AdminController::class, 'admin']);

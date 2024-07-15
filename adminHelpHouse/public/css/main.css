@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
 /* Estilo base para todos os elementos antes e depois */
 ::after,
 ::before {
@@ -35,23 +33,69 @@ body {
 }
 
 /* Estilo para a seção principal */
-.main {
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    transition: all 0.95s ease-in-out;
-    background-color: #fafbfa;
+
+
+/* Navbar search */
+.navbar {
+    display: flex;
+    background-color: #125ac5;
+    position: relative;
+    z-index: 10;
+}
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+#search{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.btn-search{
+   width: 3%;
+   height: 20px;
+}
+#search-submit{
+    background-color: rgb(63, 162, 243);
+    position: relative;
+    border: none;
+    right: 2%;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+#search-submit:hover{
+    transition: 0.4s;
+    background-color: #125ac5;
+}
+
+.navbar input{
+    margin: 0;
+    width: 20%;
+}
+.form-control {
+    margin-right: 10px; /* Espaçamento entre input e botão */
 }
 
 /* Estilo para a barra lateral */
 #sidebar {
-    width: 70px;
-    min-width: 70px;
-    z-index: 1000;
+    width: 80px;
+    min-width: 80px;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
     transition: all .25s ease-in-out;
     display: flex;
     flex-direction: column;
-    background-color: #e38144;
+    background-color: #fff;
 }
 
 /* Estilo para a barra lateral quando expandida */
@@ -71,19 +115,19 @@ body {
 /* Estilo para o ícone dentro do botão de toggle */
 .toggle-btn i {
     font-size: 1.5rem;
-    color: #000;
+    color: #e38144;
 }
 
 /* Estilo para o logo da barra lateral */
 .sidebar-logo {
-    color: #000;
+    color: #000000;
     font-size: 1.15rem;
     font-weight: 600;
 }
 
 /* Estilo para o link dentro do logo da barra lateral */
 .sidebar-logo a {
-    color: #000;
+    color: #000000;
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -106,7 +150,6 @@ a.sidebar-link span {
     opacity: 0;
 }
 
-
 /* Define a opacidade e a posição dos spans dos links para quando a barra lateral está expandida */
 #sidebar.expanded a.sidebar-link span {
     opacity: 1;
@@ -116,7 +159,7 @@ a.sidebar-link span {
 /* Estilo base para os links da barra lateral */
 a.sidebar-link {
     padding-block-end: 1.625rem;
-    color: #242222;
+    color: #000000;
     display: block;
     font-size: 1rem;
     white-space: nowrap;
@@ -131,7 +174,7 @@ a.sidebar-link {
 
 /* Estilo para os links da barra lateral ao passar o mouse */
 a.sidebar-link:hover {
-    background-color: rgba(255, 255, 255, .075);
+    background-color: rgba(255, 255, 255, 0.075);
     border-left: 3px solid #3b7ddd;
 }
 
@@ -151,7 +194,7 @@ a.sidebar-link:hover {
     display: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #fff;
 }
 
 /* Mostra os dropdowns ao passar o mouse sobre os itens da barra lateral quando não está expandida */
@@ -180,4 +223,23 @@ a.sidebar-link:hover {
 #sidebar.expanded .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
     transform: rotate(45deg);
     transition: all .2s ease-in-out;
+}
+
+.administradorDashboard{
+    display: flex;
+    margin: 0;
+}
+.administradorDashboard ion-icon{
+    color: #fff;
+}
+
+/* ___________________________LOCAL DE RESPONSIVIDADE________________ */
+@media (width <= 651px){
+    #btn-search, .btn{
+        display: none;
+    }
+    #search{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 }

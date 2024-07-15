@@ -1,0 +1,177 @@
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.95s ease-in-out;
+    background-color: #e2e2e2;
+}
+
+/* --------------------------------TITULO DA DASHBOARD------------------------ */
+.title {
+    display: flex;
+    width: 80%;
+    height: 25vh;
+    justify-content: start;
+    align-items: center;
+    padding-left: 14.5vw;
+}
+
+.title p {
+    color: #1254b6;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+/* _______________________________________________________________________________ */
+/* ---------------------------------------INFOS-ADMIN coluna 1----------------------------- */
+.containerAdmin {
+    display: flex;
+    width: 90%;
+    height: 60vh;
+    flex-direction: row;
+    position: relative;
+    left: 12%;
+}
+
+.infosAdmin {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
+}
+.contratantes {
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.contratantes-itens {
+    display: flex;
+    justify-content:  space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.contratantes-itens ion-icon {
+   justify-items: start;
+   display: flex;
+    color: #009245;
+}
+
+.contratantes-itens .numContratados {
+    margin: 0;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.novosContratantes .novos{
+    font-size: 20px;
+    color: #009245;
+    font-weight: 600;
+}
+.novosContratantes .contratantes{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.Profissionais {
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    margin-top: 10px;
+}
+.novosProfissionais .novos{
+    font-size: 20px;
+    color: #009245;
+    font-weight: 600;
+}
+.novosProfissionais .profissionais{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+
+.osNaoSei {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    margin-top: 20px; /* Adicionei margem para separação visual */
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    margin-right: 2%;
+}
+
+.naoSei {
+    width: 45%;
+    height: 100%;
+    background-color: #1254b6;
+    border-radius: 40px;
+    margin-right: 20px;
+}
+.naoSei2{
+    width: 45%;
+    height: 100%;
+    background-color: #1254b6;
+    border-radius: 40px;
+    margin-right: 20px;
+}
+/* ---------------------------------------INFOS-ADMIN coluna 2----------------------------- */
+
+.infoAdmin2 {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.segundaColuna{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 42%;
+    justify-content: start;
+
+}
+.perguntas{
+    width: 35%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 40px;
+    margin-right: 35px;
+}
+.infoAdmin{
+    width: 45%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 40px;
+}
+.segundaLinha{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 42%;
+
+    margin-top: 20px;
+
+}
+.info{
+    width: 54%;
+    height: 100%;
+    background-color:  #1254b6;
+    border-radius: 40px;
+    margin-right: 10px;
+}
+.info2{
+    width: 30%;
+    height: 100%;
+    background-color:  #1254b6;
+    border-radius: 40px;
+}
+
