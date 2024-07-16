@@ -27,10 +27,10 @@
             <div class="Profissionais">
                 <div class="contratantes-itens">
                     <ion-icon size="large" name="add-outline"></ion-icon>
-                    <p class="numProfissionais">56</p>
+                    <p class="numProfissionais">25</p>
                     <div class="novosProfissionais">
-                        <p class="novosProfissionais">Novos</p>
-                        <p class="profissionais">Contratantes</p>
+                        <p class="novosProf">Novos</p>
+                        <p class="profissionais">Profissionais</p>
                     </div>
                 </div>
 
