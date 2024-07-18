@@ -69,7 +69,7 @@
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                     <ion-icon size="large" name="people-outline"></ion-icon>
-                        <span>Usuários</span>
+                        <span>Usuário</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
