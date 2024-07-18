@@ -5,7 +5,7 @@
 @section('contentAdmin')
 <div class="main p-3">
     <div class="title">
-        <p class="titleDashboard">Dashboard</p>
+        <p class="titleDashboard">Dashboar</p>
     </div>
 
     <div class="containerAdmin">

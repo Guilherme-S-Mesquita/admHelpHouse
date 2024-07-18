@@ -64,7 +64,7 @@
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                     <ion-icon size="large" name="chatbubble-ellipses-outline"></ion-icon>
-                        <span>Atendimento</span>
+                        <span>Atendiment</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
