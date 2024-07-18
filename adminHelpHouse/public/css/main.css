@@ -203,6 +203,7 @@ a.sidebar-link:hover {
     max-height: 15em;
     width: 100%;
     opacity: 1;
+    
 }
 
 /* Adiciona um ícone de seta para os links com dropdowns quando a barra lateral está expandida */
