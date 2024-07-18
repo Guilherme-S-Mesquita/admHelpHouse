@@ -51,31 +51,33 @@
                     </i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">HelpHouse</a>
+                <img class="helphouseImg" src="/img/helphouse.png" alt="">
+
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                    <ion-icon size="large" name="bar-chart-outline"></ion-icon>
+                    <img src="/img/dashboard.png" alt="">
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                    <ion-icon size="large" name="chatbubble-ellipses-outline"></ion-icon>
-                        <span>Atendiment</span>
+                    <img src="/img/atendimento.png" alt="">
+                        <span>Atendimento</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                    <ion-icon size="large" name="people-outline"></ion-icon>
+                    <img src="/img/usuarios.png" alt="">
+
                         <span>Usuário</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                    <ion-icon size="large"  name="alert-circle-outline"></ion-icon>
+                    <img src="/img/denuncias.png" alt="">
                         <span>Denuncias</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
@@ -89,13 +91,13 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                    <ion-icon size="large" name="cash-sharp"></ion-icon>
+                    <img src="/img/financeiro.png" alt="">
                         <span>Financeiro</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="lni lni-popup"></i>
+                       <img src="/img/adicionar.png" alt="">
                         <span>Adicionar</span>
                     </a>
                 </li>

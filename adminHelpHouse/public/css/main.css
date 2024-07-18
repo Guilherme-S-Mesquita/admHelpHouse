@@ -167,7 +167,7 @@ a.sidebar-link {
 }
 
 /* Estilo para os ícones dentro dos links da barra lateral */
-.sidebar-link i {
+.sidebar-link img {
     font-size: 1.1rem;
     margin-right: .76rem;
 }
@@ -182,7 +182,9 @@ a.sidebar-link:hover {
 .sidebar-item {
     position: relative;
 }
-
+.helphouseImg{
+    width: 120px;
+}
 /* Esconde os dropdowns da barra lateral quando não está expandida */
 #sidebar:not(.expanded) .sidebar-item .sidebar-dropdown {
     position: absolute;
@@ -203,7 +205,7 @@ a.sidebar-link:hover {
     max-height: 15em;
     width: 100%;
     opacity: 1;
-    
+
 }
 
 /* Adiciona um ícone de seta para os links com dropdowns quando a barra lateral está expandida */

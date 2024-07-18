@@ -23,7 +23,7 @@
             <div class="Profissionais">
                 <div class="contratantes-itens">
                     <ion-icon size="large" name="add-outline"></ion-icon>
-                    <p class="numProfissionais">{{$acountContratados }}</p>
+                    <p class="numProfissionais">{{$acountContratados}}</p>
                     <div class="novosProfissionais">
                         <p class="novosProf">Novos</p>
                         <p class="profissionais">Profissionais</p>
