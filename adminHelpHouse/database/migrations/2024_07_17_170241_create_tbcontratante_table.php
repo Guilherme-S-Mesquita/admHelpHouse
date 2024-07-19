@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('emailContratante', 180)->unique();
             $table->char('telefoneContratante', 14)->unique();
             $table->unsignedBigInteger('idEndereco');
+            
+            // $table->timestamp('data_cadastro')->useCurrent(); // Adiciona a coluna de data de cadastro
+
             $table->foreign('idEndereco')->references('idEndereco')->on('tbenderecos');
         });
     }
