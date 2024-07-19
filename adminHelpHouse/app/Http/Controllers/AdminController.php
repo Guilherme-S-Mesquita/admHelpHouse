@@ -11,4 +11,12 @@ class AdminController extends Controller
         return view('/admin/DashboardAdmin');
     }
 
+    public function teste(Request $request){
+
+        $testes = Admin::all();
+
+
+        return view('/admin/teste', ['teste' => $testes]);
+    }
+
 }
