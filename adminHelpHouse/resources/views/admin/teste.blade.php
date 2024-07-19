@@ -1,4 +1,4 @@
-<form action="">
+<form action="/admin/teste" method="POST">
     <input type="text" name="nameAdmin" id="nameAdmin">
 
     <input type="text" name="sobrenome" id="sobrenome">
