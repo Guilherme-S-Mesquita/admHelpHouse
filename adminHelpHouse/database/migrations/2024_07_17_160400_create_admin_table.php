@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('cpfAdmin', 14)->unique();
             $table->date('nascAdmin');
             $table->string('emailAdmin', 180)->unique();
-            $table->string('senhaAdmin', 50);
+            $table->string('password', 50);
             $table->string('imagem')->nullable();
             $table->string('tokenAdmin', 50);
         });

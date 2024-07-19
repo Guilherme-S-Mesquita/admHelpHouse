@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('nomeContratante', 55);
             $table->string('sobrenomeContratante', 90);
             $table->char('cpfContratante', 14)->unique();
+            $table->string('password');
             $table->string('emailContratante', 180)->unique();
             $table->char('telefoneContratante', 14)->unique();
             $table->unsignedBigInteger('idEndereco');
-            
+
             // $table->timestamp('data_cadastro')->useCurrent(); // Adiciona a coluna de data de cadastro
 
             $table->foreign('idEndereco')->references('idEndereco')->on('tbenderecos');
@@ -28,6 +29,10 @@ return new class extends Migration
 
     public function down()
     {
+        Schema::table('tbcontratante', function (Blueprint $table) {
+            $table->dropForeign(['idEndereco']);
+
+        });
         Schema::dropIfExists('tbcontratante');
     }
 };

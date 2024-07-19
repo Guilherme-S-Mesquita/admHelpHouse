@@ -19,14 +19,7 @@ class AdminController extends Controller
           return view('/admin/DashboardAdmin', compact('acountContratantes','acountContratados' )) ;
     }
 
-    public function teste(Request $request){
-
-        $testes = Admin::all();
-
-
-        return view('/admin/teste', ['teste' => $testes]);
-    }
-
+  
 }
 
 

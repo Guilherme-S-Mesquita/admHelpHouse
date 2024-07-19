@@ -18,8 +18,9 @@ return new class extends Migration
             $table->char('cpfContratado', 14)->unique();
             $table->string('emailContratado', 180)->unique();
             $table->char('telefoneContratado', 14)->unique();
+            $table->string('password');
             // $table->timestamp('data_cadastro')->useCurrent(); // Adiciona a coluna de data de cadastro
-            
+
             // Definindo colunas para armazenar os IDs do endereco
             // unsignedBigInteger é usado para garantir que o ID seja positivo e grande o suficiente
             $table->unsignedBigInteger('idEndereco');

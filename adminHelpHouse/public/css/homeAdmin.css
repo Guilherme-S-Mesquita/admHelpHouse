@@ -17,7 +17,7 @@
 }
 
 .title p {
-    color: #1254b6;
+    color: #004AAD;
     font-size: xx-large;
     font-weight: 700;
 }
@@ -124,14 +124,14 @@
 .naoSei {
     width: 45%;
     height: 100%;
-    background-color: #1254b6;
+    background-color: #004AAD;
     border-radius: 40px;
     margin-right: 20px;
 }
 .naoSei2{
     width: 45%;
     height: 100%;
-    background-color: #1254b6;
+    background-color: #004AAD;
     border-radius: 40px;
     margin-right: 20px;
 }
@@ -157,6 +157,21 @@
     background-color: #ffffff;
     border-radius: 40px;
     margin-right: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.textPerguntas p{
+    flex-direction: column;
+    font-size: 30px;
+    margin-top: 4vh;
+
+}
+.textPerguntas .emAberto{
+    color: red;
+    font-weight: 100;
+    font-size: 25px;
 }
 .infoAdmin{
     width: 45%;
@@ -175,14 +190,14 @@
 .info{
     width: 54%;
     height: 100%;
-    background-color:  #1254b6;
+    background-color:  #004AAD;
     border-radius: 40px;
     margin-right: 10px;
 }
 .info2{
     width: 30%;
     height: 100%;
-    background-color:  #1254b6;
+    background-color:  #004AAD;
     border-radius: 40px;
 }
 #myChart{

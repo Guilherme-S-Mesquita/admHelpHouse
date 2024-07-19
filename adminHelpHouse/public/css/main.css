@@ -69,10 +69,11 @@ body {
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    transition: 0.4s;
 }
 #search-submit:hover{
     transition: 0.4s;
-    background-color: #125ac5;
+    background-color: #1bb1f7;
 }
 
 .navbar input{
@@ -175,7 +176,7 @@ a.sidebar-link {
 /* Estilo para os links da barra lateral ao passar o mouse */
 a.sidebar-link:hover {
     background-color: rgba(255, 255, 255, 0.075);
-    border-left: 3px solid #3b7ddd;
+    border-left: 3px solid #3a85f7;
 }
 
 /* Estilo para os itens da barra lateral */

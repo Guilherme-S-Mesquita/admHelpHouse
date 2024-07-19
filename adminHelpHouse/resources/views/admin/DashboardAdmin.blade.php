@@ -5,7 +5,7 @@
 @section('contentAdmin')
 <div class="main p-3">
     <div class="title">
-        <p class="titleDashboard">Dashboar</p>
+        <p class="titleDashboard">Dashboard</p>
     </div>
 
     <div class="containerAdmin">
@@ -38,8 +38,17 @@
         </div>
         <div class="infoAdmin2">
             <div class="segundaColuna">
-                <div class="perguntas"></div>
-                <div class="infoAdmin"></div>
+                <div class="perguntas">
+                        <p>84</p>
+                        <div class="textPerguntas">
+                            <p>Perguntas</p>
+                            <p class="emAberto">em aberto</p>
+
+                        </div>
+                </div>
+                <div class="infoAdmin">
+
+                </div>
             </div>
             <div class="segundaLinha">
                 <div class="info"></div>
