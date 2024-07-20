@@ -57,7 +57,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin/DashboardAdmin" class="sidebar-link">
                     <img src="/img/dashboard.png" alt="">
                         <span>Dashboard</span>
                     </a>
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/add/servico" class="sidebar-link">
                        <img src="/img/adicionar.png" alt="">
                         <span>Adicionar</span>
                     </a>
