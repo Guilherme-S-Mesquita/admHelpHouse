@@ -9,4 +9,4 @@ Route::get('/admin/DashboardAdmin', [AdminController::class, 'index']);
 Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('login.auth');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');

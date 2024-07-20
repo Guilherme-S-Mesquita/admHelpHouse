@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,7 @@ class LoginController extends Controller
             'email.required' => 'o email e um campo obrigatório',
             'email.email' => 'o email não valido',
             'password.required' => 'a senha e um campo obrigatório',
-            'password.request' => 'a senha e um campo obrigatório MARCHAAAA',
+
 
 
         ]
@@ -34,6 +35,13 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->with('erro', 'Email ou senha inválida');
         }
+    }
+
+    public function logout (Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('login.form'));
     }
 
 }

@@ -101,10 +101,10 @@
                         <span>Adicionar</span>
                     </a>
                 </li>
-                
+
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="{{route('login.logout')}}" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Sair</span>
                 </a>
