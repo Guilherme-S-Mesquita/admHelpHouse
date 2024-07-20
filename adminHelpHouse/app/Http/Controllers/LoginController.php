@@ -15,9 +15,12 @@ class LoginController extends Controller
             'email' => 'required','email',
             'password' => 'required',
         ],
+
         [
             'email.required' => 'o email e um campo obrigatório',
+            'email.email' => 'o email não valido',
             'password.required' => 'a senha e um campo obrigatório',
+
         ]
 
 
@@ -35,6 +38,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('site.index');
+        return redirect('##');
     }
 }
