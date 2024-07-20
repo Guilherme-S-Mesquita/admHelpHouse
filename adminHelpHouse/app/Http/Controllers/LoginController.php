@@ -9,6 +9,8 @@ class LoginController extends Controller
 {
     public function auth(Request $request)
     {
+        
+
         $credenciais = $request->validate([
             'email' => 'required','email',
             'password' => 'required',
