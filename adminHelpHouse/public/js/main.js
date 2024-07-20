@@ -1,8 +1,10 @@
-// declara a variavel do button
-const hamburguer = document.querySelector(".toggle-btn");
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.querySelector('.toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
 
-// Quando você cliicar no icon dentro do button, a nav vai espandir
-hamburguer.addEventListener("click", function(){
-    document.querySelector("#sidebar").classList.toggle("expanded");
+    toggleButton.addEventListener('click', function() {
+        sidebar.classList.toggle('expanded');
+        content.classList.toggle('expanded');
+    });
 });
-

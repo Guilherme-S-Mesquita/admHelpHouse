@@ -11,6 +11,8 @@ class ServicoController extends Controller
 {
 
     public function servico(){
+
+        
         return view ('add/servico');
     }
 

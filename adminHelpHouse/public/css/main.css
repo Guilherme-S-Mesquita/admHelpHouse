@@ -104,6 +104,20 @@ body {
     width: 260px;
     min-width: 260px;
 }
+#sidebar{
+    width: 80px;
+    min-width: 80px;
+    transition: all .25s ease-in-out;
+}
+#content{
+    flex-grow: 1;
+    margin-left: 80px; /* largura da barra lateral quando não expandida */
+   
+    transition: margin-left 0.25s ease-in-out;
+}
+#sidebar.expanded ~ #content {
+    margin-left: 260px; /* largura da barra lateral quando expandida */
+}
 
 /* Estilo para o botão de toggle */
 .toggle-btn {
