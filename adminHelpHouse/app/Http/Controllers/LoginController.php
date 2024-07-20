@@ -14,7 +14,14 @@ class LoginController extends Controller
         $credenciais = $request->validate([
             'email' => 'required','email',
             'password' => 'required',
-        ]);
+        ],
+        [
+            'email.required' => 'o email e um campo obrigatório',
+            'password.required' => 'a senha e um campo obrigatório',
+        ]
+    
+    
+    );
 
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
