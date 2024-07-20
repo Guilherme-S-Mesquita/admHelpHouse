@@ -1,4 +1,4 @@
-@if ($mensagem = Session::get('erro'))
+<!-- @if ($mensagem = Session::get('erro'))
     {{ $mensagem }}
 @endif
 
@@ -14,4 +14,6 @@
     Email: <br><input type="email" name="email" ><br>
     Senha: <br><input type="password" name="password" ><br>
     <button type="submit">Entrar</button>
-</form>
+</form> -->
+
+<h1>salve</h1> 
