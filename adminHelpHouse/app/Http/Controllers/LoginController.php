@@ -14,7 +14,7 @@ class LoginController extends Controller
     }
 
     public function store(Request $request){
-        var_dump('login');
+        var_dump('form');
     }
 
     public function destroy(){
