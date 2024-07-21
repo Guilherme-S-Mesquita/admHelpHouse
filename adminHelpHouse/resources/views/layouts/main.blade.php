@@ -57,7 +57,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin/DashboardAdmin" class="sidebar-link">
                     <img src="/img/dashboard.png" alt="">
                         <span>Dashboard</span>
                     </a>
@@ -96,15 +96,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/add/servico" class="sidebar-link">
                        <img src="/img/adicionar.png" alt="">
                         <span>Adicionar</span>
                     </a>
                 </li>
-                
+
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="{{route('login.logout')}}" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Sair</span>
                 </a>

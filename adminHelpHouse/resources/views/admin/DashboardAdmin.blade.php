@@ -38,10 +38,10 @@
         </div>
         <div class="infoAdmin2">
             <div class="segundaColuna">
-                <div class="perguntas">
-                        <p>84</p>
+                <div class="numPerguntas">
+                        <p class="num">84</p>
                         <div class="textPerguntas">
-                            <p>Perguntas</p>
+                            <p class="perguntas">Perguntas</p>
                             <p class="emAberto">em aberto</p>
 
                         </div>

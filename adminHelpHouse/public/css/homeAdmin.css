@@ -151,7 +151,7 @@
     justify-content: start;
 
 }
-.perguntas{
+.numPerguntas{
     width: 35%;
     height: 100%;
     background-color: #ffffff;
@@ -162,16 +162,33 @@
     justify-content: center;
     flex-direction: column;
 }
+.numPerguntas .num{
+    font-weight: bold;
+    font-size: 80px;
+    color: red;
+    position: relative;
+    top: 3vh;
+}
 .textPerguntas p{
     flex-direction: column;
     font-size: 30px;
-    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
 
 }
 .textPerguntas .emAberto{
     color: red;
     font-weight: 100;
-    font-size: 25px;
+    font-size: 30px;
+    position: relative;
+    bottom: 3vh;
+
+}
+.textPerguntas .perguntas{
+    position: relative;
+
 }
 .infoAdmin{
     width: 45%;
