@@ -7,10 +7,12 @@ use App\Http\Controllers\ServicoController;
 
 Route::get('/admin/DashboardAdmin', [AdminController::class, 'index']);
 
-Route::view('/login', 'login.form')->name('login.form');
-Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+//todas as rotas para o login funcionar
+Route::controller(LoginController::class)->group(function (){
+Route::view('/', 'index')->name('login.index');
+Route::post('/login', 'store')->name('login.store');
+Route::get('/logout', 'destroy')->name('login.logout');
+});
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
-
- Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
+Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
 

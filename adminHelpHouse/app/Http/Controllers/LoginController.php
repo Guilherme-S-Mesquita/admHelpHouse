@@ -8,31 +8,16 @@ use App\Models\Admin;
 
 class LoginController extends Controller
 {
-    public function auth(Request $request)
-    {
-        
 
-        $credenciais = $request->validate([
-            'email' => 'required','email',
-            'password' => 'required',
-        ],
+    public function index(){
+        return view('login');
+    }
 
-        [
-            'email.required' => 'o email e um campo obrigatório',
-            'email.email' => 'o email não valido',
-            'password.required' => 'a senha e um campo obrigatório',
-            
+    public function store(Request $request){
+        var_dump('login');
+    }
 
-        ]
-
-
-    );
-
-        if (Auth::attempt($credenciais)) {
-            $request->session()->regenerate();
-            return redirect()->intended('admin/DashboardAdmin');
-        } else {
-            return redirect()->back()->with('erro', 'Email ou senha inválida');
-        }
+    public function destroy(){
+        var_dump('logout');
     }
 }
