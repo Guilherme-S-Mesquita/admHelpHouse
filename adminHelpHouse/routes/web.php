@@ -9,7 +9,7 @@ Route::get('/admin/DashboardAdmin', [AdminController::class, 'index']);
 
 //todas as rotas para o login funcionar
 Route::controller(LoginController::class)->group(function (){
-Route::view('/', 'index')->name('login.index');
+Route::get('/', 'index')->name('login.index');
 Route::post('/login', 'store')->name('login.store');
 Route::get('/logout', 'destroy')->name('login.logout');
 });
