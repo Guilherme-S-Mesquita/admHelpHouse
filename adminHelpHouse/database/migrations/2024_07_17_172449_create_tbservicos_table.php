@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-      
+
             Schema::create('tbservicos', function (Blueprint $table) {
                 $table->id('idServicos');
+                $table->string('nomeServicos', 50);
                 $table->string('descServicos', 400);
-                $table->unsignedBigInteger('idContratado');
-                $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
+                $table->string('precoServicos');
+                // $table->unsignedBigInteger('idContratado');
+                // $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
+                $table->timestamps();
+
             });
         }
 

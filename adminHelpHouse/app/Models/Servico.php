@@ -10,6 +10,11 @@ class Servico extends Model
     use HasFactory;
 
 
-    protected $table = 'tbservico';
+    protected $table = 'tbservicos';
 
+    protected $fillable = [
+        'nomeServicos',
+        'descServicos',
+        'precoServicos',
+    ];
 }

@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#"></a>
         <div class="search-container">
@@ -35,6 +36,9 @@
             </div>
         </div>
     </nav>
+@if(session('msg'))
+<p class="msg">{{session('msg')}}</p>
+@endif
 
     <div class="wrapper">
         <aside id="sidebar">
@@ -103,9 +107,11 @@
         </aside>
 
         <main id="content" class="container-fluid">
+
             @yield('contentAdmin')
-        <
+
     </div>
+
 
     <script src="{{ asset('js/main.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

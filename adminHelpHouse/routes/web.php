@@ -14,7 +14,8 @@ Route::get('/logout', [LoginController::class, 'destroy'])->name('login.logout')
 
 
 Route::get('add/servico',[ ServicoController::class ,'servico'])->name('add.servico');
-Route::post('/criarServico',[ServicoController::class, 'criarServico'])->name('criar.servico');
+Route::get('/criarServico',[ServicoController::class, 'create'])->name('criar.servico');
+Route::post('/adicionar',[ServicoController::class, 'store']);
 
 
 

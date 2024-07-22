@@ -220,4 +220,12 @@
 #myChart{
     border-radius: 20px;
 }
+.msg{
+    background-color: #d4edda;
+    color: green;
+    border: 1px solid greenyellow;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
 

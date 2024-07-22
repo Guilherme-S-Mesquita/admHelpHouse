@@ -12,19 +12,35 @@ class ServicoController extends Controller
 
     public function servico(){
 
-
-        return view ('add/servico');
+        $servicos = Servico::all();
+        return view ('add/servico', compact('servicos'));
     }
 
 
     public function create()
     {
-        return view('create');
+        return view('add/criarServico');
     }
 
-    public function store(){
+    public function store(request $request)
+    {
 
-        return view ('/criarServico');
+
+        $request->validate([
+            'nomeServicos' => 'required|string|max:255',
+            'descServicos' => 'required|string',
+            'precoServicos' => 'required|string',
+        ]);
+
+         $servico = new Servico;
+         $servico->nomeServicos = $request->nomeServicos;
+         $servico->descServicos = $request->descServicos;
+         $servico->precoServicos = $request->precoServicos;
+
+
+         $servico->save();
+
+         return redirect()->route('add.servico')->with('msg', 'Serviço criado com sucesso!');
 
     }
 
