@@ -13,9 +13,21 @@ Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('login.logout');
 
 
+
+// -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico',[ ServicoController::class ,'servico'])->name('add.servico');
+Route::get('/editServico/{idServicos}', [ServicoController::class, 'edit'])->name('edit.servico');
+Route::put('/editServico/{idServicos}', [ServicoController::class, 'update'])->name('update.servico');
+Route::delete('/editServico/{idServicos}', [ServicoController::class, 'destroy'])->name('delete.servico');
+
+//-------------------------------- CRIAR SERVICO---------------------------------------
 Route::get('/criarServico',[ServicoController::class, 'create'])->name('criar.servico');
 Route::post('/adicionar',[ServicoController::class, 'store']);
+
+//--------------------------------- USUARIOS -------------------------------------------
+Route::get('/users', [ServicoController::class, 'usuarios'])->name('users');
+
+
 
 
 

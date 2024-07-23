@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'CadastroServico')
+@section('title', 'Criando Servico')
 
 @section('contentAdmin')
 <div class="main p-3">
@@ -15,6 +15,9 @@
                         <th>Nome</th>
                         <th>Descrição</th>
                         <th>Preços</th>
+                        <th>editar</th>
+                        <th>Excluir</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +27,23 @@
                         <td>{{ $servico->nomeServicos }}</td>
                         <td>{{ $servico->descServicos }}</td>
                         <td>{{ $servico->precoServicos }}</td>
+                        <td>
+                             <!-- Botões de editar -->
+                    <a href="{{ route('edit.servico', $servico->idServicos) }}" class="btn btn-info edit-btn">
+                        <ion-icon name="create-outline"></ion-icon> Editar
+                    </a>
+                    </td>
+                    <td>
+                    <form action="{{ route('delete.servico', $servico->idServicos) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger delete-btn">
+                            <ion-icon name="trash-outline"></ion-icon> Deletar
+                        </button>
+                    </form>
+                    </td>
+
+
                     </tr>
                     @endforeach
                 </tbody>

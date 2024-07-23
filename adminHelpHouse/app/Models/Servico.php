@@ -12,6 +12,18 @@ class Servico extends Model
 
     protected $table = 'tbservicos';
 
+    // Especifica a chave primária da tabela
+    protected $primaryKey = 'idServicos';
+
+    // Indica que a chave primária não é auto-incrementável, se for o caso
+    public $incrementing = false;
+
+    // Especifica o tipo da chave primária
+    protected $keyType = 'int'; // ou 'string', dependendo do tipo
+
+    // Se os timestamps não estão sendo usados
+    public $timestamps = false;
+
     protected $fillable = [
         'nomeServicos',
         'descServicos',
