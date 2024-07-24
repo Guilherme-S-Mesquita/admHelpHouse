@@ -14,6 +14,7 @@
     <!-- CSS da aplicação e JS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homeAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
 
     <title>@yield('title')</title>
 </head>
@@ -66,7 +67,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/users" class="sidebar-link">
                         <img src="/img/usuarios.png" alt="">
                         <span>Usuário</span>
                     </a>
