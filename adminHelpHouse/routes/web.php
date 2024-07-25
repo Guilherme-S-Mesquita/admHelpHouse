@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\UsersController;
+
 
 // rota principal a dashboard
 Route::get('/admin/DashboardAdmin', [AdminController::class, 'index'])->name('dashboard');
@@ -24,7 +26,9 @@ Route::get('/criarServico',[ServicoController::class, 'create'])->name('criar.se
 Route::post('/adicionar',[ServicoController::class, 'store']);
 
 //--------------------------------- USUARIOS -------------------------------------------
-Route::get('/users', [ServicoController::class, 'usuarios'])->name('users');
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+// --------------------------------USUARIOS PAGINA ADM----------------------------------
+Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
 
 
 

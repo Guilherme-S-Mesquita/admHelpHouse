@@ -1,0 +1,39 @@
+.card-title {
+    color: white;
+    font-weight: 800;
+    position: relative;
+    top: 20%;
+}
+.card {
+    background-color: #004AAC;
+    height: 150%;
+    width: 100%;
+    border-radius: 25px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card img {
+    position: relative;
+    right: 38%;
+    max-width: 50%;
+    height: auto;
+}
+.card-body {
+    margin-bottom: 20px;
+    padding: 1.5rem; /* Adicione algum espaçamento interno */
+}
+
+.header h1{
+    font-size: 60px;
+    padding: 2rem;
+}
+.header h2{
+    font-size: 45px;
+    color: #004AAC;
+    font-weight: 700;
+    padding-left: 1.5rem;
+}
