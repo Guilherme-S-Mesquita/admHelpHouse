@@ -5,14 +5,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 
-Route::get('/admin/DashboardAdmin', [AdminController::class, 'index']);
+// rota principal a dashboard
+Route::get('/admin/DashboardAdmin', [AdminController::class, 'index'])->name('dashboard');
 
 //todas as rotas para o login funcionar
 Route::get('/login',[LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('login.logout');
-
-
 
 // -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico',[ ServicoController::class ,'servico'])->name('add.servico');

@@ -30,6 +30,7 @@
         </div>
         <div class="d-flex justify-content-end">
             <div class="administradorDashboard">
+                <a class="entrar-main" href="{{ route('login.index') }}">entrar</a>
                 <a href="#">
                     <ion-icon style="border-width: 4px;" size="large" name="person-circle-outline"></ion-icon>
                 </a>
