@@ -6,6 +6,11 @@
     padding: 0;
 }
 
+/*entrar no login do lado do user */
+.entrar-main{
+    color: white;
+}
+
 /* Remove sublinhado de todos os links */
 a {
     text-decoration: none;
