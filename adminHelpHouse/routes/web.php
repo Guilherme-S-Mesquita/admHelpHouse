@@ -28,6 +28,8 @@ Route::post('/adicionar',[ServicoController::class, 'store']);
 
 //--------------------------------- USUARIOS -------------------------------------------
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+// --------------------------------USUARIOS PAGINA ADM----------------------------------
+Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
 
 
 

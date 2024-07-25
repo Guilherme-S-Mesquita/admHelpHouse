@@ -13,4 +13,7 @@ class UsersController extends Controller
 
         return view('users.index');
     }
+    public function userAdm(){
+        return view('users.admins');
+    }
 }
