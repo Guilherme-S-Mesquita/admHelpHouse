@@ -1,5 +1,8 @@
 <a href="{{ route('login.store') }}"></a>
 
+
+<form action="{{ route('login.store') }}" method="POST">
+    @csrf
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 <div class="wrapper">
     <!-- Container principal -->
@@ -13,17 +16,17 @@
                     <header>Login</header>
                     <!-- Campo de entrada para o email -->
                     <div class="input-field">
-                        <input type="email" class="input" id="email" required="" autocomplete="off">
+                        <input type="email" name="email" class="input" id="email" required="" autocomplete="off">
                         <label for="email"><i class="fa-solid fa-envelope"></i>E-mail</label>
                     </div>
                     <!-- Campo de entrada para a senha -->
                     <div class="input-field">
-                        <input type="password" class="input" id="pass" required="">
+                        <input type="password" name="password" class="input" id="pass" required="">
                         <label for="pass"><i class="fa-solid fa-lock"></i> Senha</label>
                     </div>
                     <!-- Botão de envio do formulário -->
-                    <div class="input-field  ">
-                        <input type="submit" class="submit " value="Entrar">
+                    <div class="input-field">
+                        <input type="submit" class="submit" value="Entrar">
                     </div>
                     <!-- Link para o cadastro -->
                     <div class="signin">
@@ -39,3 +42,4 @@
         </div>
     </div>
 </div>
+</form>
