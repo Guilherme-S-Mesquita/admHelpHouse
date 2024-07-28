@@ -11,9 +11,10 @@ use App\Http\Controllers\UsersController;
 Route::get('/admin/DashboardAdmin', [AdminController::class, 'index'])->name('dashboard');
 
 //todas as rotas para o login funcionar
-Route::get('/login',[LoginController::class, 'index'])->name('login.index');
-Route::post('/auth',[LoginController::class, 'store'])->name('login.store');
- Route::get('/logout',[LoginController::class, 'destroy'])->name('login.destroy');
+Route::get('/',[loginController::class, 'index'])->name('login.index');
+Route::post('/login',[loginController::class, 'store'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'destroy'])->name('login.logout');
+
 
 // -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico',[ ServicoController::class ,'servico'])->name('add.servico');

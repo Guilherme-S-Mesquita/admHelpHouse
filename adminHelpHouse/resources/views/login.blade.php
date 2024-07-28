@@ -1,4 +1,3 @@
-<a href="{{ route('login.store') }}"></a>
 
 
 <form action="{{ route('login.store') }}" method="POST">
@@ -32,6 +31,14 @@
                     <div class="signin">
                         <span>Não tem uma conta? <a href="#">Faça o cadastro aqui!</a></span>
                     </div>
+                        @if($mensagem = Session::get('err'))
+                            {{$mensagem}}
+                        @endif
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                {{ $error }} <br>
+                            @endforeach
+                        @endif
                 </div>
             </div>
             <!-- Coluna para a imagem lateral -->

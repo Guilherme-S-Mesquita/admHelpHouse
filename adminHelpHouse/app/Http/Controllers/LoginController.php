@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Login;
+
 
 class loginController extends Controller
 {
@@ -27,22 +27,24 @@ class loginController extends Controller
         [
             'email.required' => 'campo de email e obrigatório',
             'email.email' => 'esse email e inválido',
-            'password.required' => 'campo e senha e obrigatório'
+            'password.required' => 'campod e senha e obrigatório'
 
         ]);
 
         // Tentativa de autenticação
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard'); // Redireciona para a página principal ou desejada
-        }else {
+            return redirect()->intended(route('dashboard')); // Redireciona para a página principal ou desejada
+        } else {
             return redirect()->route('login.index')->with('err', 'Email ou senha inválido');
         }
     }
-    // public function destroy()
-    // {
 
-    //     return view('dashboard'); // Redireciona para a página de login após logout
-    // }
+    public function destroy (){
+
+        Auth::logout();
+        return redirect('/'); // Redireciona para a página de login após logout
+
+    }
 }
 
