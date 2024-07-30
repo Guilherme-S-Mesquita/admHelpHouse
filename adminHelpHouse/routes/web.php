@@ -12,8 +12,15 @@ Route::get('/admin/DashboardAdmin', [AdminController::class, 'index'])->name('da
 
 //todas as rotas para o login funcionar
 Route::get('/',[loginController::class, 'index'])->name('login.index');
-Route::post('/login',[loginController::class, 'store'])->name('login.store');
+Route::post('/',[loginController::class, 'store'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'destroy'])->name('login.logout');
+// Rotas cadastro login
+Route::get('/login/register',[loginController::class, 'register'])->name('login.register');
+Route::post('/login/auth',[loginController::class, 'authenticate'])->name('login.auth');
+Route::post('/login/processo-registro',[loginController::class, 'processoDeRegistro'])->name('login.processoDeRegistro');
+
+
+
 
 
 // -------------------------------ADD SERVICO----------------------------------------

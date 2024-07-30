@@ -15,7 +15,7 @@
                     <header>Login</header>
                     <!-- Campo de entrada para o email -->
                     <div class="input-field">
-                        <input type="email" name="email" class="input" id="email" required="" autocomplete="off">
+                        <input type="email" name="email" class="input" id="email" required="" autocomplete="on">
                         <label for="email"><i class="fa-solid fa-envelope"></i>E-mail</label>
                     </div>
                     <!-- Campo de entrada para a senha -->
@@ -29,7 +29,7 @@
                     </div>
                     <!-- Link para o cadastro -->
                     <div class="signin">
-                        <span>Não tem uma conta? <a href="#">Faça o cadastro aqui!</a></span>
+                        <span>Não tem uma conta? <a href="{{route('login.register')}}">Faça o cadastro aqui!</a></span>
                     </div>
                         @if($mensagem = Session::get('err'))
                             {{$mensagem}}

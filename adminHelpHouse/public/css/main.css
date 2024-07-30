@@ -117,7 +117,7 @@ body {
 #content{
     flex-grow: 1;
     margin-left: 80px; /* largura da barra lateral quando não expandida */
-   
+
     transition: margin-left 0.25s ease-in-out;
 }
 #sidebar.expanded ~ #content {
@@ -190,6 +190,7 @@ a.sidebar-link {
 .sidebar-link img {
     font-size: 1.1rem;
     margin-right: .76rem;
+
 }
 
 /* Estilo para os links da barra lateral ao passar o mouse */
@@ -254,6 +255,19 @@ a.sidebar-link:hover {
 }
 .administradorDashboard ion-icon{
     color: #fff;
+}
+
+.lni{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(247, 67, 67);
+   color: #000000;
+   font-weight: 500;
+   font-size: 40px;
+}
+.lni:hover{
+    transition: 0.5s;
+    background-color: rgb(231, 124, 124);
 }
 
 /* ___________________________LOCAL DE RESPONSIVIDADE________________ */

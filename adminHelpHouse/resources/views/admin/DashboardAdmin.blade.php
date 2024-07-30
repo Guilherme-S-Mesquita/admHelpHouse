@@ -4,12 +4,10 @@
 
 @section('contentAdmin')
 <div class="main p-3">
-    <form action="{{ route('login.logout') }}" method="POST" class="d-inline">
-        @csrf
-        <button type="submit" class="btn btn-link p-0" style="background: none; border: none; color: blue; cursor: pointer;">
-            Sair
-        </button>
-    </form>
+
+<h1>Olá, </h1>
+
+
     <div class="title">
         <p class="titleDashboard">Dashboard</p>
     </div>

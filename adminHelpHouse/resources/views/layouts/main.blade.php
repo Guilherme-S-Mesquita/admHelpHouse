@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homeAdmin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
-  
+
 
     <title>@yield('title')</title>
 </head>
@@ -94,6 +94,9 @@
                         <span>Financeiro</span>
                     </a>
                 </li>
+
+
+
                 <li class="sidebar-item">
                     <a href="/add/servico" class="sidebar-link">
                         <img src="/img/adicionar.png" alt="">
@@ -102,10 +105,12 @@
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="{{route('login.logout')}}" class="sidebar-link">
-                    <i class="lni lni-exit"></i>
-                    <span>Sair</span>
-                </a>
+                <form action="{{ route('login.logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <a href="{{route('login.index')}}">
+                    <i  class="lni lni-exit"></i>
+                   </a>
+                </form>
             </div>
         </aside>
 
