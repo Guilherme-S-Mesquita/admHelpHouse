@@ -6,7 +6,7 @@
 
 <div class="main p-3" style="height: 100vh;">
     <div class="header mb-4 ">
-        <h1>Olá, <span style="color: #ff6347;">Guilherme</span></h1>
+        <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
         <h2>Controle de Usuários</h2>
     </div>
 

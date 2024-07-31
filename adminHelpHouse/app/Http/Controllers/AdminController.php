@@ -11,7 +11,7 @@ class AdminController extends Controller
 
 {
     public function index(){
-        $user = User::all();
+
 
 
         $user = auth()->user();
@@ -23,7 +23,7 @@ class AdminController extends Controller
 
 
 
-          return view('/admin/DashboardAdmin', compact('acountContratantes','acountContratados' )) ;
+          return view('/admin/DashboardAdmin', compact('acountContratantes','acountContratados' , 'user')) ;
     }
 
 

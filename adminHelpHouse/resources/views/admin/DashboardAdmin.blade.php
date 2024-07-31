@@ -5,7 +5,11 @@
 @section('contentAdmin')
 <div class="main p-3">
 
-<h1>Olá, </h1>
+{{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
+<div class="header mb-4 ">
+    <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
+</div>
+
 
 
     <div class="title">

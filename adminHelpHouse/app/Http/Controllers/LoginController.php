@@ -25,7 +25,9 @@ class loginController extends Controller
 
         $validator = Validator::make($request->all(),[
             'email'=>'required|email|unique:users',
-            'password'=> 'required|confirmed'
+            'password'=> 'required|confirmed',
+            'cpf'=>'required|unique:users',
+            'date'=>'required',
 
         ]);
         // verifica se atende as regras e passa os dados como verdadeiro
@@ -35,6 +37,8 @@ class loginController extends Controller
             $user->name=$request->name;
             //para criar um hash seguro da senha fornecida pelo
             $user->email = $request->email;
+            $user->date = $request->date;
+            $user->cpf = $request->cpf;
             $user->password= Hash::make($request->password);
             $user->role = 'costumer';
             $user->save();
@@ -101,5 +105,6 @@ class loginController extends Controller
         return redirect('/'); // Redireciona para a página de login após logout
 
     }
+
 }
 

@@ -26,8 +26,8 @@ body {
 /* Estilização do fundo do formulário */
 .row {
     display: flex;
-    width: 900px;
-    height: 450px;
+    width: 1000px;
+    height: 600px;
     border-radius: 50px;
     background: #fff;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
@@ -51,9 +51,9 @@ body {
     box-sizing: border-box;
 }
 img{
-    position: relative;
-    left: 11.4%;
-
+    height: 100%;
+    width:115% ;
+    background-color: #f7f7f7;
 }
 
 /* Estilo do cabeçalho do formulário */
@@ -172,6 +172,7 @@ span a:hover {
     background-image: url('#'); /* Coloque o caminho da imagem desejada aqui */
     background-position: center;
     background-size: cover;
+    background-color: #f7f7f7;
     border-radius: 0 50px 50px 0; /* Bordas arredondadas */
     position: relative;
     flex: 1;

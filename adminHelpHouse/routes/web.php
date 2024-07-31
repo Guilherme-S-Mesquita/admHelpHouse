@@ -37,6 +37,9 @@ Route::post('/adicionar',[ServicoController::class, 'store']);
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 // --------------------------------USUARIOS PAGINA ADM----------------------------------
 Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
+Route::get('/editadmin/{id}' ,[UsersController::class, 'edit']) ->name('edit.admins');
+Route::put('/editadmin/{id}' ,[UsersController::class, 'update']) ->name('update.admins');
+
 
 
 

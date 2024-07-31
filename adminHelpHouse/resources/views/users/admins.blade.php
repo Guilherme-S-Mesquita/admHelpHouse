@@ -11,28 +11,35 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="mb-4">Gerenciar administradores</h2>
-            <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Novo Serviço</a>
+
             <table class="table">
                 <thead>
                     <tr>
-                        <th>img</th>
+
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>Editar</th>
+                        <th>Nascimento</th>
+                        <th>Cpf</th>
+                        <th>Edit</th>
                         <th>Excluir</th>
-
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($users as $user)
                     <tr>
-                        <td scope="row">
-                        <div class="imagemAdmin">
-                            
-                        </div>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->date}}</td>
+                        <td>{{$user->cpf}}</td>
+
+
+                        <td>
+                            <a href="{{ route('edit.admins', $user->id) }}" class="btn btn-info edit-btn">
+                                <ion-icon name="create-outline"></ion-icon> Editar
+                            </a>
                         </td>
-                        <td>Guiilherme</td>
-                        <td>guimesquita.1512@gmail.com</td>
                     </tr>
+                   @endforeach
                 </tbody>
 
 @endsection
