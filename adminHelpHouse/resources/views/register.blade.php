@@ -1,5 +1,4 @@
 
-@vite(['resources/js/app.js'])
 
 <form action="{{ route('login.processoDeRegistro') }}" method="POST">
     @csrf
