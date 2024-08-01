@@ -49,4 +49,11 @@ class UsersController extends Controller
         return redirect()->route('users.admins')->with('msg', 'Serviço atualizado com sucesso!');
 
 }
+    public function delete($id){
+
+
+        User::findOrFail($id)->delete();
+
+        return redirect()->route('users.admins')->with('msg', 'Serviço excluido com sucesso!');
+    }
 }

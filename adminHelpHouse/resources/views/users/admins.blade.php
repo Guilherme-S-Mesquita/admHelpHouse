@@ -31,14 +31,22 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->date}}</td>
                         <td>{{$user->cpf}}</td>
-
-
                         <td>
                             <a href="{{ route('edit.admins', $user->id) }}" class="btn btn-info edit-btn">
                                 <ion-icon name="create-outline"></ion-icon> Editar
                             </a>
                         </td>
+                        <td>
+                            <form action="{{ route('delete.admins', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn">
+                                    <ion-icon name="trash-outline"></ion-icon> Deletar
+                                </button>
+                            </form>
+                        </td>
                     </tr>
+
                    @endforeach
                 </tbody>
 
