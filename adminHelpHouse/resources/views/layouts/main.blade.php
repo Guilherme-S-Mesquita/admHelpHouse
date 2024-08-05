@@ -22,6 +22,9 @@
 
 <body>
 
+    <!-- Overlay para o efeito de desfoque -->
+    <div id="overlay"></div>
+
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#"></a>
         <div class="search-container">
@@ -39,14 +42,15 @@
             </div>
         </div>
     </nav>
-@if(session('msg'))
-<p class="msg">{{session('msg')}}</p>
-@endif
+
+    @if(session('msg'))
+        <p class="msg">{{session('msg')}}</p>
+    @endif
 
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
-                <button class="toggle-btn" type="button">
+                <button class="toggle-btn" type="button" onclick="toggleOverlay()">
                     <i>
                         <ion-icon size="large" name="menu-sharp"></ion-icon>
                     </i>
@@ -94,9 +98,6 @@
                         <span>Financeiro</span>
                     </a>
                 </li>
-
-
-
                 <li class="sidebar-item">
                     <a href="/add/servico" class="sidebar-link">
                         <img src="/img/adicionar.png" alt="">
@@ -108,23 +109,28 @@
                 <form action="{{ route('login.logout') }}" method="POST" class="d-inline">
                     @csrf
                     <a href="{{route('login.index')}}">
-                    <i  class="lni lni-exit"></i>
+                    <i class="lni lni-exit"></i>
                    </a>
                 </form>
             </div>
         </aside>
 
-        <main id="content" class="container-fluid">
-
-            @yield('contentAdmin')
+        @yield('contentAdmin')
 
     </div>
-
 
     <script src="{{ asset('js/main.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="{{ asset('js/chart.js') }}"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        function toggleOverlay() {
+            var overlay = document.getElementById('overlay');
+            overlay.classList.toggle('active');
+        }
+    </script>
+
 </body>
 
 </html>

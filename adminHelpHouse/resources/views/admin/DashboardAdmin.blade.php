@@ -3,7 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('contentAdmin')
+
 <div class="main p-3">
+<div class="backdrop">
 
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
 <div class="header mb-4 ">
@@ -67,6 +69,7 @@
 </div>
 
 <!-- Inclua o script do Chart.js -->
+ <div class="chart">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -104,4 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+</div>
+
 @endsection

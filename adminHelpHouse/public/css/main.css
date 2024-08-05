@@ -113,16 +113,38 @@ body {
     width: 80px;
     min-width: 80px;
     transition: all .25s ease-in-out;
+    z-index: 1001; 
+
 }
 #content{
     flex-grow: 1;
     margin-left: 80px; /* largura da barra lateral quando não expandida */
-
     transition: margin-left 0.25s ease-in-out;
 }
 #sidebar.expanded ~ #content {
     margin-left: 260px; /* largura da barra lateral quando expandida */
 }
+
+
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 1000;
+    
+}
+#overlay.active {
+  
+    display: block;
+}
+
 
 /* Estilo para o botão de toggle */
 .toggle-btn {
@@ -242,12 +264,17 @@ a.sidebar-link:hover {
     transform: rotate(-135deg);
     transition: all .2s ease-in-out;
 }
-
+#sidebar .expanded {
+    filter: blur(5px); 
+    transform: scale(0.8);
+}
 /* Rotaciona a seta para indicar a expansão do dropdown quando a barra lateral está expandida */
 #sidebar.expanded .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
     transform: rotate(45deg);
     transition: all .2s ease-in-out;
 }
+
+
 
 .administradorDashboard{
     display: flex;
