@@ -61,8 +61,17 @@
                 </div>
             </div>
             <div class="segundaLinha">
-                <div class="info"></div>
+
+            <div class="safadinha">
+                <div class="info">
+                    <p>jfefei</p>
+                <i class="fa-solid fa-money-bill-transfer" style="color: #ffa200;"></i>
+                </div>
                 <div class="info2"></div>
+            </div>   
+
+            <div class="vish"></div>
+
             </div>
         </div>
     </div>
