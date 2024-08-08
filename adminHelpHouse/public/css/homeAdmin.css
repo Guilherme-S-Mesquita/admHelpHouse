@@ -1,3 +1,9 @@
+
+.inicio {
+    margin-left: 80px;
+}
+
+
 .main {
     min-height: 100vh;
     width: 97%;
@@ -18,6 +24,7 @@
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
+    top: 8vh;
 }
 
 .title p {
@@ -169,29 +176,39 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    transition: 0.6s;
+
 }
+
+.numPerguntas:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .numPerguntas .num{
     font-weight: bold;
-    font-size: 80px;
+    font-size: 70px;
     color: red;
     position: relative;
     top: 3vh;
 }
 .textPerguntas p{
     flex-direction: column;
-    font-size: 30px;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     text-align: center;
+    font-weight: 600;
 
 
 }
 .textPerguntas .emAberto{
     color: red;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
     position: relative;
     bottom: 3vh;
+    font-weight: 600;
 
 }
 .textPerguntas .perguntas{
@@ -199,15 +216,56 @@
 
 }
 .infoAdmin{
-    width: 45%;
+    width: 35%;
     height: 100%;
     background-color: #ffffff;
     border-radius: 40px;
+    margin-right: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.6s;
 }
+
+.infoAdmin:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.ig {
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+    bottom: 3vh;
+    font-weight: 600;
+}
+
+.ryan {
+    color: #009245;
+    font-weight: 100;
+    font-size: 30px;
+   text-align: center;
+    font-weight: 600; 
+}
+
+.solicitacoes .num2{
+    font-weight: bold;
+    font-size: 70px;
+    color: #009245;
+    text-align: center;
+    
+}
+
+
+
+
 .segundaLinha{
     display: flex;
     flex-direction: row;
-    width: 91%;
+    width: 81%;
     height: 42%;
     margin-top: 20px;
 
@@ -221,32 +279,114 @@
 }
 
 .info{
-    width: 87%;
-    height: 110%;
+    width: 84%;
+    height: 92%;
     background-color:  #ffffff;
     border-radius: 40px;
-    margin-right: 10px;
-    flex-direction: column;
+    transition: 0.6s;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .info2{
-    width: 87%;
-    height: 110%;
+    width: 85%;
+    height: 92%;
     background-color:  #ffffff;
     border-radius: 40px;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.6s;
+}
+
+
+.info2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info .chupapal {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 25px;
+    
+
+    
+    
+}
+
+
+
+.info2 .chupapal {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 25px;
+    justify-content: center;
+    display: flex;
+   
+    
+}
+
+.icon i {
+    font-size: 60px;
+
 }
 
 .vish {
-    width: 57%;
-    height: 115%;
+    width: 43%;
+    height: 100%;
     background-color: #ffffff;
     border-radius: 40px;
-    margin-right: 7%;
+    transition: 0.6s;
     display: flex;
     flex-direction: column;
     margin-top: 3%;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+.vish:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.amarelo {
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+    bottom: 3vh;
+    font-weight: 600;
+}
+
+.preto {
+    color: #FFDE59;
+    font-weight: 100;
+    font-size: 30px;
+   text-align: center;
+    font-weight: 600; 
+    
+}
+
+.atendimentos i {
+    color:#FFDE59;
+    font-size: 80px
 }
 
 
@@ -262,3 +402,7 @@
     padding: 10px;
 }
 
+a .info {
+    color: #000;
+
+}

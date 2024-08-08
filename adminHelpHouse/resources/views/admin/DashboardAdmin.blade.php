@@ -8,10 +8,11 @@
 <div class="backdrop">
 
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
+<div class="inicio">
 <div class="header mb-4 ">
     <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
 </div>
-
+</div>
 
 
     <div class="title">
@@ -42,7 +43,7 @@
             </div>
             <div class="osNaoSei">
                 <div class="grafico">
-                    <canvas id="myChart" width="600" height="300"></canvas>
+                    <canvas id="myChart" width="750" height="280"></canvas>
                 </div>
             </div>
         </div>
@@ -57,20 +58,41 @@
                         </div>
                 </div>
                 <div class="infoAdmin">
-
+                    <div class="solicitacoes">
+                        <p class="num2">+23</p>
+                        <h2 class="ig">Solicitações</h2>
+                        <h2 class="ryan">em aberto</h2>
+                    </div>
                 </div>
+
+
             </div>
             <div class="segundaLinha">
 
             <div class="safadinha">
+                
+            <a href="../users/">
                 <div class="info">
-                    <p>jfefei</p>
-                <i class="fa-solid fa-money-bill-transfer" style="color: #ffa200;"></i>
+                    <div class="icon"><i class="material-icons">account_circle</i></div>
+                    <div class="chupapal"><h2 class="chupapal">Usuários</h2></div>
                 </div>
-                <div class="info2"></div>
+            </a>   
+
+
+                <div class="info2">
+                <div class="icon"><i class="material-icons">attach_money</i></div>
+                    <div class="chupapal"><h2 class="chupapal">Financeiro</h2></div>
+                </div>
+
             </div>   
 
-            <div class="vish"></div>
+            <div class="vish">
+                <div class="atendimentos">
+                <i class="material-icons">access_time</i>
+                    <h2 class="amarelo">Atendimentos</h2>
+                    <h2 class="preto">em aberto</h2>
+                </div>
+            </div>
 
             </div>
         </div>
