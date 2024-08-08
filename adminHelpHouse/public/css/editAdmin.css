@@ -1,0 +1,40 @@
+#mudarFoto{
+    margin-bottom: 10px;
+}
+
+.branco{
+    background-color: white;
+    border-radius: 58px;
+    height: 350px;
+    width: auto;
+    margin-top: 8%;
+}
+
+#adm{
+    color: #004AAC;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+#botaoRed{
+ margin-top: 10%;
+ margin-left: 90%;
+}
+
+#inputs{
+    margin-left: 25%;
+}
+
+
+#mudarFoto{
+    margin-top: 5%;
+    margin-left: -110%;
+    border-radius: 15px;
+    width: 15vh;
+    
+}
+
+#name, #email, #cpf{
+    margin-left: 55%;
+}
+
