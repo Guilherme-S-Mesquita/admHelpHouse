@@ -78,11 +78,12 @@
                 </div>
             </a>   
 
-
+            <a href="../financeiro/financeiro">
                 <div class="info2">
                 <div class="icon"><i class="material-icons">attach_money</i></div>
                     <div class="chupapal"><h2 class="chupapal">Financeiro</h2></div>
                 </div>
+            </a>    
 
             </div>   
 

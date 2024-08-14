@@ -1,0 +1,62 @@
+.title {
+    display: flex;
+    width: 80%;
+    height: 18vh;
+    justify-content: start;
+    align-items: center;
+    padding-left: 14.5vw;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    top: 8vh;
+}
+
+.primeiracoluna {
+    flex-direction: column ;
+    justify-content: start;
+    height: 800px;
+    width: 500px;
+    display: flex;
+    margin-left: 10vh;
+}
+
+.receita {
+    flex-direction: row;
+    background-color: white;
+    height: 200px;
+    display: flex;
+    width: 500px;
+    border-radius: 30px;
+
+}
+
+.mediaval {
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    width: 500px;
+    display: flex;
+    margin-top: 3vh;
+    border-radius: 30px;
+
+}
+
+.serviçosmes {
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    width: 500px;
+    display: flex;
+    margin-top: 3vh;
+    border-radius: 30px;
+
+}
+
+.nome {
+    margin-left: 3vh;
+    margin-top: 5px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    
+}

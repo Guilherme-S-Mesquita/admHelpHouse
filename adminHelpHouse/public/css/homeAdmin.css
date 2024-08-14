@@ -406,6 +406,11 @@ a .info {
     color: #000;
 
 }
+
+a .info2 {
+    color: #000;
+}
+
 /* 2xl */
 @media (max-width: 1536px) {
     .container {
