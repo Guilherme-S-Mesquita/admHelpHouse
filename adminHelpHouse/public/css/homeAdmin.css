@@ -17,7 +17,7 @@
 .title {
     display: flex;
     width: 80%;
-    height: 25vh;
+    height: 18vh;
     justify-content: start;
     align-items: center;
     padding-left: 14.5vw;
@@ -248,7 +248,7 @@
     font-weight: 100;
     font-size: 30px;
    text-align: center;
-    font-weight: 600; 
+    font-weight: 600;
 }
 
 .solicitacoes .num2{
@@ -256,7 +256,7 @@
     font-size: 70px;
     color: #009245;
     text-align: center;
-    
+
 }
 
 
@@ -320,10 +320,10 @@
     font-style: normal;
     text-align: center;
     font-size: 25px;
-    
 
-    
-    
+
+
+
 }
 
 
@@ -336,8 +336,8 @@
     font-size: 25px;
     justify-content: center;
     display: flex;
-   
-    
+
+
 }
 
 .icon i {
@@ -380,8 +380,8 @@
     font-weight: 100;
     font-size: 30px;
    text-align: center;
-    font-weight: 600; 
-    
+    font-weight: 600;
+
 }
 
 .atendimentos i {
@@ -406,3 +406,196 @@ a .info {
     color: #000;
 
 }
+/* 2xl */
+@media (max-width: 1536px) {
+    .container {
+      max-width: 1280px;
+    }
+    .grafico{
+        width: 650px;
+        height: 200px;
+    }
+    .infoAdmin .num2{
+        position: relative;
+        top: 10px;
+    }
+    .numPerguntas .textPerguntas{
+        position: relative;
+        top:20px
+    }
+    .perguntas{
+        margin-bottom: 27px;
+    }
+    .amarelo{
+        font-size: 28px;
+
+    }
+    .preto{
+        font-size: 28px;
+    }
+    .title p {
+        font-size: 55px;
+    }
+
+
+
+  }
+
+  /* xl */
+  @media (max-width: 1280px) {
+    .container {
+      max-width: 1024px;
+    }
+    .infoAdmin2{
+        position: relative;
+        left: 34px;
+    }
+    .grafico{
+        width: 650px;
+        height: 200px;
+    }
+    .infoAdmin .num2{
+        position: relative;
+        top: 10px;
+    }
+    .numPerguntas .textPerguntas{
+        position: relative;
+        top:20px
+    }
+    .perguntas{
+        margin-bottom: 27px;
+    }
+    .amarelo{
+        font-size: 23px;
+
+    }
+    .preto{
+        font-size: 23px;
+    }
+    .title p {
+        font-size: 55px;
+    }
+    .ig{
+        font-size: 26px;
+    }
+    .ryan{
+        font-size: 26px;
+    }
+    .info i{
+        font-size: 50px;
+    }
+    .info2 i{
+        font-size: 56px;
+    }
+    .info2 .chupapal{
+
+        font-size: 23px;
+        position: relative;
+        right: 3px;
+    }
+    .info2{
+        height: 89%;
+    }
+    .info{
+        height: 89%;
+
+    }
+    .infoAdmin{
+        position: relative;
+        right: 6px;
+    }
+
+  }
+
+  /* lg */
+  @media (max-width: 1024px) {
+    .container {
+      max-width: 768px;
+    }
+
+    .grafico{
+        width: 500px;
+        height: 200px;
+    }
+    .numPerguntas{
+        
+
+    }
+    .infoAdmin2{
+        position: relative;
+        left: 34px;
+    }
+    .infoAdmin .num2{
+        position: relative;
+        top: 10px;
+    }
+    .numPerguntas .textPerguntas{
+        position: relative;
+        top:20px
+    }
+    .perguntas{
+        margin-bottom: 27px;
+    }
+    .amarelo{
+        font-size: 23px;
+
+    }
+    .preto{
+        font-size: 23px;
+    }
+    .title p {
+        font-size: 55px;
+    }
+    .ig{
+        font-size: 26px;
+    }
+    .ryan{
+        font-size: 26px;
+    }
+    .info i{
+        font-size: 50px;
+    }
+    .info2 i{
+        font-size: 56px;
+    }
+    .info2 .chupapal{
+
+        font-size: 23px;
+        position: relative;
+        right: 3px;
+    }
+    .info2{
+        height: 89%;
+    }
+    .info{
+        height: 89%;
+
+    }
+    .infoAdmin{
+        position: relative;
+        right: 6px;
+    }
+
+  }
+
+  /* md */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+
+  /* sm */
+  @media (max-width: 640px) {
+    .container {
+      max-width: 475px;
+    }
+  }
+
+  /* xs */
+  @media (max-width: 475px) {
+    .container {
+      width: 100%;
+    }
+  }
+
