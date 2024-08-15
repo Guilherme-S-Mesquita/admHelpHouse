@@ -56,4 +56,10 @@ class UsersController extends Controller
 
         return redirect()->route('users.admins')->with('msg', 'Serviço excluido com sucesso!');
     }
+
+
+    public function clientes(){
+    // users é o caminho da pasta, e os clientes é o nome da pagina
+        return view('users.clientes');
+    }
 }

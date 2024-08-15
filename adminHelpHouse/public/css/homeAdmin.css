@@ -183,6 +183,7 @@
 .numPerguntas:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .numPerguntas .num{
@@ -231,6 +232,7 @@
 .infoAdmin:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 
 }
 
@@ -293,6 +295,7 @@
 .info:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .info2{
@@ -312,6 +315,7 @@
 .info2:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .info .chupapal {
@@ -362,6 +366,7 @@
 .vish:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 
 }
 
@@ -633,6 +638,8 @@ a .info {
     }
     #num{
         font-size: 50px;
+        position: relative;
+        top:30px,
     }
     #info{
         height: 80%;
@@ -666,6 +673,68 @@ a .info {
   @media (max-width: 640px) {
     .container {
       max-width: 475px;
+    }
+    .grafico{
+        width: 350px;
+        height: 150px;
+
+    }
+
+    .infoAdmin2{
+        position: relative;
+        left: 2%;
+    }
+    .amarelo{
+        font-size: 13px;
+    }
+    .preto{
+        font-size: 13px;
+    }
+    .ig{
+        font-size: 13px;
+    }
+    .ryan{
+        font-size: 13px;
+    }
+    #num2{
+        font-size: 50px;
+    }
+    .perguntas{
+        margin-bottom: 17%;
+    }
+    #perguntas{
+        font-size: 16px;
+    }
+    .emAberto{
+        margin-bottom: 37%;
+    }
+    #emAberto{
+        font-size: 16px;
+    }
+    #num{
+        font-size: 50px;
+    }
+    #info{
+        height: 80%;
+        width: 93%;
+    }
+    #cpp{
+        font-size: 14px;
+        right: 13%;
+    }
+    #info2{
+        height: 80%;
+        width: 93%;
+    }
+    .info .chupapal{
+        font-size: 14px;
+        position: relative;
+    }
+    #olaGuilherme{
+        font-size: 40px;
+    }
+    #titleDashboard{
+        font-size: 35px;
     }
   }
 
