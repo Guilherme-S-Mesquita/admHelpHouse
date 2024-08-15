@@ -239,7 +239,7 @@
 .ig {
     color: rgb(0, 0, 0);
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     bottom: 3vh;
     font-weight: 600;
@@ -248,9 +248,10 @@
 .ryan {
     color: #009245;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
    text-align: center;
     font-weight: 600;
+    bottom: 20px;
 }
 
 .solicitacoes .num2{
@@ -411,6 +412,11 @@ a .info {
     color: #000;
 
 }
+
+a .info2 {
+    color: #000;
+}
+
 /* 2xl */
 @media (max-width: 1536px) {
     .container {
@@ -459,17 +465,39 @@ a .info {
         width: 650px;
         height: 200px;
     }
-    .infoAdmin .num2{
-        position: relative;
-        top: 10px;
+   
+    .textPerguntas{
+        display: flex;
+        flex-direction: column;
     }
-    .numPerguntas .textPerguntas{
-        position: relative;
-        top:20px
+    #emAberto{
+        display: flex;
+        bottom: 40px;
     }
+    #num{
+        display: flex;
+        top: 40px;
+    }
+
     .perguntas{
-        margin-bottom: 27px;
+        font-size: 20px;
     }
+    .emAberto{
+        font-size: 20px;
+    } 
+ 
+    .textSolicitcao{
+        display: flex;
+        flex-direction: column;
+    }
+    .ig, .ryan{
+        font-size: 20px;
+    }
+    #textSolicitacao #ryan{
+        display: flex;
+        bottom: 30px;
+    }
+
     .amarelo{
         font-size: 23px;
 
@@ -480,12 +508,7 @@ a .info {
     .title p {
         font-size: 55px;
     }
-    .ig{
-        font-size: 26px;
-    }
-    .ryan{
-        font-size: 26px;
-    }
+   
     .info i{
         font-size: 50px;
     }
@@ -669,11 +692,13 @@ a .info {
 
   }
 
+
   /* sm */
   @media (max-width: 640px) {
     .container {
       max-width: 475px;
     }
+<<<<<<< HEAD
     .grafico{
         width: 350px;
         height: 150px;
@@ -736,6 +761,22 @@ a .info {
     #titleDashboard{
         font-size: 35px;
     }
+=======
+
+        /* infoadmin/solicitações */
+
+            .solicitacoes #num2 {
+                font-size: 40px;
+            }
+            .solicitacoes .ig {
+                font-size: 15px;
+            }
+            .solicitacoes .ryan {
+                font-size: 15px;
+            }
+
+    
+>>>>>>> fa21814280b6d2950ee635741b27bd2461db2732
   }
 
   /* xs */

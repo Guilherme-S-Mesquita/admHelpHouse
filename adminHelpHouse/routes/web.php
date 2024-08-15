@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FinanceiroController;
+
 
 
 // rota principal a dashboard
@@ -46,8 +48,6 @@ Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clie
 
 
 
-
-
-
+Route::get('/financeiro/financeiro',[ FinanceiroController::class ,'indexFinanceiro'])->name('financeiro.Allan');
 
 
