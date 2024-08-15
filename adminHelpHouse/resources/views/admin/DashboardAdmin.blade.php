@@ -49,8 +49,8 @@
         </div>
         <div class="infoAdmin2">
             <div class="segundaColuna">
-                <div class="numPerguntas">
-                        <p class="num" id="num">84</p>
+                <div class="numPerguntas" id="numPerguntas">
+                        <p class="num" id="num">+84</p>
                         <div class="textPerguntas">
                             <p class="perguntas" id="perguntas">Perguntas</p>
                             <p class="emAberto" id="emAberto">em aberto</p>
@@ -60,8 +60,10 @@
                 <div class="infoAdmin">
                     <div class="solicitacoes">
                         <p class="num2" id="num2">+23</p>
-                        <h2 class="ig">Solicitações</h2>
-                        <h2 class="ryan">em aberto</h2>
+                    <div class="textSolicitcao" id="textSolicitacao">
+                        <h2 class="ig" id="ryan">Solicitações</h2>
+                        <h2 class="ryan" id="ryan">em aberto</h2>
+                    </div>
                     </div>
                 </div>
 
