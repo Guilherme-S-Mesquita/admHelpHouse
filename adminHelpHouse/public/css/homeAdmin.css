@@ -512,12 +512,14 @@ a .info {
     .container {
       max-width: 768px;
     }
-
+    #olaGuilherme{
+        font-size: 45px;
+    }
     .grafico{
         width: 500px;
         height: 200px;
     }
-   
+
     .infoAdmin2{
         position: relative;
         left: 34px;
@@ -526,51 +528,63 @@ a .info {
         position: relative;
         top: 10px;
     }
+  .segundaColuna .numPerguntas, .infoAdmin{
+    height: 90%;
+  }
+  .segundaColuna #perguntas, #emAberto{
+    font-size: 20px;
+  }
+  .infoAdmin .ig, .ryan{
+    font-size: 20px;
+
+  }
     .numPerguntas .textPerguntas{
         position: relative;
-        top:20px
+        top:18px
     }
     .perguntas{
         margin-bottom: 27px;
     }
     .amarelo{
-        font-size: 23px;
+        font-size: 19px;
 
     }
     .preto{
-        font-size: 23px;
+        font-size: 20px;
     }
     .title p {
-        font-size: 55px;
-    }
-    .ig{
-        font-size: 26px;
-    }
-    .ryan{
-        font-size: 26px;
-    }
-    .info i{
         font-size: 50px;
     }
+
+    .info i{
+        font-size: 35px;
+    }
     .info2 i{
-        font-size: 56px;
+        font-size: 35px;
     }
     .info2 .chupapal{
 
-        font-size: 23px;
+        font-size: 20px;
         position: relative;
         right: 3px;
     }
+    .info .chupapal{
+        font-size: 20px;
+        position: relative;
+    }
     .info2{
-        height: 89%;
+        height: 80%;
     }
     .info{
-        height: 89%;
+        height: 80%;
 
     }
     .infoAdmin{
         position: relative;
         right: 6px;
+    }
+    .vish{
+        height: 85%;
     }
 
   }
@@ -580,6 +594,72 @@ a .info {
     .container {
       max-width: 640px;
     }
+    .grafico{
+        width: 350px;
+        height: 150px;
+
+    }
+
+    .infoAdmin2{
+        position: relative;
+        left: 2%;
+    }
+    .amarelo{
+        font-size: 13px;
+    }
+    .preto{
+        font-size: 13px;
+    }
+    .ig{
+        font-size: 13px;
+    }
+    .ryan{
+        font-size: 13px;
+    }
+    #num2{
+        font-size: 50px;
+    }
+    .perguntas{
+        margin-bottom: 17%;
+    }
+    #perguntas{
+        font-size: 16px;
+    }
+    .emAberto{
+        margin-bottom: 37%;
+    }
+    #emAberto{
+        font-size: 16px;
+    }
+    #num{
+        font-size: 50px;
+    }
+    #info{
+        height: 80%;
+        width: 93%;
+    }
+    #cpp{
+        font-size: 14px;
+        right: 13%;
+    }
+    #info2{
+        height: 80%;
+        width: 93%;
+    }
+    .info .chupapal{
+        font-size: 14px;
+        position: relative;
+    }
+    #olaGuilherme{
+        font-size: 40px;
+    }
+    #titleDashboard{
+        font-size: 35px;
+    }
+
+
+
+
   }
 
   /* sm */
