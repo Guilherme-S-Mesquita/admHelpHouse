@@ -49,8 +49,13 @@
         </div>
         <div class="infoAdmin2">
             <div class="segundaColuna">
+<<<<<<< HEAD
                 <div class="numPerguntas">
                         <p class="num">84</p>
+=======
+                <div class="numPerguntas" id="numPerguntas">
+                        <p class="num" id="num">+84</p>
+>>>>>>> 2302507f407ae6870866e3615bdcc6d49ddd543b
                         <div class="textPerguntas">
                             <p class="perguntas">Perguntas</p>
                             <p class="emAberto">em aberto</p>
@@ -59,9 +64,17 @@
                 </div>
                 <div class="infoAdmin">
                     <div class="solicitacoes">
+<<<<<<< HEAD
                         <p class="num2">+23</p>
                         <h2 class="ig">Solicitações</h2>
                         <h2 class="ryan">em aberto</h2>
+=======
+                        <p class="num2" id="num2">+23</p>
+                    <div class="textSolicitcao" id="textSolicitacao">
+                        <h2 class="ig" id="ryan">Solicitações</h2>
+                        <h2 class="ryan" id="ryan">em aberto</h2>
+                    </div>
+>>>>>>> 2302507f407ae6870866e3615bdcc6d49ddd543b
                     </div>
                 </div>
 
@@ -70,13 +83,13 @@
             <div class="segundaLinha">
 
             <div class="safadinha">
-                
+
             <a href="../users/">
                 <div class="info">
                     <div class="icon"><i class="material-icons">account_circle</i></div>
                     <div class="chupapal"><h2 class="chupapal">Usuários</h2></div>
                 </div>
-            </a>   
+            </a>
 
             <a href="../financeiro/financei">
                 <div class="info2">
@@ -85,7 +98,7 @@
                 </div>
             </a>    
 
-            </div>   
+            </div>
 
             <div class="vish">
                 <div class="atendimentos">
