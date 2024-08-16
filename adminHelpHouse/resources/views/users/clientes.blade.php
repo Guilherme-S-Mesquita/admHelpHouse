@@ -5,75 +5,51 @@
 @section('contentAdmin')
 
 <div class="main p-3">
+    <link rel="stylesheet" href="{{ asset('css/clientes.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/clientes.css') }}">
-
-<div class="titleContainer">
+    <div class="titleContainer">
         <p class="titleClientes" id="titleDashboard">Solicitações em aberto</p>
     </div>
 
-
-
     <div class="containerEstadoCli">
-        <div class="estado" id="green">
-            <div class="emAbertoCli">
-                <a href="#"><p>Em aberto</p></a>
+        <div class="estado">
+            <!-- w de white  -->
+            <div class="emAbertoCli" id="w">
+                <p>Em aberto</p>
             </div>
-            <div class="aceitos">
-                <a href="#"><p>Aceitos</p></a>
+            <!-- g de green -->
+            <div class="aceitos" id="g">
+                <p>Aceitos</p>
             </div>
-            <div class="negados">
-                <a href="#"><p>Negados</p></a>
+            <!-- r de red -->
+            <div class="negados" id="r">
+                <p>Negados</p>
             </div>
         </div>
     </div>
     <div id="containerClientes">
         <div class="tabelaClientes">
-        <div class="row">
-        <div class="col-md-12">
-
-
-
-            <table class="table">
-                <thead>
-                    {{-- <tr>
-
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Nascimento</th>
-                        <th>Cpf</th>
-                        <th>Edit</th>
-                        <th>Excluir</th>
-                    </tr> --}}
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>
-                            <div class="imgCliente">
-
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            {{-- <a href="" class="btn btn-info edit-btn">
-                                <ion-icon name="create-outline"></ion-icon> Editar
-                            </a> --}}
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-
-
-                </tbody>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <!-- O conteúdo dos cabeçalhos pode ser adicionado aqui -->
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="imgCliente"></div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                             
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-
-
-
+</div>
 
 @endsection

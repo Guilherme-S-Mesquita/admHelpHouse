@@ -23,14 +23,15 @@
     left: 10%;
     width: 80%;
     height: 50%;
-    background-color: white;
+
 }
 
 .tabelaClientes {
     width: 100%;
     height: 100%;
-    background-color: black;
     border-radius: 50px;
+    transition: 0.95s ease-in-out; /* Adicionando transição para uma mudança suave */
+    background-color: #ffff;
 }
 
 .imgCliente {
@@ -82,13 +83,19 @@
 
     z-index: 3;
 }
-.aceitos:hover{
-    z-index: 5;
+.verde{
+   z-index: 1;
+    background-color: #14C467 !important;
 }
-.negados:hover{
-    z-index: 5;
+.vermelho{
+    z-index: 1;
+    background-color: #ED5959 !important;
+}
+.branco{
+    z-index: 1;
+    background-color: #ece8e8 !important;
+}
 
-}
 .negados
 {
     width: 33%;
@@ -108,5 +115,17 @@
     font-weight: bold;
     font-size:25px;
     color: black;
-
+    cursor: pointer;
+}
+.btnGreen {
+   border: none;
+   width: 50px;
+   position: absolute;
+   height: 50px;
+   background-color: rgba(255, 255, 255, 0);
+  
+}
+.table{
+    background-color: none;
+    border-bottom: solid 2px #000;
 }
