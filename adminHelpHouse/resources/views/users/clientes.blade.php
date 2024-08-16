@@ -12,15 +12,31 @@
         <p class="titleClientes" id="titleDashboard">Solicitações em aberto</p>
     </div>
 
+
+
+    <div class="containerEstadoCli">
+        <div class="estado" id="green">
+            <div class="emAbertoCli">
+                <a href="#"><p>Em aberto</p></a>
+            </div>
+            <div class="aceitos">
+                <a href="#"><p>Aceitos</p></a>
+            </div>
+            <div class="negados">
+                <a href="#"><p>Negados</p></a>
+            </div>
+        </div>
+    </div>
     <div id="containerClientes">
         <div class="tabelaClientes">
         <div class="row">
         <div class="col-md-12">
-   
+
+
 
             <table class="table">
                 <thead>
-                    <tr>
+                    {{-- <tr>
 
                         <th>Nome</th>
                         <th>Email</th>
@@ -28,31 +44,35 @@
                         <th>Cpf</th>
                         <th>Edit</th>
                         <th>Excluir</th>
-                    </tr>
+                    </tr> --}}
                 </thead>
                 <tbody>
-                   
+
                     <tr>
-                        <td>nome</td>
-                        <td>email</td>
-                        <td>data</td>
-                        <td>cpf</td>
                         <td>
-                            <a href="" class="btn btn-info edit-btn">
+                            <div class="imgCliente">
+
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{-- <a href="" class="btn btn-info edit-btn">
                                 <ion-icon name="create-outline"></ion-icon> Editar
-                            </a>
+                            </a> --}}
                         </td>
                         <td>
-                       
+
                         </td>
                     </tr>
 
-                   
+
                 </tbody>
 
         </div>
     </div>
- 
+
 
 
 

@@ -102,6 +102,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    z-index: 70;
 }
 
 /* Estilo para a barra lateral quando expandida */
@@ -113,7 +114,7 @@ body {
     width: 80px;
     min-width: 80px;
     transition: all .25s ease-in-out;
-    z-index: 1001; 
+    z-index: 70;
 
 }
 #content{
@@ -137,11 +138,11 @@ body {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
     display: none;
-    z-index: 1000;
-    
+    z-index: 70;
+
 }
 #overlay.active {
-  
+
     display: block;
 }
 
@@ -265,7 +266,7 @@ a.sidebar-link:hover {
     transition: all .2s ease-in-out;
 }
 #sidebar .expanded {
-    filter: blur(5px); 
+    filter: blur(5px);
     transform: scale(0.8);
 }
 /* Rotaciona a seta para indicar a expansão do dropdown quando a barra lateral está expandida */
