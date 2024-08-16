@@ -465,7 +465,7 @@ a .info2 {
         width: 650px;
         height: 200px;
     }
-   
+
     .textPerguntas{
         display: flex;
         flex-direction: column;
@@ -484,8 +484,8 @@ a .info2 {
     }
     .emAberto{
         font-size: 20px;
-    } 
- 
+    }
+
     .textSolicitcao{
         display: flex;
         flex-direction: column;
@@ -508,7 +508,7 @@ a .info2 {
     .title p {
         font-size: 55px;
     }
-   
+
     .info i{
         font-size: 50px;
     }
@@ -698,7 +698,6 @@ a .info2 {
     .container {
       max-width: 475px;
     }
-<<<<<<< HEAD
     .grafico{
         width: 350px;
         height: 150px;
@@ -761,22 +760,6 @@ a .info2 {
     #titleDashboard{
         font-size: 35px;
     }
-=======
-
-        /* infoadmin/solicitações */
-
-            .solicitacoes #num2 {
-                font-size: 40px;
-            }
-            .solicitacoes .ig {
-                font-size: 15px;
-            }
-            .solicitacoes .ryan {
-                font-size: 15px;
-            }
-
-    
->>>>>>> fa21814280b6d2950ee635741b27bd2461db2732
   }
 
   /* xs */
