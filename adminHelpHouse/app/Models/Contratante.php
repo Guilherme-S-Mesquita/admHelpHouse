@@ -10,4 +10,6 @@ class Contratante extends Model
     use HasFactory;
 
     protected $table = 'tbcontratante';
+
+
 }

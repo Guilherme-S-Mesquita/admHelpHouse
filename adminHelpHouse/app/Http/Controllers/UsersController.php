@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profissional;
 use App\Http\Controllers\loginController;
 
 class UsersController extends Controller
@@ -12,13 +13,15 @@ class UsersController extends Controller
 
     public function index(){
 
-        $user = auth()->user();
+    $user = auth()->user();
+
 
         return view('users.index',compact('user'));
     }
     public function userAdm(){
         $users = User::all();
-        $user = auth()->user();
+
+
 
         return view('users.admins'  ,compact('user', 'users'));
 
@@ -62,4 +65,14 @@ class UsersController extends Controller
     // users é o caminho da pasta, e os clientes é o nome da pagina
         return view('users.clientes');
     }
+
+    public function apiUserContratante(){
+
+        $contratante =Profissional::all();
+
+        return $contratante;
+    }
+
+
+
 }
