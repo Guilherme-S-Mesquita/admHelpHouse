@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('#sidebar');
     const backdrop = document.querySelector('.backdrop');
     const toggleBtn = document.querySelector('.toggle-btn');
-    const toggleChama = document.querySelector('.condicaoCli')
+
+    let green = document.getElementById('green');
+
+
 
     toggleBtn.addEventListener('click', function() {
         sidebar.classList.toggle('expanded'); // Adiciona ou remove a classe de expansão
@@ -14,9 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop.classList.remove('show-backdrop'); // Remove a classe de sobreposição
     });
 
-    toggleChama.addEventListener('click', function(){
-        divGreen.classList.toggle('green');
-        drop.classList.toggle('green');
+    
 
-    });
+
 });

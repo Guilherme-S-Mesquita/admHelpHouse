@@ -15,20 +15,27 @@
 
 
     <div class="containerEstadoCli">
-        <div class="estado" id="green">
+        <div class="estado" >
             <div class="emAbertoCli">
-                <a href="#"><p>Em aberto</p></a>
+                <button class="condicaoCli">
+                    <p>Em aberto</p>
+                </button>
+
             </div>
-            <div class="aceitos">
-                <a href="#"><p>Aceitos</p></a>
+            <div  class="aceitos" >
+                <button>
+                    <a href="#"><p>Em aberto</p></a>
+                </button>
             </div>
             <div class="negados">
-                <a href="#"><p>Negados</p></a>
+                <button>
+                    <a href="#"><p>Em aberto</p></a>
+                </button>
             </div>
         </div>
     </div>
     <div id="containerClientes">
-        <div class="tabelaClientes">
+        <div class="tabelaClientes" id="green">
         <div class="row">
         <div class="col-md-12">
 
@@ -74,6 +81,11 @@
     </div>
 
 
-
+ <script>
+        function toggleGreen(){
+            var green = document.getElementById('green');
+            green.classList.toggle('verdeAtivo')
+        }
+ </script>
 
 @endsection
