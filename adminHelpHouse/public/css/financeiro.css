@@ -5,6 +5,11 @@
     justify-content: space-evenly;
 }
 
+.comeco {
+    flex-direction: row;
+}
+
+
 
 .title {
     display: flex;
@@ -17,7 +22,14 @@
     font-weight: 700;
     font-style: normal;
     top: 8vh;
+    flex-direction: row;
 }
+
+.title h2 {
+   flex-direction: row;
+   margin-left: 5vh;
+}
+
 
 .primeiracoluna {
     flex-direction: column ;
@@ -40,13 +52,13 @@
 }
 
 .mediaval {
-    flex-direction: row;
-    background-color: rgb(255, 255, 255);
-    height: 200px;
+    flex-direction: column ;
+    justify-content: start;
+    height: 800px;
     width: 500px;
     display: flex;
-    margin-top: 3vh;
-    border-radius: 30px;
+    margin-top: 10vh;
+    
 
 }
 
@@ -61,14 +73,19 @@
 
 }
 
-.nome {
-    margin-left: 3vh;
+.nome {  
     margin-top: 5px;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     flex-direction: row;
     font-size: 20px;
     
+}
+.agosto {   
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: orange;  
 }
 
 .icon {
@@ -95,6 +112,7 @@
     flex-direction: row;
     width: 500px;
     height: 250px;
+    margin-top: 10vh;
 
 }
 
@@ -110,25 +128,33 @@
 
 .despesareceita {
     flex-direction: row;
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 350px;
 }
 
 .metodosdepag {
     width: 500px;
-    height: 150px;
+    height: 100px;
     background-color: white;
     margin-top: 3vh;
     border-radius: 30px;
+    text-align: start;
+    justify-content: start;
+    align-items: center;
+    display: flex;
 
 }
 
 .nseiainda {
     width: 500px;
-    height: 150px;
+    height: 100px;
     background-color: white;
     margin-top: 3vh;
     border-radius: 30px;
+    text-align: start;
+    justify-content: start;
+    align-items: center;
+    display: flex;
 
 }
 
@@ -136,4 +162,20 @@
     flex-direction: row;
     width: 500px;
     height: 250px;
+}
+
+.soliconclu {
+    margin-top: 15vh;
+}
+
+.palavrinha {
+    text-align: start;
+    margin-left: 3vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+    font-size: 23px;
+
+    
 }

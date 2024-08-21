@@ -14,7 +14,7 @@ class ServicoController extends Controller
         return view('add.servico', compact('servicos'));
     }
 
-    public function servicoApi()
+    public function indexApi()
     {
         $servicos = Servico::all();
         return $servicos;
