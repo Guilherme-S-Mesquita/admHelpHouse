@@ -67,19 +67,31 @@
                         <div class="botoes">
                             <div class="planos">
                             <button type="submit" class="btn btn-primary" id="mudarFoto">Salvar Alterações</button>           
-                            <button type="submit" class="btn btn-danger" id="botaoRed">Excluir Usuário</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Excluir Usuário
+                            </button>
                             </div>
                         </div>
 
                
-            
-
-
-            <!-- <form action="{{ route('update.admins', $user->id) }}" method="POST"> -->
-             
-                
-               
-                    
+             <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir Usuário</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               Tem certeza que deseja excluir esse usuário? As alterações não podem ser desfeitas.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                                <button type="button" class="btn btn-primary">Cancelar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
              
             
                     </div>
