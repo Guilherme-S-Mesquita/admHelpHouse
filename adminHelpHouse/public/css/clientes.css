@@ -5,7 +5,7 @@
     transition: all 0.95s ease-in-out;
     background-color: #e2e2e2;
     margin-left: 5vw;
-  
+
 }
 
 
@@ -69,6 +69,9 @@
     background-color: #ffffff;
     z-index: 4;
 }
+.emAbertoCli button{
+    border: none;
+}
 .aceitos{
     width: 33%;
     height: 100%;
@@ -110,6 +113,9 @@
     right: 70px;
     z-index: 2;
 }
+.negados button{
+    border: none;
+}
 
 .estado p{
     font-weight: bold;
@@ -123,7 +129,7 @@
    position: absolute;
    height: 50px;
    background-color: rgba(255, 255, 255, 0);
-  
+
 }
 .table{
     background-color: none;

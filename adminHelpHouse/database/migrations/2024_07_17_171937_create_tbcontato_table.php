@@ -22,11 +22,17 @@ return new class extends Migration
             $table->unsignedBigInteger('idContratante');
             $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
             $table->foreign('idContratante')->references('idContratante')->on('tbcontratante');
+
         });
     }
 
     public function down()
     {
+        Schema::table('tbcontato', function (Blueprint $table) {
+            $table->dropForeign(['idContratado']);
+            $table->dropForeign(['idContratante']);
+
+        });
         Schema::dropIfExists('tbcontato');
     }
 };

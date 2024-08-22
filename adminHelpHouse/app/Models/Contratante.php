@@ -10,4 +10,12 @@ class Contratante extends Model
     use HasFactory;
 
     protected $table = 'tbcontratante';
+
+    public $fillable = ['idContratante', 'nomeContratante'];
+
+    public $timestamps = false;
+
+
+
+
 }

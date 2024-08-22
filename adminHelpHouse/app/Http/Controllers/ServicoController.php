@@ -31,6 +31,7 @@ class ServicoController extends Controller
             'nomeServicos' => 'required|string|max:255',
             'descServicos' => 'required|string',
             'precoServicos' => 'required|string',
+            'idContratado' => 'required|integer',  // Adicione esta validação
         ]);
 
         $servico = new Servico;
