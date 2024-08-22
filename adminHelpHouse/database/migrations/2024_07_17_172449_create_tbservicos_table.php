@@ -17,8 +17,8 @@ return new class extends Migration
                 $table->string('nomeServicos', 50);
                 $table->string('descServicos', 400);
                 $table->string('precoServicos');
-                // $table->unsignedBigInteger('idContratado');
-                // $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
+                $table->unsignedBigInteger('idContratado');
+                $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
                 $table->timestamps();
 
             });
@@ -26,6 +26,11 @@ return new class extends Migration
 
         public function down()
         {
+            Schema::table('tbservicos', function (Blueprint $table) {
+                $table->dropForeign(['idContratado']);
+            
+
+            });
             Schema::dropIfExists('tbservicos');
         }
 };

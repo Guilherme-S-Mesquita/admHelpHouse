@@ -10,6 +10,8 @@ use App\Models\Profissional;
 class AdminController extends Controller
 
 {
+
+
     public function index(){
 
 

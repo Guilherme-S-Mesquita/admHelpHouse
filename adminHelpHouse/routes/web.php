@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FinanceiroController;
+
 
 
 // rota principal a dashboard
@@ -40,10 +42,12 @@ Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
 Route::get('/editadmin/{id}' ,[UsersController::class, 'edit']) ->name('edit.admins');
 Route::put('/editadmin/{id}' ,[UsersController::class, 'update']) ->name('update.admins');
 Route::delete('/editadmin/{id}' ,[UsersController::class, 'delete']) ->name('delete.admins');
+// --------------------------------USUARIOS PAGINA USUARIOS----------------------------------
+Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clientes');
 
 
 
 
-
+Route::get('/financeiro/financeiro',[ FinanceiroController::class ,'indexFinanceiro'])->name('financeiro.Allan');
 
 

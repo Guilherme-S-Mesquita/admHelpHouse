@@ -10,7 +10,7 @@
         <h2>Controle de Usuários</h2>
     </div>
 
-    <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+    <div class="container-fluid h-85 d-flex justify-content-center align-items-center">
         <div class="row w-100 d-flex justify-content-around">
             <div class="col-md-4 mb-4">
                 <a href="{{route('users.admins')}}" class="card-link">
@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-4">
-                <a href="#" class="card-link">
+                <a href="{{route('users.clientes')}}" class="card-link">
                     <div class="card">
                         <div class="card-body">
                             <img src="/img/usuariosClientes.png" alt="Ícone de Clientes">

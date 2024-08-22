@@ -3,13 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('contentAdmin')
+
 <div class="main p-3">
+<div class="backdrop">
 
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
+<div class="inicio">
 <div class="header mb-4 ">
     <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
 </div>
-
+</div>
 
 
     <div class="title">
@@ -40,7 +43,7 @@
             </div>
             <div class="osNaoSei">
                 <div class="grafico">
-                    <canvas id="myChart" width="600" height="300"></canvas>
+                    <canvas id="myChart" width="750" height="280"></canvas>
                 </div>
             </div>
         </div>
@@ -55,18 +58,50 @@
                         </div>
                 </div>
                 <div class="infoAdmin">
-
+                    <div class="solicitacoes">
+                        <p class="num2">+23</p>
+                        <h2 class="ig">Solicitações</h2>
+                        <h2 class="ryan">em aberto</h2>
+                    </div>
                 </div>
+
+
             </div>
             <div class="segundaLinha">
-                <div class="info"></div>
-                <div class="info2"></div>
+
+            <div class="safadinha">
+
+            <a href="../users/">
+                <div class="info">
+                    <div class="icon"><i class="material-icons">account_circle</i></div>
+                    <div class="chupapal"><h2 class="chupapal">Usuários</h2></div>
+                </div>
+            </a>
+
+            <a href="../financeiro/financeiro">
+                <div class="info2">
+                <div class="icon"><i class="material-icons">public</i></div>
+                    <div class="chupapal"><h2 class="chupapal">Informações</h2></div>
+                </div>
+            </a>
+
+            </div>
+
+            <div class="vish">
+                <div class="atendimentos">
+                <i class="material-icons">access_time</i>
+                    <h2 class="amarelo">Atendimentos</h2>
+                    <h2 class="preto">em aberto</h2>
+                </div>
+            </div>
+
             </div>
         </div>
     </div>
 </div>
 
 <!-- Inclua o script do Chart.js -->
+ <div class="chart">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -104,4 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+</div>
+
 @endsection

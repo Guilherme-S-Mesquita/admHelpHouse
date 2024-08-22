@@ -1,37 +1,52 @@
+
+.inicio {
+    margin-left: 80px;
+}
+
+
 .main {
     min-height: 100vh;
-    width: 100%;
+    width: 97%;
     overflow: hidden;
     transition: all 0.95s ease-in-out;
     background-color: #e2e2e2;
+    margin-left: 3vw;
 }
 
 /* --------------------------------TITULO DA DASHBOARD------------------------ */
 .title {
     display: flex;
     width: 80%;
-    height: 25vh;
+    height: 18vh;
     justify-content: start;
     align-items: center;
     padding-left: 14.5vw;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    top: 8vh;
 }
 
 .title p {
     color: #004AAD;
-    font-size: xx-large;
+    font-size: 60px;
     font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 /* _______________________________________________________________________________ */
 /* ---------------------------------------INFOS-ADMIN coluna 1----------------------------- */
 .containerAdmin {
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 60vh;
     flex-direction: row;
     position: relative;
     left: 12%;
 }
+
 
 .infosAdmin {
     width: 45%;
@@ -161,29 +176,40 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    transition: 0.6s;
+
 }
+
+.numPerguntas:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
 .numPerguntas .num{
     font-weight: bold;
-    font-size: 80px;
+    font-size: 70px;
     color: red;
     position: relative;
     top: 3vh;
 }
 .textPerguntas p{
     flex-direction: column;
-    font-size: 30px;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     text-align: center;
+    font-weight: 600;
 
 
 }
 .textPerguntas .emAberto{
     color: red;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
     position: relative;
     bottom: 3vh;
+    font-weight: 600;
 
 }
 .textPerguntas .perguntas{
@@ -191,32 +217,185 @@
 
 }
 .infoAdmin{
-    width: 45%;
+    width: 35%;
     height: 100%;
     background-color: #ffffff;
     border-radius: 40px;
+    margin-right: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.6s;
 }
+
+.infoAdmin:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+}
+
+.ig {
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    font-size: 25px;
+    text-align: center;
+    bottom: 3vh;
+    font-weight: 600;
+}
+
+.ryan {
+    color: #009245;
+    font-weight: 100;
+    font-size: 25px;
+   text-align: center;
+    font-weight: 600;
+    bottom: 20px;
+}
+
+.solicitacoes .num2{
+    font-weight: bold;
+    font-size: 70px;
+    color: #009245;
+    text-align: center;
+
+}
+
+
+
+
 .segundaLinha{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 81%;
     height: 42%;
     margin-top: 20px;
 
 }
+
+.safadinha {
+    flex-direction: row;
+    width: 50%;
+    height: 50%;
+    margin-top: 3%;
+}
+
 .info{
-    width: 54%;
-    height: 100%;
-    background-color:  #004AAD;
+    width: 84%;
+    height: 92%;
+    background-color:  #ffffff;
     border-radius: 40px;
-    margin-right: 10px;
+    transition: 0.6s;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
+
+.info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
 .info2{
-    width: 30%;
-    height: 100%;
-    background-color:  #004AAD;
+    width: 85%;
+    height: 92%;
+    background-color:  #ffffff;
     border-radius: 40px;
+    flex-direction: row;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.6s;
 }
+
+
+.info2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.info .chupapal {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 25px;
+
+
+
+
+}
+
+
+
+.info2 .chupapal {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 25px;
+    justify-content: center;
+    display: flex;
+
+
+}
+
+.icon i {
+    font-size: 60px;
+
+}
+
+.vish {
+    width: 43%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 40px;
+    transition: 0.6s;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+.vish:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+}
+
+
+.amarelo {
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+    bottom: 3vh;
+    font-weight: 600;
+}
+
+.preto {
+    color: #FFDE59;
+    font-weight: 100;
+    font-size: 30px;
+   text-align: center;
+    font-weight: 600;
+
+}
+
+.atendimentos i {
+    color:#FFDE59;
+    font-size: 80px
+}
+
+
 #myChart{
     border-radius: 20px;
 }
@@ -228,4 +407,365 @@
     text-align: center;
     padding: 10px;
 }
+
+a .info {
+    color: #000;
+
+}
+
+a .info2 {
+    color: #000;
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+    .container {
+      max-width: 1280px;
+    }
+    .grafico{
+        width: 650px;
+        height: 200px;
+    }
+    .infoAdmin .num2{
+        position: relative;
+        top: 10px;
+    }
+    .numPerguntas .textPerguntas{
+        position: relative;
+        top:20px
+    }
+    .perguntas{
+        margin-bottom: 27px;
+    }
+    .amarelo{
+        font-size: 28px;
+
+    }
+    .preto{
+        font-size: 28px;
+    }
+    .title p {
+        font-size: 55px;
+    }
+
+
+
+  }
+
+  /* xl */
+  @media (max-width: 1280px) {
+    .container {
+      max-width: 1024px;
+    }
+    .infoAdmin2{
+        position: relative;
+        left: 34px;
+    }
+    .grafico{
+        width: 650px;
+        height: 200px;
+    }
+
+    .textPerguntas{
+        display: flex;
+        flex-direction: column;
+    }
+    #emAberto{
+        display: flex;
+        bottom: 40px;
+    }
+    #num{
+        display: flex;
+        top: 40px;
+    }
+
+    .perguntas{
+        font-size: 20px;
+    }
+    .emAberto{
+        font-size: 20px;
+    }
+
+    .textSolicitcao{
+        display: flex;
+        flex-direction: column;
+    }
+    .ig, .ryan{
+        font-size: 20px;
+    }
+    #textSolicitacao #ryan{
+        display: flex;
+        bottom: 30px;
+    }
+
+    .amarelo{
+        font-size: 23px;
+
+    }
+    .preto{
+        font-size: 23px;
+    }
+    .title p {
+        font-size: 55px;
+    }
+
+    .info i{
+        font-size: 50px;
+    }
+    .info2 i{
+        font-size: 56px;
+    }
+    .info2 .chupapal{
+
+        font-size: 23px;
+        position: relative;
+        right: 3px;
+    }
+    .info2{
+        height: 89%;
+    }
+    .info{
+        height: 89%;
+
+    }
+    .infoAdmin{
+        position: relative;
+        right: 6px;
+    }
+
+  }
+
+  /* lg */
+  @media (max-width: 1024px) {
+    .container {
+      max-width: 768px;
+    }
+    #olaGuilherme{
+        font-size: 45px;
+    }
+    .grafico{
+        width: 500px;
+        height: 200px;
+    }
+
+    .infoAdmin2{
+        position: relative;
+        left: 34px;
+    }
+    .infoAdmin .num2{
+        position: relative;
+        top: 10px;
+    }
+  .segundaColuna .numPerguntas, .infoAdmin{
+    height: 90%;
+  }
+  .segundaColuna #perguntas, #emAberto{
+    font-size: 20px;
+  }
+  .infoAdmin .ig, .ryan{
+    font-size: 20px;
+
+  }
+    .numPerguntas .textPerguntas{
+        position: relative;
+        top:18px
+    }
+    .perguntas{
+        margin-bottom: 27px;
+    }
+    .amarelo{
+        font-size: 19px;
+
+    }
+    .preto{
+        font-size: 20px;
+    }
+    .title p {
+        font-size: 50px;
+    }
+
+    .info i{
+        font-size: 35px;
+    }
+    .info2 i{
+        font-size: 35px;
+    }
+    .info2 .chupapal{
+
+        font-size: 20px;
+        position: relative;
+        right: 3px;
+    }
+    .info .chupapal{
+        font-size: 20px;
+        position: relative;
+    }
+    .info2{
+        height: 80%;
+    }
+    .info{
+        height: 80%;
+
+    }
+    .infoAdmin{
+        position: relative;
+        right: 6px;
+    }
+    .vish{
+        height: 85%;
+    }
+
+  }
+
+  /* md */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 640px;
+    }
+    .grafico{
+        width: 350px;
+        height: 150px;
+
+    }
+
+    .infoAdmin2{
+        position: relative;
+        left: 2%;
+    }
+    .amarelo{
+        font-size: 13px;
+    }
+    .preto{
+        font-size: 13px;
+    }
+    .ig{
+        font-size: 13px;
+    }
+    .ryan{
+        font-size: 13px;
+    }
+    #num2{
+        font-size: 50px;
+    }
+    .perguntas{
+        margin-bottom: 17%;
+    }
+    #perguntas{
+        font-size: 16px;
+    }
+    .emAberto{
+        margin-bottom: 37%;
+    }
+    #emAberto{
+        font-size: 16px;
+    }
+    #num{
+        font-size: 50px;
+        position: relative;
+        top:30px,
+    }
+    #info{
+        height: 80%;
+        width: 93%;
+    }
+    #cpp{
+        font-size: 14px;
+        right: 13%;
+    }
+    #info2{
+        height: 80%;
+        width: 93%;
+    }
+    .info .chupapal{
+        font-size: 14px;
+        position: relative;
+    }
+    #olaGuilherme{
+        font-size: 40px;
+    }
+    #titleDashboard{
+        font-size: 35px;
+    }
+
+
+
+
+  }
+
+
+  /* sm */
+  @media (max-width: 640px) {
+    .container {
+      max-width: 475px;
+    }
+    .grafico{
+        width: 350px;
+        height: 150px;
+
+    }
+
+    .infoAdmin2{
+        position: relative;
+        left: 2%;
+    }
+    .amarelo{
+        font-size: 13px;
+    }
+    .preto{
+        font-size: 13px;
+    }
+    .ig{
+        font-size: 13px;
+    }
+    .ryan{
+        font-size: 13px;
+    }
+    #num2{
+        font-size: 50px;
+    }
+    .perguntas{
+        margin-bottom: 17%;
+    }
+    #perguntas{
+        font-size: 16px;
+    }
+    .emAberto{
+        margin-bottom: 37%;
+    }
+    #emAberto{
+        font-size: 16px;
+    }
+    #num{
+        font-size: 50px;
+    }
+    #info{
+        height: 80%;
+        width: 93%;
+    }
+    #cpp{
+        font-size: 14px;
+        right: 13%;
+    }
+    #info2{
+        height: 80%;
+        width: 93%;
+    }
+    .info .chupapal{
+        font-size: 14px;
+        position: relative;
+    }
+    #olaGuilherme{
+        font-size: 40px;
+    }
+    #titleDashboard{
+        font-size: 35px;
+    }
+  }
+
+  /* xs */
+  @media (max-width: 475px) {
+    .container {
+      width: 100%;
+    }
+  }
 
