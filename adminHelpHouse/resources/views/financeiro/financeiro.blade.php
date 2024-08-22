@@ -12,6 +12,7 @@
             <div class="title">
                 <p>Controle de Informações</p>
                 <h2>|</h2>
+                <h4>Dados atualizados em:</h4>
             </div>
         </div>
 

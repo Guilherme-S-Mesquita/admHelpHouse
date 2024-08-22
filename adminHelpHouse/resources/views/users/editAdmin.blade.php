@@ -6,36 +6,85 @@
 
 <link rel="stylesheet" href="{{ asset('css/editAdmin.css') }}">
 
-<div class="main p-3">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="mb-" id="adm">Administrador</h2>
-            <form action="{{ route('update.admins', $user->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="branco">
-                <div class="form-group col-md-2" id="inputs">
-                    <label for="nomeServicos" class="dados">Nome do administrador:</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
-                </div>
-                <div class="form-group col-md-2" id="inputs">
-                    <label for="descServicos">Descrição:</label>
-                    <textarea class="form-control" id="email" name="email" required>{{ $user->email}}</textarea>
-                </div>
-                <div class="form-group col-md-2" id="inputs">
-                    <label for="precoServicos">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{ $user->cpf }}" required>
 
+            <!-- titulo -->
+ 
+            <div class="main p-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <p>Perfil Administrador</p>
+                        </div>
+
+            <!-- parte do usuario 1: foto-->
+
+            <div class="tudo">
+                <div class="parteum">
+                    <div class="foto"></div>
+
+                    <div class="ptbotao">
+                         <button >Alterar foto</button>
+                    </div>
+                </div>
+
+            <!-- parte do usuario 2: Infos-->
+
+                <div class="partedois">
+
+                    <div class="formulário">
+                        <form action="{{ route('update.admins', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group" id="inputs">
+                            <label for="nomeServicos"><p class="nomezinho">Nome do administrador:</p></label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                        </div>
+                      
+                        <div class="form-group" id="inputs">
+                            <label for="precoServicos"><p class="nomezinho">CPF:</p></label>
+                            <input type="text" class="form-control" id="cpf" name="cpf" value="{{ $user->cpf }}" required>
+                        </div>
+
+                        <div class="form-group" id="inputs">
+                            <label for="precoServicos"><p class="nomezinho">Data de Nascimento</p></label>
+                            <input type="date" class="form-control" id="data" name="data" value="{{ $user->dataDeNascimento }}" required>
+                        </div>
+
+                        <div class="form-group " id="inputs">
+                            <label for="descServicos"><p class="nomezinho">Descrição:</p></label>
+                            <textarea class="form-control" id="email" name="email" required>{{ $user->email}}</textarea>
+                        </div>
+
+                       
+                             </form>
+                            </div>
+                         </div>
+                        </div>
+
+            <!-- botões finais-->
+
+                        <div class="botoes">
+                            <div class="planos">
+                            <button type="submit" class="btn btn-primary" id="mudarFoto">Salvar Alterações</button>           
+                            <button type="submit" class="btn btn-danger" id="botaoRed">Excluir Usuário</button>
+                            </div>
+                        </div>
+
+               
+            
+
+
+            <!-- <form action="{{ route('update.admins', $user->id) }}" method="POST"> -->
+             
+                
+               
                     
-                <button type="submit" class="btn btn-primary" id="mudarFoto">Mudar foto</button>
-
+             
+            
+                    </div>
                 </div>
-                </div>
-                <button type="submit" class="btn btn-danger" id="botaoRed">Excluir Usuário</button>
-            </form>
-        </div>
-    </div>
-</div>
+            </div>
 @endsection
 
 

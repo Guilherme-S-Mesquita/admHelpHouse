@@ -28,7 +28,16 @@
 .title h2 {
    flex-direction: row;
    margin-left: 5vh;
+ 
 }
+
+.title h4 {
+    flex-direction: row;
+    margin-left: 5vh;
+    color: rgb(0, 0, 146);
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+ }
 
 
 .primeiracoluna {
