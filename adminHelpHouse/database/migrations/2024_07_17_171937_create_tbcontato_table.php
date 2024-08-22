@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idContratante');
             $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
             $table->foreign('idContratante')->references('idContratante')->on('tbcontratante');
+
         });
     }
 

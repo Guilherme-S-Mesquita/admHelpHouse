@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('ruaEndereco', 90);
             $table->string('cepEndereco', 9);
             $table->string('numCasaEndereco', 14);
-            $table->string('complementoEndereco', 90);
+            $table->string('complementoEndereco')->nullable();
             $table->string('bairroEndereco', 90);
             $table->string('ufEndereco', 10);
             $table->string('cidadeEndereco', 50);

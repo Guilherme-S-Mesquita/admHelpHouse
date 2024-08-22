@@ -66,12 +66,7 @@ class UsersController extends Controller
         return view('users.clientes');
     }
 
-    public function apiUserContratante(){
 
-        $contratante =Profissional::all();
-
-        return $contratante;
-    }
 
 
 

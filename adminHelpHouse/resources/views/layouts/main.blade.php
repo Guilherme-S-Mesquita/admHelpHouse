@@ -100,8 +100,8 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <img src="/img/financeiro.png" alt="">
-                        <span>Financeiro</span>
+                    <div class="iconesidebar"><i class="material-icons">public</i></div>
+                        <span>Informações gerais</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

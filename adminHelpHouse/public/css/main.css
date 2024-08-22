@@ -222,9 +222,18 @@ a.sidebar-link:hover {
     border-left: 3px solid #3a85f7;
 }
 
+
+.iconesidebar i {
+  
+    font-size: 50px;
+    color: #e38144;
+}
+
 /* Estilo para os itens da barra lateral */
 .sidebar-item {
     position: relative;
+    margin-left: 10px;
+    display: flex;
 }
 .helphouseImg{
     width: 120px;
