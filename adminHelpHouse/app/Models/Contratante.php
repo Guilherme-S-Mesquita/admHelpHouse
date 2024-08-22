@@ -11,5 +11,11 @@ class Contratante extends Model
 
     protected $table = 'tbcontratante';
 
+    public $fillable = ['idContratante', 'nomeContratante'];
+
+    public $timestamps = false;
+
+
+
 
 }
