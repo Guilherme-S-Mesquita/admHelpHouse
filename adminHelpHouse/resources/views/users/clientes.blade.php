@@ -7,6 +7,7 @@
 <div class="main p-3">
     <link rel="stylesheet" href="{{ asset('css/clientes.css') }}">
 
+
     <div class="titleContainer">
         <p class="titleClientes" id="titleDashboard">Solicitações em aberto</p>
     </div>
@@ -52,4 +53,5 @@
     </div>
 </div>
 
+<script src="{{ asset('js/clientes.js') }}"></script>
 @endsection

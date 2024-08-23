@@ -31,6 +31,7 @@
     <!-- Overlay para o efeito de desfoque -->
     <div id="overlay"></div>
 
+
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#"></a>
         <div class="search-container">
@@ -56,7 +57,7 @@
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
-                <button class="toggle-btn" type="button" onclick="toggleOverlay()">
+                <button class="toggle-btn"  type="button" onclick="toggleOverlay()">
                     <i>
                         <ion-icon size="large" name="menu-sharp"></ion-icon>
                     </i>
@@ -99,9 +100,9 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                    <a href="/infosgerais" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                     <div class="iconesidebar"><i class="material-icons">public</i></div>
-                        <span>Informações gerais</span>
+                        <span>Central</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -120,6 +121,7 @@
                 </form>
             </div>
         </aside>
+        <div class="backdrop"></div>
 
         @yield('contentAdmin')
 

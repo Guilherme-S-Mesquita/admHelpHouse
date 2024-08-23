@@ -13,7 +13,7 @@ class UsersController extends Controller
 
     public function index(){
 
-    $user = auth()->user();
+     $user = auth()->user();
 
 
         return view('users.index',compact('user'));
@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function userAdm(){
         $users = User::all();
 
-
+        $user = auth()->user();
 
         return view('users.admins'  ,compact('user', 'users'));
 

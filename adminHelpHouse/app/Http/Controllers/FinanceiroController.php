@@ -9,7 +9,7 @@ class FinanceiroController extends Controller
 {
     public function indexFinanceiro(){
 
-        return view('financeiro.financeiro');
+        return view('financeiro.controle');
 
     }
 }

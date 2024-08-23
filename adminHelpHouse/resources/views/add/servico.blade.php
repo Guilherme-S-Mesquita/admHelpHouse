@@ -6,8 +6,8 @@
 <div class="main p-3">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="mb-4">Gerenciar Profissões</h2>
-            <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Nova Profissão</a>
+            <h2 class="mb-4">Gerenciar Serviços</h2>
+            <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Novo Serviço</a>
             <table class="table">
                 <thead>
                     <tr>

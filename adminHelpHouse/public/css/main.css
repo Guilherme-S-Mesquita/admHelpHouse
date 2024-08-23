@@ -224,7 +224,7 @@ a.sidebar-link:hover {
 
 
 .iconesidebar i {
-  
+
     font-size: 50px;
     color: #e38144;
 }
@@ -273,6 +273,7 @@ a.sidebar-link:hover {
     top: 1.4rem;
     transform: rotate(-135deg);
     transition: all .2s ease-in-out;
+   
 }
 #sidebar .expanded {
     filter: blur(5px);

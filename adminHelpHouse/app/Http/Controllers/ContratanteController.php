@@ -13,14 +13,13 @@ class ContratanteController extends Controller
         $contratante = Contratante::all();
         return $contratante;
     }
-};
 
 
-public function storeApi(Request $request)
-{
+       public function storeApi(Request $request){
     $contratante = new Contratante();
 
     $contratante->nomeContratante = $request->nomeContratante;
-  
+
     $contratante->save();
 }
+};

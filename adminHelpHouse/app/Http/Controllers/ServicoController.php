@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Servico;
 
@@ -12,12 +11,6 @@ class ServicoController extends Controller
     {
         $servicos = Servico::all();
         return view('add.servico', compact('servicos'));
-    }
-
-    public function indexApi()
-    {
-        $servicos = Servico::all();
-        return $servicos;
     }
 
     public function create()
@@ -31,7 +24,6 @@ class ServicoController extends Controller
             'nomeServicos' => 'required|string|max:255',
             'descServicos' => 'required|string',
             'precoServicos' => 'required|string',
-            'idContratado' => 'required|integer',  // Adicione esta validação
         ]);
 
         $servico = new Servico;

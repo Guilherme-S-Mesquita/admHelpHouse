@@ -48,6 +48,6 @@ Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clie
 
 
 
-Route::get('/financeiro/financeiro',[ FinanceiroController::class ,'indexFinanceiro'])->name('financeiro.Allan');
+Route::get('/controleinfos',[ FinanceiroController::class ,'indexFinanceiro'])->name('financeiro.Allan');
 
 
