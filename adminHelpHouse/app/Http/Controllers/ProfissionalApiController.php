@@ -20,6 +20,7 @@ class ProfissionalApiController extends Controller
 
     public function storeApiPro(Request $request)
     {
+        dd($request->all());
 
         $profissional = new Profissional();
 
