@@ -12,20 +12,24 @@ class Profissional extends Model
     protected $table = 'tbcontratado';
 
     protected $fillable = [
-        'idContratado',
         'nomeContratado',
-        'sobrenomeContratado', // Adicione esta linha
+        'sobrenomeContratado',
         'cpfContratado',
         'emailContratado',
         'telefoneContratado',
-        'senhaContratado',
+        'password',
         'profissaoContratado',
         'descContratado',
         'nascContratado',
-        'password',
-        'idEndereco'
-
+        'ruaContratado',
+        'cepContratado',
+        'numCasaContratado',
+        'complementoContratado',
+        'bairroContratado',
+        'ufContratado',
+        'cidadeContratado',
     ];
+
 
     public $timestamps = false;
 }

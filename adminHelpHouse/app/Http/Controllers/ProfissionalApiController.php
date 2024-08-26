@@ -26,13 +26,22 @@ class ProfissionalApiController extends Controller
         $profissional-> nomeContratado = $request -> nomeContratado;
         $profissional->sobrenomeContratado = $request->sobrenomeContratado;
         $profissional-> cpfContratado = $request -> cpfContratado;
+        $profissional->password = $request ->password;
         $profissional-> emailContratado = $request -> emailContratado;
+        $profissional-> profissaoContratado = $request -> profissaoContratado;
         $profissional-> telefoneContratado = $request -> telefoneContratado;
-        $profissional-> senhaContratado = $request -> senhaContratado;
         $profissional-> descContratado = $request -> descContratado;
         $profissional-> nascContratado = $request -> nascContratado;
-        $profissional-> password = $request -> password;
-        $profissional->idEndereco = $request->idEndereco;  // Adicione esta linha para incluir o idEndereco
+
+        $profissional-> ruaContratado = $request -> ruaContratado;
+        $profissional-> cepContratado = $request -> cepContratado;
+        $profissional-> bairroContratado = $request -> bairroContratado;
+        $profissional-> numCasaContratado = $request -> numCasaContratado;
+        $profissional-> complementoContratado = $request -> complementoContratado;
+        $profissional-> ufContratado = $request -> ufContratado;
+        $profissional-> cidadeContratado = $request -> cidadeContratado;
+
+
 
 
 
