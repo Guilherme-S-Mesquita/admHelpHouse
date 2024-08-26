@@ -14,12 +14,15 @@ class Contratante extends Model
     public $fillable = [
                         'idContratante', 
                         'nomeContratante',
-                        'sobrenomeContratante',
                         'cpfContratante',
                         'password',
                         'emailContratante',
                         'telefoneContratante',
-                        'idEndereco'
+                        'ruaContratante',
+                        'cepContratante',
+                        'numCasaContratante',
+                        'complementoContratante',
+                        'bairroContratante',
                        ];
 
     public $timestamps = false;
@@ -28,3 +31,4 @@ class Contratante extends Model
 
 
 }
+						

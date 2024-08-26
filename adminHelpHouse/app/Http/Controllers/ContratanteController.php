@@ -19,18 +19,23 @@ class ContratanteController extends Controller
     {
         $validatedData = $request->validate([
             'nomeContratante' => 'required|string',
-            'sobrenomeContratante' => 'required|string',
-            'cpfContratante' => 'required|integer',
+            'cpfContratante' => 'required|string',
             'password' => 'required|string',
             'emailContratante' => 'required|email',
-            'telefoneContratante' => 'required|integer',
-            'idEndereco' => 'required|integer',
+            'telefoneContratante' => 'required|string',
+            'ruaContratante' => 'required|string',
+            'cepContratante' => 'required|string', 
+            'numCasaContratante' => 'required|string',
+            'complementoContratante' => 'required|string',
+            'bairroContratante' => 'required|string',
         ]);
     
         $contratante = new Contratante($validatedData);
         $contratante->save();
     
-        return response()->json($contratante, 201);
+        return response()->json($contratante, 200);
     }
     
 };
+
+
