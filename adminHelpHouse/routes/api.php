@@ -21,5 +21,5 @@ Route::get('/endereco' ,[EnderecoController::class, 'indexApi']);
 Route::post('/endereco' ,[EnderecoController::class, 'storeApiEndereco']);
 
 Route::get('/cli' ,[ContratanteController::class, 'indexApi']);
-Route::post('/clii' ,[ContratanteController::class, 'storeApi']) ;
+Route::post('/cli' ,[ContratanteController::class, 'storeApi']) ;
 
