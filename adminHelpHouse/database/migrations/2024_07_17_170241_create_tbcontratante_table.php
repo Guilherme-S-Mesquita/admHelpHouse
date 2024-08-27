@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('tbcontratante', function (Blueprint $table) {
             $table->id('idContratante');
             $table->string('nomeContratante', 55);
-            $table->string('sobrenomeContratante', 90);
             $table->char('cpfContratante', 14)->unique();
             $table->string('password');
             $table->string('emailContratante', 180)->unique();
