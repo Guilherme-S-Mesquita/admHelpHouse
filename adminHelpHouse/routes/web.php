@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\FinanceiroController;
 
 
 
@@ -44,10 +43,4 @@ Route::put('/editadmin/{id}' ,[UsersController::class, 'update']) ->name('update
 Route::delete('/editadmin/{id}' ,[UsersController::class, 'delete']) ->name('delete.admins');
 // --------------------------------USUARIOS PAGINA USUARIOS----------------------------------
 Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clientes');
-
-
-
-
-Route::get('/controleinfos',[ FinanceiroController::class ,'indexFinanceiro'])->name('financeiro.Allan');
-
 

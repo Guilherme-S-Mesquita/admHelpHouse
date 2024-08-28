@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('numCasaContratado', 14);
             $table->string('complementoContratado')->nullable();
             $table->string('bairroContratado', 90);
-            $table->string('ufContratado', 10);
-            $table->string('cidadeContratado', 50);
+            $table->string('ufContratado', 10)->nullable();
+            $table->string('cidadeContratado', 50)->nullable();
 
             $table->string('tokenContratado', 200)->unique()->nullable();
             $table->string('imagemContratado', 100)->nullable();
