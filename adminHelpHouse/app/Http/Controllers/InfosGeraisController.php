@@ -9,6 +9,6 @@ class InfosGeraisController extends Controller
 {
         public function indexInfos (){
 
-            return view ('/financeiro/controle');
+            return view ('financeiro.controle');
         }
 }

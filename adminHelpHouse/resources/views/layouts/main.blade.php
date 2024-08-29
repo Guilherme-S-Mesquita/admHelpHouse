@@ -101,9 +101,10 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="/infosgerais" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                    <div class="iconesidebar"><i class="material-icons">public</i></div>
+                        <div class="iconesidebar"><i class="material-icons">public</i></div>
                         <span>Central</span>
                     </a>
+
                 </li>
                 <li class="sidebar-item">
                     <a href="/add/servico" class="sidebar-link">
