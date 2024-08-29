@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\InfosGeraisController;
+
 
 
 
@@ -44,3 +46,9 @@ Route::delete('/editadmin/{id}' ,[UsersController::class, 'delete']) ->name('del
 // --------------------------------USUARIOS PAGINA USUARIOS----------------------------------
 Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clientes');
 
+
+
+
+
+//-----------------------------PAGINA DE INFOS GERAIS ------------------------------------------
+Route::get('/infosgerais' ,[InfosGeraisController::class, 'indexInfos']) ->name('financeiro.controle');

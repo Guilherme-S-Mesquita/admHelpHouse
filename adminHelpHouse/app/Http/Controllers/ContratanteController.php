@@ -78,6 +78,7 @@ class ContratanteController extends Controller
             return response()->json([
                 'status' => 'Falha',
                 'message' => $validacao->errors()->all(),
+
             ]);
         }
 
@@ -98,7 +99,7 @@ class ContratanteController extends Controller
 
         return response()->json([
             'status' => 'Sucesso',
-            'message' => 'Seja bem-vindo',
+            'message' => 'Seja bem-vindo', $user->nomeContratante,
             // 'token' => $token,
         ]);
     }
