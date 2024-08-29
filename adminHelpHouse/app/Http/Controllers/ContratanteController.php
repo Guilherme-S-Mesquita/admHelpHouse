@@ -47,7 +47,7 @@ class ContratanteController extends Controller
         if ($existingUser) {
             return response()->json([
                 'status' => 'Falha',
-                'message' => 'Usuário já cadastrado coSSm este e-mail.'
+                'message' => 'Usuário já cadastrado com este e-mail.'
             ], 409); // 409 Conflict
         }
 
