@@ -13,6 +13,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Categoria</th>
                         <th>Descrição</th>
                         <th>Preços</th>
                         <th>editar</th>
@@ -25,6 +26,7 @@
                     <tr>
                         <td scope="row">{{ $servico->idServicos }}</td>
                         <td>{{ $servico->nomeServicos }}</td>
+                        <td>{{ $servico->categoriaServicos }}</td>
                         <td>{{ $servico->descServicos }}</td>
                         <td>{{ $servico->precoServicos }}</td>
                         <td>

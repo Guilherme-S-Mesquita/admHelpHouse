@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Auth;
-
+use Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Contratante;
-use Validator;
+
 
 
 
@@ -62,9 +62,14 @@ class ContratanteController extends Controller
         // Retornando resposta de sucesso com os detalhes do Contratante criado
         return response()->json([
             'status' => 'Deu certinho filho',
+              'alert' => 'Cadastro realizado com sucesso!',
             'data' => $contratante
         ], 201); // 201 Created
     }
+
+
+
+
     public function auth(Request $request)
     {
         $validador = [

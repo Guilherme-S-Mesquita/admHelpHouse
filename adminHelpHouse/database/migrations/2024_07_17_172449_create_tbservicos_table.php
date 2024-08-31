@@ -14,6 +14,7 @@ return new class extends Migration
             $table->id('idServicos');
             $table->string('nomeServicos', 50);
             $table->string('descServicos', 400);
+            $table->string('categoriaServicos',40);
             $table->string('precoServicos');
             $table->unsignedBigInteger('idContratado')->nullable();
             $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');

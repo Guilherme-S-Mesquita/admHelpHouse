@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Profissional extends Model
+class Profissional extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,  Notifiable, HasFactory;
 
     protected $table = 'tbcontratado';
 
@@ -32,4 +35,10 @@ class Profissional extends Model
 
 
     public $timestamps = false;
+
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

@@ -15,6 +15,10 @@
             <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" required>
         </div>
         <div class="form-group">
+            <label for="nome">Categoria</label>
+            <input type="text" class="form-control" id="categoriaServicos" name="categoriaServicos" required>
+        </div>
+        <div class="form-group">
             <label for="descricao">Descrição:</label>
             <textarea class="form-control" id="descricao" name="descServicos" required></textarea>
         </div>

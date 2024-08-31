@@ -24,10 +24,12 @@ class ServicoController extends Controller
             'nomeServicos' => 'required|string|max:255',
             'descServicos' => 'required|string',
             'precoServicos' => 'required|string',
+            'categoriaServicos' => 'required|string',
         ]);
 
         $servico = new Servico;
         $servico->nomeServicos = $request->nomeServicos;
+        $servico->categoriaServicos = $request->categoriaServicos;
         $servico->descServicos = $request->descServicos;
         $servico->precoServicos = $request->precoServicos;
 
@@ -49,12 +51,14 @@ class ServicoController extends Controller
     {
         $request->validate([
             'nomeServicos' => 'required|string|max:255',
+            'categoriaServicos' => 'required|string',
             'descServicos' => 'required|string',
             'precoServicos' => 'required|string',
         ]);
 
         $servico = Servico::findOrFail($idServicos);
         $servico->nomeServicos = $request->nomeServicos;
+        $servico->categoriaServicos = $request->categoriaServicos;
         $servico->descServicos = $request->descServicos;
         $servico->precoServicos = $request->precoServicos;
 

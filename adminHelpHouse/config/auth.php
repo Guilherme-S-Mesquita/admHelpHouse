@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'contratantes',
         ],
+        'profissional' => [
+            'driver' => 'session',
+            'provider' => 'profissionais',
+        ],
     ],
 
     /*
@@ -80,7 +84,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Contratante::class,
         ],
-
+        'profissionais' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Profissional::class,
+        ],
     ],
 
     /*

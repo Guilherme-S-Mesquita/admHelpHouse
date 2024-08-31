@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tbcontratado', function (Blueprint $table) {
             $table->id('idContratado');
             $table->string('nomeContratado', 55);
-            $table->string('sobrenomeContratado', 90);
+            $table->string('sobrenomeContratado', 90) ->nullable();
             $table->char('cpfContratado', 14)->unique();
             $table->string('emailContratado', 180)->unique();
-            $table->char('telefoneContratado', 14)->unique();
+            $table->char('telefoneContratado', 18)->unique();
             $table->string('password');
             $table->string('profissaoContratado', 90);
             $table->string('descContratado', 400)->nullable();

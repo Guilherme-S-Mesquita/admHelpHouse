@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
+use Validator;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profissional;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
+
 
 
 class ProfissionalApiController extends Controller
 {
 
-    public function indexApiPro(){
+    public function indexApiPro()
+    {
 
         $profissionais = Profissional::all();
-
         return $profissionais;
 
     }
@@ -26,33 +28,90 @@ class ProfissionalApiController extends Controller
 
 
 
+        // Validação dos campos recebidos no request
+        $validadeDataPro = $request->validate([
+            'nomeContratado' => 'required|string',
+            'sobrenomeContratado' => 'required|string',
+            'cpfContratado' => 'required|string',
+            'password' => 'required|string',
+            'emailContratado' => 'required|email|string',
+            'profissaoContratado' => 'required|string',
+            'telefoneContratado' => 'required|string',
+            'descContratado' => 'nullable|string',
+            'nascContratado' => 'required|date',
+            'ruaContratado' => 'required|string',
+            'cepContratado' => 'required|string',
+            'bairroContratado' => 'required|string',
+            'numCasaContratado' => 'required|string',
+            'complementoContratado' => 'nullable|string',
 
 
-        $profissional = new Profissional();
+        ]);
 
-        $profissional-> nomeContratado = $request -> nomeContratado;
-        $profissional->sobrenomeContratado = $request->sobrenomeContratado;
-        $profissional-> cpfContratado = $request -> cpfContratado;
-        $profissional->password =  Hash::make($request->password);
-        $profissional-> emailContratado = $request -> emailContratado;
-        $profissional-> profissaoContratado = $request -> profissaoContratado;
-        $profissional-> telefoneContratado = $request -> telefoneContratado;
-        $profissional-> descContratado = $request -> descContratado;
-        $profissional-> nascContratado = $request -> nascContratado;
-        $profissional-> ruaContratado = $request -> ruaContratado;
-        $profissional-> cepContratado = $request -> cepContratado;
-        $profissional-> bairroContratado = $request -> bairroContratado;
-        $profissional-> numCasaContratado = $request -> numCasaContratado;
-        $profissional-> complementoContratado = $request -> complementoContratado;
-        $profissional-> ufContratado = $request -> ufContratado;
-        $profissional-> cidadeContratado = $request -> cidadeContratado;
-        $profissional->save();
-        return response()->json(['message' => 'Profissional cadastrado com sucesso!'], 201);
-        
+
+        $existingPro = Profissional::where('emailContratado', $validadeDataPro['emailContratado'])->first();
+
+
+
+        if ($existingPro) {
+            return response()->json([
+                'status' => 'Falha',
+                'message' => 'Algum profissional já foi cadastrado com este e-mail.'
+            ], 409); // 409 Conflict
         }
 
 
+        $validadeDataPro['password'] = bcrypt($validadeDataPro['password']);
 
 
-    //
+        $profissional = Profissional::create($validadeDataPro);
+
+        return response()->json([
+            'status' => 'Cadastro realizado com sucesso',
+            'alert' => 'Cadastro realizado com sucesso!',
+            'data' => $profissional
+        ], 201); // 201 Created
+
+    }
+
+
+
+
+    public function authPro(Request $request)
+    {
+        $validador = [
+            'emailContratado' => 'required|email',
+            'password' => 'required|string',
+        ];
+
+        $validacao = Validator::make($request->all(), $validador);
+
+        if ( $validacao->fails()){
+            return response()->json( [
+                'status'=> 'Falha ao validar o cadastro',
+                'message' => $validacao->errors()->all(),
+            ]);
+        }
+
+        $credenciais= [
+            'emailContratado' => $request->input('emailContratado'),
+            'password' => $request->input('password'),
+        ];
+
+
+        if (!Auth::guard('profissional')->attempt($credenciais)) {
+            return response()->json([
+                'status' => 'Falha',
+                'message' => 'Login incorreto, tente novamente',
+            ]);
+        }
+
+        $userPro = Auth::guard('profissional')->user();
+
+        return response()->json([
+            'status' => 'Sucesso',
+            'message' => 'Seja bem-vindo', $userPro->nomeContratado,
+            // 'token' => $token,
+        ]);
+    }
 }
