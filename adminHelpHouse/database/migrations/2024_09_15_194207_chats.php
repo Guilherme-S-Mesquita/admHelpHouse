@@ -14,16 +14,11 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('chat_room_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignUuid('user_id')
-                  ->references('id') // Especifica a coluna referenciada
-                  ->on('users') // Especifica a tabela referenciada
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('message')->nullable(false);
             $table->boolean('is_read')->default(false)->nullable(false);
             $table->timestamps();
         });
-
     }
 
     /**

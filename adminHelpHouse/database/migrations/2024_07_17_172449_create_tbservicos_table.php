@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +15,18 @@ return new class extends Migration
             $table->id('idServicos');
             $table->string('nomeServicos', 50);
             $table->string('descServicos', 400);
-            $table->string('categoriaServicos',40);
+            $table->string('categoriaServicos', 40);
             $table->string('precoServicos');
-            $table->unsignedBigInteger('idContratado')->nullable();
-            $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
+            $table->unsignedBigInteger('idContratado'); // Corrigido para UUID
+            $table->foreign('idContratado')->references('idContratado')->on('tbcontratado')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('tbservicos', function (Blueprint $table) {
             $table->dropForeign(['idContratado']);

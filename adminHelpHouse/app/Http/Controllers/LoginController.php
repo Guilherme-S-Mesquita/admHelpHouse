@@ -19,36 +19,32 @@ class LoginController extends Controller
 
         return view ('register');
     }
-    public function processoDeRegistro(Request $request){
-         // a variavel de validações define algumas regras
-        //o make por exemplo é para aceitar as regras descritas a baixo   'email'=>'required|email|unique:users', por exemplo
-
-        $validator = Validator::make($request->all(),[
-            'email'=>'required|email|unique:users',
-            'password'=> 'required|confirmed',
-            'cpf'=>'required|unique:users',
-            'date'=>'required',
-
+    public function processoDeRegistro(Request $request)
+    {
+        // Valida as entradas do formulário
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255', // Adicione validação para o nome
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+            'cpf' => 'required|unique:users',
+            'date' => 'required|date', // Valide o formato da data
         ]);
-        // verifica se atende as regras e passa os dados como verdadeiro
-        if($validator->passes()){
 
-            $user= new User();
-            $user->name=$request->name;
-            //para criar um hash seguro da senha fornecida pelo
+        if ($validator->passes()) {
+            $user = new User();
+            $user->name = $request->name;
             $user->email = $request->email;
             $user->date = $request->date;
             $user->cpf = $request->cpf;
-            $user->password= Hash::make($request->password);
-            $user->role = 'costumer';
+            $user->password = Hash::make($request->password);
+            $user->role = 'costumer'; // Defina o papel padrão
             $user->save();
 
             return redirect()->route('login.index')->with('msg', 'Você foi cadastrado com sucesso');
-
-        }else{
+        } else {
             return redirect()->route('login.register')
-            ->withInput()  // Mantém os dados de entrada no formulário
-            ->withErrors($validator);   // Passa os erros de validação para a visão
+                ->withInput()  // Mantém os dados de entrada no formulário
+                ->withErrors($validator);   // Passa os erros de validação para a visão
         }
     }
 
@@ -70,35 +66,25 @@ class LoginController extends Controller
     }
 
     public function store(Request $request)
-    {
+{
+    // Validação dos dados
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ], [
+        'email.required' => 'Campo de email é obrigatório',
+        'email.email' => 'Esse email é inválido',
+        'password.required' => 'Campo de senha é obrigatório',
+    ]);
 
-
-        // Validação dos dados
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ],
-
-        [
-            'email.required' => 'campo de email e obrigatório',
-            'email.email' => 'esse email e inválido',
-            'password.required' => 'campo e senha e obrigatório'
-
-        ]);
-
-
-
-        // o Auth, tenta autenticar o Usuario e com isso ele cria uma nova sessão
-        if (Auth::attempt($credentials)) {
-            //Esta proxima linha é para garantir que a sessão seja unica
-            $request->session()->regenerate();
-            //depois de passar pelas especificações de segurança, ele te levara a tela de dashboard do admin
-            return redirect()->intended(route('dashboard')); // Redireciona para a página principal ou desejada
-        } else {
-            return redirect()->route('login.index')->with('err', 'Email ou senha inválido');
-        }
+    // Tenta autenticar o usuário
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended(route('dashboard')); // Redireciona para a página principal ou desejada
+    } else {
+        return redirect()->route('login.index')->with('err', 'Email ou senha inválido');
     }
-
+}
     public function destroy (){
 
         Auth::logout();

@@ -6,6 +6,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\InfosGeraisController;
+use App\Livewire\Auth;
+use App\Livewire\Contact;
+use App\Livewire\RealtimeMessage;
+
 
 
 
@@ -52,3 +56,12 @@ Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clie
 
 //-----------------------------PAGINA DE INFOS GERAIS ------------------------------------------
 Route::get('/infosgerais' ,[InfosGeraisController::class, 'indexInfos']) ->name('financeiro.controle');
+
+
+
+Route::get('/loginChat', Auth::class)->name('login');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/contact', Contact::class)->name('contact');
+    Route::get('/message/{roomId}', RealtimeMessage::class)->name('message');
+});

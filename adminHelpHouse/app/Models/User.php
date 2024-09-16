@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,5 +55,27 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["contratante", "admin", "contratado"][$value],
         );
+    }
+    public function canJoinRoom($roomId)
+    {
+        $granted = false;
+        $chatRoom = ChatRoom::findOrFail($roomId);
+        $users = explode(':', $chatRoom->participant);
+
+        foreach ($users as $id) {
+            if ($this->id == $id) {
+                $granted = true;
+            }
+        }
+
+        return $granted;
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::orderedUuid();
+        });
     }
 }
