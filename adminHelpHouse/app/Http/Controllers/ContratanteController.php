@@ -23,6 +23,17 @@ class ContratanteController extends Controller
         return $contratante;
     }
 
+    public function showApi($id)
+    {
+        $contratante = Contratante::find($id);
+        if ($contratante) {
+            return response()->json($contratante, 200);
+        } else {
+            return response()->json(['message' => 'Contratante não encontrado.'], 404);
+        }
+    }
+
+
 
     public function storeApi(Request $request)
     {

@@ -13,6 +13,8 @@ class Contratante extends Authenticatable
 
     protected $table = 'tbcontratante';
 
+    protected $primaryKey = 'idContratante';
+
     protected $fillable = [
         'idContratante',
         'nomeContratante',

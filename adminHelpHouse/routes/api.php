@@ -18,6 +18,7 @@ Route::post('/authpro' ,[ProfissionalApiController::class, 'authPro']);
 
 // ´------------------------CONTRATANTE API
 Route::get('/cli' ,[ContratanteController::class, 'indexApi']);
+Route::get('/cli/{id}' ,[ContratanteController::class, 'showApi']);
 Route::post('/clii' ,[ContratanteController::class, 'storeApi']) ;
 Route::post('/auth' ,[ContratanteController::class, 'auth']) ;
 
