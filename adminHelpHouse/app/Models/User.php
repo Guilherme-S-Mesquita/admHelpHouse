@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\ChatRoom;
+use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +26,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
-        'type'
     ];
 
     /**
@@ -50,12 +51,6 @@ class User extends Authenticatable
         ];
     }
 
-    protected function type(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) =>  ["contratante", "admin", "contratado"][$value],
-        );
-    }
     public function canJoinRoom($roomId)
     {
         $granted = false;

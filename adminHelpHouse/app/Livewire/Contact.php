@@ -16,25 +16,22 @@ class Contact extends Component
         $this->contacts = User::where('id', '<>', auth()->user()->id)->get();
     }
 
-    public function chat($contact)
+    public function chat($contactId)
     {
-        //Aqui ele procura uma sala de chat existente
-        $findRoom = ChatRoom::where('participant',  auth()->user()->id . ':' . $contact['id'])
-        //no trecho abaixo após procurar a sala, ele verifica os participantes pelo id
-            ->orWhere('participant',   $contact['id'] . ':' . auth()->user()->id)
+        //Aqui ele procura uma sala de chat existente com base nos IDs
+        $findRoom = ChatRoom::where('participant',  auth()->user()->id . ':' . $contactId)
+            ->orWhere('participant',   $contactId . ':' . auth()->user()->id)
             ->first();
 
         if (!$findRoom) {
-
-            // Se ele for para uma sala de conversa sera redirecionado a conversa pelo id e tera o parametro de poder mandar a menssagem
+            // Se não encontrar uma sala, cria uma nova
             $findRoom = ChatRoom::create([
-                'participant' => auth()->user()->id . ':' . $contact['id']
+                'participant' => auth()->user()->id . ':' . $contactId
             ]);
         }
 
         $this->redirectRoute('message', $findRoom->id);
     }
-
     public function render()
     {
         return view('livewire.contact');

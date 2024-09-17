@@ -6,7 +6,7 @@ use App\Models\Chat;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\ChatRoom;
-use App\Events\SendRealtimeMessage;
+use App\Events\SendRealTimeMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -40,7 +40,7 @@ class RealtimeMessage extends Component
     {
         return [
             // Ouvindo o evento de mensagem em tempo real, para receber mensagens na sala de chat.
-            "echo-presence:channel.{$this->roomId},SendRealtimeMessage" => 'handleSendMessage',
+            "echo-presence:channel.{$this->roomId},SendRealTimeMessage" => 'handleSendMessage',
 
             // Ouvindo o evento 'here' que indica os usuários presentes na sala de chat.
             "echo-presence:channel.{$this->roomId},here" => 'handleHere',
@@ -67,7 +67,7 @@ class RealtimeMessage extends Component
             ]);
 
             // Transmite apenas o ID da mensagem criada
-            event(new SendRealtimeMessage($newMessage->id, $this->roomId));
+            event(new SendRealTimeMessage($newMessage->id, $this->roomId));
 
             // Limpa o campo de mensagem
             $this->message = '';

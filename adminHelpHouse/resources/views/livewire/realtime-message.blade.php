@@ -28,7 +28,7 @@
             <div id="messages" class="mt-4 p-4 bg-gray-100 border rounded-lg h-64 overflow-y-auto">
                 @if ($messages && count($messages) > 0)
                     @foreach ($messages as $message)
-                        <div class="mb-2 flex justify-between items-center">
+                        <div class="mb-2 ">
                             <!-- Exibe o nome do usuário que enviou a mensagem -->
                             <strong class="{{ $message->user_id == auth()->user()->id ? 'text-blue-500' : 'text-green-500' }}">
                                 {{ $message->user->name }}:
