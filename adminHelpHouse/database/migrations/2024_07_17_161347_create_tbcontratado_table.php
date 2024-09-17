@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbcontratado', function (Blueprint $table) {
-            $table->id('idContratado');
+            $table->id('idContratado')->primary();
             $table->string('nomeContratado', 55);
-            $table->string('sobrenomeContratado', 90) ->nullable();
+            $table->string('sobrenomeContratado', 90)->nullable();
             $table->char('cpfContratado', 14)->unique();
             $table->string('emailContratado', 180)->unique();
             $table->char('telefoneContratado', 18)->unique();
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('profissaoContratado', 90);
             $table->string('descContratado', 400)->nullable();
             $table->date('nascContratado');
-
 
             $table->string('ruaContratado', 90);
             $table->string('cepContratado', 9);
@@ -35,12 +34,14 @@ return new class extends Migration
             $table->string('tokenContratado', 200)->unique()->nullable();
             $table->string('imagemContratado', 100)->nullable();
 
-
-
+            $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('tbcontratado');
     }

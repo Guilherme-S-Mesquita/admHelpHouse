@@ -30,7 +30,7 @@ return new class extends Migration
         Schema::table('tbavaliacao', function (Blueprint $table) {
             $table->dropForeign(['idContratado']);
             $table->dropForeign(['idContratante']);
-          
+
         });
 
         Schema::dropIfExists('tbavaliacao');
