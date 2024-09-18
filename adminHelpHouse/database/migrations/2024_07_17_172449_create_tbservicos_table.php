@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('descServicos', 400);
             $table->string('categoriaServicos', 40);
             $table->string('precoServicos');
-            $table->unsignedBigInteger('idContratado'); // Corrigido para UUID
-            $table->foreign('idContratado')->references('idContratado')->on('tbcontratado')->onDelete('cascade');
+           
+            $table->uuid('idcontratado');
+            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
+                  ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('tbavaliacao', function (Blueprint $table) {
             $table->id('idavaliacao');
             $table->string('descavaliacao', 180);
-            $table->unsignedBigInteger('idcontratado');
-            $table->unsignedBigInteger('idcontratante');
-            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado');
-            $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante');
+            
+            // Chave estrangeira para contratante (UUID)
+            $table->uuid('idcontratante');
+            $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
+                  ->onUpdate('cascade')->onDelete('cascade');
 
+            // Chave estrangeira para contratado (UUID)
+            $table->uuid('idcontratado');
+            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
+                  ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -28,12 +33,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tbavaliacao', function (Blueprint $table) {
-            $table->dropForeign(['idContratado']);
-            $table->dropForeign(['idContratante']);
-
+            $table->dropForeign(['idcontratante']);
+            $table->dropForeign(['idcontratado']);
         });
 
         Schema::dropIfExists('tbavaliacao');
-
     }
 };
