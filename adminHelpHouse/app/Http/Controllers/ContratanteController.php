@@ -13,6 +13,8 @@ use App\Models\Contratante;
 
 
 
+
+
 class ContratanteController extends Controller
 {
 
