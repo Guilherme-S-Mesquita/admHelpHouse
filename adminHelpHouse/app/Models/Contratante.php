@@ -15,10 +15,11 @@ class Contratante extends Authenticatable
 
     protected $table = 'tbcontratante';
 
+    protected $primaryKey = 'idContratante';
+
     protected $keyType = 'string';
 
     public $incrementing = false;
-    protected $primaryKey = 'idContratante';
 
     protected $fillable = [
         'idContratante',
@@ -39,14 +40,6 @@ class Contratante extends Authenticatable
         'remember_token',
     ];
 
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
     public $timestamps = false;
 
     public function getAuthPassword()
@@ -58,10 +51,10 @@ class Contratante extends Authenticatable
     {
         $granted = false;
         $chatRoom = ChatRoom::findOrFail($roomId);
-        $users = explode(':', $chatRoom->participant);
+        $contratantes = explode(':', $chatRoom->participant);
 
-        foreach ($users as $id) {
-            if ($this->id == $id) {
+        foreach ($contratantes as $idContratante) {
+            if ($this->idContratante == $idContratante) {
                 $granted = true;
             }
         }
@@ -76,6 +69,4 @@ class Contratante extends Authenticatable
             $model->id = Str::orderedUuid();
         });
     }
-
-
 }

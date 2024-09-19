@@ -8,58 +8,53 @@ use App\Models\ChatRoom;
 use App\Models\Contratante;
 use App\Models\Profissional;
 
-
 class Contact extends Component
 {
-    public $users;
-    public $profissionais;
-    public $contratantes;
+    public object $contacts;
 
-    public function mount()
+    public object $contratantes;
+
+    public object $contratados;
+
+    public function __construct()
     {
-        // Carregar usuários da tabela 'users'
-        $this->users = User::where('id', '<>', auth()->user()->id)->get();
+        //essa função busca a tabela users todos os usuarios não authenticados
+        $this->contacts = User::where('id', '<>', auth()->user()->id)->get();
 
-        // Carregar profissionais da tabela 'tbcontratado' com a chave correta 'idContratado'
-        $this->profissionais = Profissional::where('idContratado', '<>', auth()->user()->id)->get();
+        $this->contratantes = Contratante::where('idContratante', '<>', auth()->user()->idContratante)->get();
 
-        // Carregar contratantes da tabela 'tbcontratante' com a chave correta 'idContratante'
-        $this->contratantes = Contratante::where('idContratante', '<>', auth()->user()->id)->get();
+        $this->contratados = Profissional::where('idContratado', '<>', auth()->user()->idContratado)->get();
+
+
     }
 
-    public function chat($contactId, $contactType)
+    public function chat($contactId)
     {
-        // Tipo de usuário atual
-        $currentUserType = auth()->user()->getTable();
-        $currentUserId = auth()->user()->id;
-
-        // Identificar participantes do chat
-        $currentParticipant = $currentUserType . ':' . $currentUserId;
-        $otherParticipant = $contactType . ':' . $contactId;
-
-        // Verificar se a sala de chat já existe
-        $findRoom = ChatRoom::where('participant', $currentParticipant . ':' . $otherParticipant)
-            ->orWhere('participant', $otherParticipant . ':' . $currentParticipant)
+        //Aqui ele procura uma sala de chat existente com base nos IDs
+        $findRoom = ChatRoom::where('participant',  auth()->user()->id . ':' . $contactId)
+            ->orWhere('participant',   $contactId . ':' . auth()->user()->id)
             ->first();
 
-        // Se não encontrar, criar uma nova sala
-        if (!$findRoom) {
+
+
+            if (!$findRoom) {
+            // Se não encontrar uma sala, cria uma nova
             $findRoom = ChatRoom::create([
-                'participant' => $currentParticipant . ':' . $otherParticipant,
+                'participant' => auth()->user()->id . ':' . $contactId
             ]);
         }
 
-        // Redirecionar para a sala de mensagens
         $this->redirectRoute('message', $findRoom->id);
     }
-
+    protected function isValidContact($contactId)
+    {
+        // Verifica se o contato está na lista de contatos
+        return $this->contacts->contains('id', $contactId) ||
+               $this->contratantes->contains('idContratante', $contactId) ||
+               $this->contratados->contains('idContratado', $contactId);
+    }
     public function render()
     {
-        return view('livewire.contact', [
-            'users' => $this->users,
-            'profissionais' => $this->profissionais,
-            'contratantes' => $this->contratantes
-        ]);
+        return view('livewire.contact');
     }
 }
-

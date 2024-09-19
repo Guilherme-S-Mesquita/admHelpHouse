@@ -12,13 +12,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Profissional extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory,  Notifiable, HasFactory;
 
     protected $table = 'tbcontratado';
 
-    protected $primaryKey = 'idContratado'; // Nome da chave primária
-    protected $keyType = 'string'; // Tipo da chave primária
-    public $incrementing = false; // Desativa incremento automático
+    protected $keyType = 'string';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'nomeContratado',
@@ -39,17 +39,14 @@ class Profissional extends Authenticatable
         'cidadeContratado',
     ];
 
-    public $timestamps = true; // Ativa timestamps se sua tabela tiver created_at e updated_at
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public $timestamps = false;
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
     public function canJoinRoom($roomId)
     {
@@ -66,17 +63,11 @@ class Profissional extends Authenticatable
         return $granted;
     }
 
-    public static function boot()
-    {
+    public static function boot() {
         parent::boot();
 
         static::creating(function ($model) {
-            $model->idContratado = (string) Str::uuid();
+            $model->id = Str::orderedUuid();
         });
-    }
-
-    public function getAuthPassword()
-    {
-        return $this->password;
     }
 }
