@@ -16,6 +16,10 @@ class Profissional extends Authenticatable
 
     protected $table = 'tbcontratado';
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     protected $fillable = [
         'nomeContratado',
         'sobrenomeContratado',
@@ -42,5 +46,28 @@ class Profissional extends Authenticatable
     public function getAuthPassword()
     {
         return $this->password;
+    }
+
+    public function canJoinRoom($roomId)
+    {
+        $granted = false;
+        $chatRoom = ChatRoom::findOrFail($roomId);
+        $contratados = explode(':', $chatRoom->participant);
+
+        foreach ($contratados as $idContratado) {
+            if ($this->idContratado == $idContratado) {
+                $granted = true;
+            }
+        }
+
+        return $granted;
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::orderedUuid();
+        });
     }
 }

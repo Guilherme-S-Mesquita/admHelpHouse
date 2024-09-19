@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Contratante;
+use App\Models\Profissional;
 
 class Chat extends Model
 {
@@ -28,9 +30,20 @@ class Chat extends Model
     protected $connection = "mysql";
 
 
+    public function contratante()
+    {
+        return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
+    }
+
+    public function profissional()
+    {
+        return $this->belongsTo(Profissional::class, 'idContratado', 'idContratado');
+    }
+
+    // Também mantenha o relacionamento com o User, se necessário
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public static function boot() {
