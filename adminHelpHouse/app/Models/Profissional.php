@@ -16,6 +16,8 @@ class Profissional extends Authenticatable
 
     protected $table = 'tbcontratado';
 
+    protected $primaryKey = 'idContratado';
+
     protected $keyType = 'string';
 
     public $incrementing = false;

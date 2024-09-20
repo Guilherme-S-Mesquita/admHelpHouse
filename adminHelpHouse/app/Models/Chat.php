@@ -24,6 +24,8 @@ class Chat extends Model
     protected $fillable = [
         'chat_room_id',
         'user_id',
+        'idContratante',
+        'idContratado',
         'message',
         'is_read',
     ];
