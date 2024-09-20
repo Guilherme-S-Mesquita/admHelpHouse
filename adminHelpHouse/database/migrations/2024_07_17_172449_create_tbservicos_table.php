@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('categoriaServicos', 40);
             $table->string('precoServicos');
            
-            $table->uuid('idcontratado');
-            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
-                  ->onUpdate('cascade')->onDelete('cascade');
+
+          // Chave estrangeira para contratado (agora usando unsignedBigInteger)
+          $table->unsignedBigInteger('idcontratado');
+          $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

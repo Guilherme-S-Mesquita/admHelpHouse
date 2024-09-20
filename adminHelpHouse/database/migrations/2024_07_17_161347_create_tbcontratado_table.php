@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbcontratado', function (Blueprint $table) {
-            $table->uuid('idContratado')->primary();
+            $table->id('idContratado')->primary();
             $table->string('nomeContratado', 55);
             $table->string('sobrenomeContratado', 90)->nullable();
             $table->char('cpfContratado', 14)->unique();

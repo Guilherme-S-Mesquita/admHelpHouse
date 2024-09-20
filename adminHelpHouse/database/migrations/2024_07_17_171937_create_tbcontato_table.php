@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id('idContato');
             $table->string('numeroTelefone');
              
-            // Chave estrangeira para contratante (UUID)
-            $table->uuid('idcontratante');
-            $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
-                  ->onUpdate('cascade')->onDelete('cascade');
+         // Chave estrangeira para contratante (agora usando unsignedBigInteger)
+         $table->unsignedBigInteger('idcontratante');
+         $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
+               ->onUpdate('cascade')->onDelete('cascade');
 
-            // Chave estrangeira para contratado (UUID)
-            $table->uuid('idcontratado');
-            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
-                  ->onUpdate('cascade')->onDelete('cascade');
+         // Chave estrangeira para contratado (agora usando unsignedBigInteger)
+         $table->unsignedBigInteger('idcontratado');
+         $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
+               ->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
