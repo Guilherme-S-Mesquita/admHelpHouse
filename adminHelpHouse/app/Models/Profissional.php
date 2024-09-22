@@ -69,7 +69,7 @@ class Profissional extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = Str::orderedUuid();
+            $model->idContratado = Str::orderedUuid();
         });
     }
 }
