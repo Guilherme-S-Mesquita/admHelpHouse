@@ -15,15 +15,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('chat_room_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignUuid('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('idcontratante');
-            $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('idcontratado');
-            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
-                ->onUpdate('cascade')->onDelete('cascade');
-
+            $table->foreignUuid('idContratante')->nullable()->constrained('tbcontratante', 'idContratante')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignUuid('idContratado')->nullable()->constrained('tbcontratado', 'idContratado')->onUpdate('cascade')->onDelete('set null');
             $table->text('message')->nullable(false);
             $table->boolean('is_read')->default(false)->nullable(false);
+            $table->string('user_type'); // Adiciona a coluna user_type
             $table->timestamps();
         });
     }
