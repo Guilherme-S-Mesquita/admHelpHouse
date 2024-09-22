@@ -66,7 +66,7 @@ class Contratante extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = Str::orderedUuid();
+            $model->idContratante = Str::orderedUuid();
         });
     }
 }

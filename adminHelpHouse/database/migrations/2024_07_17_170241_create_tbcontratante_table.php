@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbcontratante', function (Blueprint $table) {
-            $table->uuid('idContratante')->primary();
+            $table->id(); // Coluna de auto incremento
+            $table->uuid('idContratante')->unique(); // Torna 'idContratado' único, mas não chave primária
             $table->string('nomeContratante', 55);
             $table->char('cpfContratante', 14)->unique();
             $table->string('password');
