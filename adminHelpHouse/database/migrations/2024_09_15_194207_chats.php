@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignUuid('idContratado')->nullable()->constrained('tbcontratado', 'idContratado')->onUpdate('cascade')->onDelete('set null');
             $table->text('message')->nullable(false);
             $table->boolean('is_read')->default(false)->nullable(false);
+            $table->string('user_type'); // Adiciona a coluna user_type
             $table->timestamps();
         });
     }

@@ -44,14 +44,14 @@ class RealtimeMessage extends Component
             $userId = auth()->user()->id;
 
             // Identifica o tipo de usuário
-            $userType = auth()->user() instanceof Contratante ? 'Contratante' : 'Profissional';
-
+            $userType = auth()->user() instanceof Contratante ? 'Contratante' : (auth()->user() instanceof Profissional ? 'Profissional' : 'Unknown');
+            \Log::info('User Type: ' . $userType); // Adicione esta linha para debug
             // Cria a mensagem no banco de dados
             $newMessage = Chat::create([
                 'chat_room_id' => $this->roomId,
                 'user_id' => $userId,
                 'message' => $this->message,
-                'user_type' => $userType, // Adicione esta linha se quiser armazenar o tipo de usuário
+                'user_type' => $userType, // Armazena o tipo de usuário
             ]);
 
             // Dispara o evento para enviar a mensagem em tempo real
@@ -63,6 +63,9 @@ class RealtimeMessage extends Component
             $this->alert('error', 'Fill the message');
         }
     }
+
+
+
 
 
     public function handleSendMessage($event): void
