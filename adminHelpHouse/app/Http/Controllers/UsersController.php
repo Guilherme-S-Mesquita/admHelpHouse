@@ -12,12 +12,14 @@ class UsersController extends Controller
 {
 
     public function index(){
+        if (!auth()->check()) {
+            return redirect()->route('login'); // Redireciona para a página de login
+        }
 
-     $user = auth()->user();
-
-
-        return view('users.index',compact('user'));
+        $user = auth()->user();
+        return view('users.index', compact('user'));
     }
+
     public function userAdm(){
         $users = User::all();
 
@@ -32,26 +34,26 @@ class UsersController extends Controller
 // o users. é para entrar na pasta, ja o editAdmin é o nome da view
         return view('users.editAdmin', compact('user'));
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $id) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'cpf' => 'required|string|max:14',
+        ]);
 
-    // verifica se atende as regras e passa os dados como verdadeiro
-   // Validação dos dados de entrada
-    $request->validate([
-    'name' => 'required|string|max:255',
-    'email' => 'required|email|max:255',
-    'cpf' => 'required|string|max:14', // CPF em formato string
-]);
+        try {
+            $user = User::findOrFail($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->cpf = $request->cpf;
+            $user->save();
 
-        $user= User::findOrFail($id);
-        $user->name  = $request->name;
-        $user->email = $request->email;
-        $user->cpf   = $request->cpf;
+            return redirect()->route('users.admins')->with('msg', 'Serviço atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao atualizar o usuário: ' . $e->getMessage());
+        }
+    }
 
-        $user->save();
-
-        return redirect()->route('users.admins')->with('msg', 'Serviço atualizado com sucesso!');
-
-}
     public function delete($id){
 
 

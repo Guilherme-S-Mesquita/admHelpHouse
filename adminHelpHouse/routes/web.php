@@ -31,14 +31,15 @@ Route::post('/login/processo-registro',[loginController::class, 'processoDeRegis
 
 
 // -------------------------------ADD SERVICO----------------------------------------
-Route::get('add/servico',[ ServicoController::class ,'servico'])->name('add.servico');
+Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
 Route::get('/editServico/{idServicos}', [ServicoController::class, 'edit'])->name('edit.servico');
 Route::put('/editServico/{idServicos}', [ServicoController::class, 'update'])->name('update.servico');
 Route::delete('/editServico/{idServicos}', [ServicoController::class, 'destroy'])->name('delete.servico');
 
-//-------------------------------- CRIAR SERVICO---------------------------------------
-Route::get('/criarServico',[ServicoController::class, 'create'])->name('criar.servico');
-Route::post('/adicionar',[ServicoController::class, 'store']);
+// -------------------------------- CRIAR SERVICO---------------------------------------
+Route::get('/criarServico', [ServicoController::class, 'create'])->name('criar.servico');
+Route::post('/adicionar', [ServicoController::class, 'store'])->name('inserir.servico');
+
 
 //--------------------------------- USUARIOS -------------------------------------------
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
@@ -56,6 +57,8 @@ Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clie
 
 //-----------------------------PAGINA DE INFOS GERAIS ------------------------------------------
 Route::get('/infosgerais' ,[InfosGeraisController::class, 'indexInfos']) ->name('financeiro.controle');
+
+
 
 
 

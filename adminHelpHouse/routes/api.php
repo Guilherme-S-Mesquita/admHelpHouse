@@ -2,10 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ProfissionalApiController;
 use App\Http\Controllers\ChatController;
-
 use App\Http\Controllers\ContratanteController;
 
 
@@ -24,7 +22,8 @@ Route::post('/clii' ,[ContratanteController::class, 'storeApi']) ;
 Route::post('/auth' ,[ContratanteController::class, 'auth']) ;
 
 
-
-Route::get('/chats', [ChatController::class, 'index']);
-Route::get('/chats/{roomId}', [ChatController::class, 'getMessages']);
-Route::post('/chats/send', [ChatController::class, 'sendMessage']);
+Route::middleware('auth')->group(function () {
+    Route::get('/chats', [ChatController::class, 'index']); 
+    Route::get('/chats/{roomId}', [ChatController::class, 'getMessages']);
+    Route::post('/chats/send', [ChatController::class, 'sendMessage']);
+});

@@ -13,16 +13,19 @@
 
                 <div class="form-group">
                     <label for="nomeServicos">Nome do Serviço:</label>
-                    <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" value="{{ $servico->nomeServicos }}" required>
+                    <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" value="{{ old('nomeServicos', $servico->nomeServicos) }}" required>
                 </div>
+
                 <div class="form-group">
                     <label for="descServicos">Descrição:</label>
-                    <textarea class="form-control" id="descServicos" name="descServicos" required>{{ $servico->descServicos}}</textarea>
+                    <textarea class="form-control" id="descServicos" name="descServicos" required>{{ old('descServicos', $servico->descServicos) }}</textarea>
                 </div>
+
                 <div class="form-group">
                     <label for="precoServicos">Preço:</label>
-                    <input type="text" class="form-control" id="precoServicos" name="precoServicos" value="{{ $servico->precoServicos }}" required>
+                    <input type="number" step="0.01" class="form-control" id="precoServicos" name="precoServicos" value="{{ old('precoServicos', $servico->precoServicos) }}" required>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Atualizar Serviço</button>
             </form>
         </div>

@@ -61,7 +61,6 @@ class ServicoController extends Controller
         $servico->categoriaServicos = $request->categoriaServicos;
         $servico->descServicos = $request->descServicos;
         $servico->precoServicos = $request->precoServicos;
-
         $servico->save();
 
         return redirect()->route('add.servico')->with('msg', 'Serviço atualizado com sucesso!');

@@ -41,28 +41,51 @@ class RealtimeMessage extends Component
     public function triggerEvent(): void
     {
         if ($this->message != '') {
-            $userId = auth()->user()->id;
+            if (auth()->check()) {
+                $userId = auth()->user()->id;
+                $authenticatedUser = auth()->user();
+                $userType = ''; // Inicializa com valor padrão
+                $contratanteId = null; // Variável para armazenar ID do contratante
+                $profissionalId = null; // Variável para armazenar ID do profissional
 
-            // Identifica o tipo de usuário
-            $userType = auth()->user() instanceof Contratante ? 'Contratante' : 'Profissional';
+                // Verifica se o usuário autenticado é um contratante ou profissional
+                if (Auth::guard('contratante')->check()) {
+                    $userType = 'Contratante';
+                    $contratanteId = Auth::guard('contratante')->user()->idContratante; // Pega o ID do contratante
+                } elseif (Auth::guard('profissional')->check()) {
+                    $userType = 'Profissional';
+                    $profissionalId = Auth::guard('profissional')->user()->idContratado; // Pega o ID do profissional
+                } elseif ($authenticatedUser instanceof User) {
+                    $userType = 'User';
+                }
 
-            // Cria a mensagem no banco de dados
-            $newMessage = Chat::create([
-                'chat_room_id' => $this->roomId,
-                'user_id' => $userId,
-                'message' => $this->message,
-                'user_type' => $userType, // Adicione esta linha se quiser armazenar o tipo de usuário
-            ]);
+                // Log para depuração (opcional)
+                \Log::info('User Type: ' . $userType);
+                \Log::info('Authenticated User Class: ' . get_class($authenticatedUser));
 
-            // Dispara o evento para enviar a mensagem em tempo real
-            event(new SendRealTimeMessage($newMessage->id, $this->roomId));
+                // Cria a mensagem no banco de dados
+                $newMessage = Chat::create([
+                    'chat_room_id' => $this->roomId,
+                    'user_id' => $userId,
+                    'message' => $this->message,
+                    'user_type' => $userType,
+                    'idContratante' => $contratanteId,  // Armazena o ID do contratante se for um contratante
+                    'idContratado' => $profissionalId,  // Armazena o ID do profissional se for um profissional
+                ]);
 
-            // Limpa o campo de mensagem
-            $this->message = '';
-        } else {
-            $this->alert('error', 'Fill the message');
+                // Dispara o evento de mensagem em tempo real
+                event(new SendRealTimeMessage($newMessage->id, $this->roomId));
+
+                // Limpa o campo de mensagem após o envio
+                $this->message = '';
+            } else {
+                // Log de erro caso o usuário não esteja autenticado
+                \Log::error('User is not authenticated.');
+            }
         }
     }
+
+
 
 
     public function handleSendMessage($event): void
