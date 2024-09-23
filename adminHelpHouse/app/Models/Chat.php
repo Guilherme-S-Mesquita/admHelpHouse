@@ -28,6 +28,7 @@ class Chat extends Model
         'idContratado',
         'message',
         'is_read',
+        'user_type', // Adicione esta linha
     ];
     protected $connection = "mysql";
 
@@ -46,7 +47,7 @@ class Chat extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
-        
+
     }
 
     public static function boot() {

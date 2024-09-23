@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('tbcontato', function (Blueprint $table) {
             $table->id('idContato');
             $table->string('numeroTelefone');
-             
-            // Chave estrangeira para contratante (UUID)
+
             $table->uuid('idcontratante');
             $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
                   ->onUpdate('cascade')->onDelete('cascade');

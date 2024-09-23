@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbavaliacao', function (Blueprint $table) {
             $table->id('idavaliacao');
             $table->string('descavaliacao', 180);
-            
+
             // Chave estrangeira para contratante (UUID)
             $table->uuid('idcontratante');
             $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
