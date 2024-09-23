@@ -34,21 +34,25 @@ body {
     overflow: hidden;
 }
 
+.principal {
+    display: flex;
+}
+
 /* Estilização da coluna do formulário */
 .left {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex: 1;
-    padding: 20px;
+    
     background-color: #f7f7f7; /* Cor de fundo para a área do formulário */
 }
 
 /* Caixa de entrada do formulário */
 .input-box {
-    width: 100%;
-    max-width: 330px;
+    width: 50%;
     box-sizing: border-box;
+    justify-content: start;
+
+
 }
 img{
     position: relative;
@@ -60,10 +64,12 @@ img{
 .input-box header {
     font-size: 40px;
     text-align: start;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
     font-weight: 800;
     color: #004AAD;
     padding-left: 10px;
+    margin-left: 10%;
+    margin-top: 10%;
 }
 
 
@@ -79,7 +85,7 @@ img{
 /* Estilo dos inputs de email e senha */
 .input {
     height: 45px;
-    width: 100%;
+    width: 80%;
     background: transparent;
     border: none;
     border-bottom: 3px solid #004AAD;
@@ -92,7 +98,7 @@ img{
 .input-box .input-field label {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 10%;
     pointer-events: none;
     transition: 0.5s;
 }
@@ -134,7 +140,7 @@ img{
     outline: none;
     height: 45px;
     width: 200px;
-    background: #FFBD59;
+    background: #f3ad44;
     border-radius: 40px;
     transition: 0.4s;
     font-weight: 800;
@@ -167,15 +173,38 @@ span a:hover {
     color: #004AAD;
 }
 
-/* Estilização da imagem lateral */
-#side-image {
-    background-image: url('#'); /* Coloque o caminho da imagem desejada aqui */
-    background-position: center;
-    background-size: cover;
-    border-radius: 0 50px 50px 0; /* Bordas arredondadas */
-    position: relative;
-    flex: 1;
 
+
+.ladinho1 {
+    height: 450px;
+    width: 50%;
+     background: rgb(255,185,91);
+    background: linear-gradient(90deg, rgba(255,185,91,1) 5%, rgba(255,155,93,1) 68%);
+    justify-content: end;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 5%;
+    display: flex;
+}
+/* Estilização da imagem lateral */
+.ladinho {
+    height: 110%;
+    justify-content:center ;
+    align-items: center;
+    width: 100%;
+  display: flex;
+    border-radius: 30%;
+    background: rgb(255,185,91);
+    background: linear-gradient(90deg, rgba(255,185,91,1) 5%, rgba(255,155,93,1) 68%);
+}
+
+.ladinho img {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    margin-right: 20%;
+
+    
 }
 
 /* Texto sobre a imagem */
