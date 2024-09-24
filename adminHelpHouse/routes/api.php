@@ -33,4 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Rota para obter as mensagens de uma sala de chat
     Route::get('/chat/messages/{roomId}', [ChatController::class, 'getMessages']);
+    
 });
