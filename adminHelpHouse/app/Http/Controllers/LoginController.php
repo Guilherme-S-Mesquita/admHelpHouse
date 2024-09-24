@@ -48,22 +48,7 @@ class LoginController extends Controller
         }
     }
 
-    // Método para autenticar o usuário
-    public function authenticate(Request $request){
-    // Valida as credenciais do usuário
-        $validator = Validator::make($request->all(),[
-            'email'=>'required|email',
-            'password'=> 'required'
-
-        ]);
-        if($validator->passes()){
-
-        }else{
-            return redirect()->route('login.index')
-            ->withInput()
-            ->withErrors($validator);
-        }
-    }
+ 
 
     public function store(Request $request)
 {

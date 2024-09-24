@@ -5,17 +5,23 @@
 @section('contentAdmin')
 
 
-
 <div class="container">
     <h1>Criar Serviço</h1>
-    <form action="/adicionar" method="POST">
+
+    @if(session('msg'))
+        <div class="alert alert-success">
+            {{ session('msg') }}
+        </div>
+    @endif
+
+    <form action="{{ route('inserir.servico') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="nome">Nome do Serviço:</label>
+            <label for="nomeServicos">Nome do Serviço:</label>
             <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" required>
         </div>
         <div class="form-group">
-            <label for="nome">Categoria</label>
+            <label for="categoriaServicos">Categoria:</label>
             <input type="text" class="form-control" id="categoriaServicos" name="categoriaServicos" required>
         </div>
         <div class="form-group">

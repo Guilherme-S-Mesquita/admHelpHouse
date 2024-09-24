@@ -9,7 +9,7 @@
         <!-- Linha para distribuição de conteúdo -->
         <div class="row">
             <!-- Coluna para o formulário de login -->
-            <div class="col-md-6 left">
+            <div class="principal left">
                 <div class="input-box">
                     <!-- Cabeçalho do formulário -->
                     <header>Login</header>
@@ -40,11 +40,14 @@
                             @endforeach
                         @endif
                 </div>
-            </div>
+            
             <!-- Coluna para a imagem lateral -->
-            <div class="col-md-6 " id="side-image">
+            <div class="ladinho1 " id="side-image">
+                
                 <!-- Adicione o texto sobre a imagem aqui se necessário -->
-               <img src="/img/helpHouseLogin.png" alt="">
+               <div class="ladinho"><img src="{{ asset('img/logohh.svg')}}" alt=""></div>
+            </div>
+
             </div>
         </div>
     </div>

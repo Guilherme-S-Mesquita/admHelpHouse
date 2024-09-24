@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('tbcontato', function (Blueprint $table) {
             $table->id('idContato');
-            $table->string('nomeContato', 70);
-            $table->string('sobrenomeContato', 80);
-            $table->char('telefoneContato', 14)->unique();
-            $table->string('emailContato', 120)->unique();
-            $table->string('descContato', 300);
-            $table->unsignedBigInteger('idContratado');
-            $table->unsignedBigInteger('idContratante');
-            $table->foreign('idContratado')->references('idContratado')->on('tbcontratado');
-            $table->foreign('idContratante')->references('idContratante')->on('tbcontratante');
+            $table->string('numeroTelefone');
+
+            $table->uuid('idcontratante');
+            $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
+                  ->onUpdate('cascade')->onDelete('cascade');
+
+            // Chave estrangeira para contratado (UUID)
+            $table->uuid('idcontratado');
+            $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
+                  ->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

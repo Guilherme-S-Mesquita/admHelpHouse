@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbcontratado', function (Blueprint $table) {
-            $table->id('idContratado')->primary();
+            $table->id(); // Coluna de auto incremento
+            $table->uuid('idContratado')->unique(); // Torna 'idContratado' único, mas não chave primária
             $table->string('nomeContratado', 55);
             $table->string('sobrenomeContratado', 90)->nullable();
             $table->char('cpfContratado', 14)->unique();
@@ -46,3 +47,4 @@ return new class extends Migration
         Schema::dropIfExists('tbcontratado');
     }
 };
+

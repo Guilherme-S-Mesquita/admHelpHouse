@@ -16,7 +16,7 @@ class Auth extends Component
     public function login()
     {
         if (AuthLogin::attempt(['email' => $this->email, 'password' => $this->password])) {
-            $this->redirectRoute('contact');
+            $this->redirectRoute('dashboard');
         } else {
             $this->alert('error',  'Unauthorized');
         }
