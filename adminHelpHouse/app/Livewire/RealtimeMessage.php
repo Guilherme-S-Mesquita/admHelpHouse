@@ -118,11 +118,7 @@ class RealtimeMessage extends Component
         $this->friendName = $event['name'];
     }
 
-    public function handleLeaving($event): void
-    {
-        $this->friendStatus = 'Offline';
-        $this->friendName = $event['name'];
-    }
+
 
     public function logout()
     {
