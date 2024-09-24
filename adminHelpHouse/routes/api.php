@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfissionalApiController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContratanteController;
+use App\Livewire\Auth;
+use App\Livewire\Contact;
+use App\Livewire\RealtimeMessage;
+
 
 
 
@@ -23,7 +27,7 @@ Route::post('/auth' ,[ContratanteController::class, 'auth']) ;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/chats', [ChatController::class, 'index']); 
-    Route::get('/chats/{roomId}', [ChatController::class, 'getMessages']);
-    Route::post('/chats/send', [ChatController::class, 'sendMessage']);
+    Route::get('/chats', [ChatController::class, 'index']);
+    Route::get('/chats/{roomId}', [Contact::class, 'getMessages']);
+    Route::post('/chats/send', [RealtimeMessage::class, 'sendMessage']);
 });
