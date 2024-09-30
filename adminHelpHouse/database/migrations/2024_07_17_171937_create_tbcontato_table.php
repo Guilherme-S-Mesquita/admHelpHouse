@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->uuid('idcontratante');
             $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
-                  ->onUpdate('cascade')->onDelete('cascade');
+                  ->onUpdate('cascade')->onDelete('cascade');  // Cascade para deletar contatos relacionados
 
             // Chave estrangeira para contratado (UUID)
             $table->uuid('idcontratado');

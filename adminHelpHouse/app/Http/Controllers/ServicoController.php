@@ -23,7 +23,6 @@ class ServicoController extends Controller
         $request->validate([
             'nomeServicos' => 'required|string|max:255',
             'descServicos' => 'required|string',
-            'precoServicos' => 'required|string',
             'categoriaServicos' => 'required|string',
         ]);
 
@@ -31,7 +30,7 @@ class ServicoController extends Controller
         $servico->nomeServicos = $request->nomeServicos;
         $servico->categoriaServicos = $request->categoriaServicos;
         $servico->descServicos = $request->descServicos;
-        $servico->precoServicos = $request->precoServicos;
+
 
         $servico->save();
 

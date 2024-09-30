@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('cpfContratante', 14)->unique();
             $table->string('password');
             $table->string('emailContratante', 180)->unique();
-            $table->char('telefoneContratante', 14)->unique();
+            $table->char('telefoneContratante', 18)->unique();
 
             $table->string('ruaContratante', 90);
             $table->string('cepContratante', 9);
@@ -33,10 +33,7 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::table('tbcontratante', function (Blueprint $table) {
-
-
-        });
+ 
         Schema::dropIfExists('tbcontratante');
     }
 };

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nomeServicos', 50);
             $table->string('descServicos', 400);
             $table->string('categoriaServicos', 40);
-            $table->string('precoServicos');
+          
 
 
           // Chave estrangeira para contratado (agora usando unsignedBigInteger)

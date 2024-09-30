@@ -27,6 +27,6 @@ class Servico extends Model
     protected $fillable = [
         'nomeServicos',
         'descServicos',
-        'precoServicos',
+    
     ];
 }

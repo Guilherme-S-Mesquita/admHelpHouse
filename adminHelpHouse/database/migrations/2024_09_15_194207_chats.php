@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('chat_room_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignUuid('user_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignUuid('idContratante')->nullable()->constrained('tbcontratante', 'idContratante')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignUuid('idContratante')->nullable()->constrained('tbcontratante', 'idContratante')
+            ->onUpdate('cascade')->onDelete('set null');  // Set null ao deletar contratante
             $table->foreignUuid('idContratado')->nullable()->constrained('tbcontratado', 'idContratado')->onUpdate('cascade')->onDelete('set null');
             $table->text('message')->nullable(false);
             $table->boolean('is_read')->default(false)->nullable(false);

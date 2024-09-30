@@ -21,10 +21,7 @@
                     <textarea class="form-control" id="descServicos" name="descServicos" required>{{ old('descServicos', $servico->descServicos) }}</textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="precoServicos">Preço:</label>
-                    <input type="number" step="0.01" class="form-control" id="precoServicos" name="precoServicos" value="{{ old('precoServicos', $servico->precoServicos) }}" required>
-                </div>
+
 
                 <button type="submit" class="btn btn-primary">Atualizar Serviço</button>
             </form>

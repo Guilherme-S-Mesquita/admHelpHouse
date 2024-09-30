@@ -15,7 +15,6 @@
                         <th>Nome</th>
                         <th>Categoria</th>
                         <th>Descrição</th>
-                        <th>Preços</th>
                         <th>editar</th>
                         <th>Excluir</th>
 
@@ -28,7 +27,6 @@
                         <td>{{ $servico->nomeServicos }}</td>
                         <td>{{ $servico->categoriaServicos }}</td>
                         <td>{{ $servico->descServicos }}</td>
-                        <td>{{ $servico->precoServicos }}</td>
                         <td>
                              <!-- Botões de editar -->
                     <a href="{{ route('edit.servico', $servico->idServicos) }}" class="btn btn-info edit-btn">

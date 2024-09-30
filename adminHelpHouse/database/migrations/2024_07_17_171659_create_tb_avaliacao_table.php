@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id('idavaliacao');
             $table->string('descavaliacao', 180);
 
-            // Chave estrangeira para contratante (UUID)
             $table->uuid('idcontratante');
             $table->foreign('idcontratante')->references('idContratante')->on('tbcontratante')
-                  ->onUpdate('cascade')->onDelete('cascade');
+                  ->onUpdate('cascade')->onDelete('cascade');  // Cascade para deletar avaliações quando contratante for deletado
 
             // Chave estrangeira para contratado (UUID)
             $table->uuid('idcontratado');
