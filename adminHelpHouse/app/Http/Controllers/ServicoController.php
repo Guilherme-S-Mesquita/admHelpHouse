@@ -70,4 +70,5 @@ class ServicoController extends Controller
 
         return redirect()->route('add.servico')->with('msg', 'Serviço excluido com sucesso!');
     }
+
 }

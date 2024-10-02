@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Servico;
+
 
 class Profissional extends Authenticatable
 {
@@ -34,6 +36,7 @@ class Profissional extends Authenticatable
         'nascContratado',
         'ruaContratado',
         'cepContratado',
+        // 'regiaoContratado',
         'numCasaContratado',
         'complementoContratado',
         'bairroContratado',
@@ -71,5 +74,10 @@ class Profissional extends Authenticatable
         static::creating(function ($model) {
             $model->idContratado = Str::orderedUuid();
         });
+    }
+
+    public function servicos()
+    {
+        return $this->belongsToMany(Servico::class, 'profissional_servico', 'idContratado', 'idServicos');
     }
 }

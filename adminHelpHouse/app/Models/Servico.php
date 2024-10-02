@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Profissional;
 
 class Servico extends Model
 {
@@ -27,6 +28,11 @@ class Servico extends Model
     protected $fillable = [
         'nomeServicos',
         'descServicos',
-    
+
     ];
+
+    public function profissionais()
+    {
+        return $this->belongsToMany(Profissional::class, 'profissional_servico', 'idServicos', 'idContratado');
+    }
 }

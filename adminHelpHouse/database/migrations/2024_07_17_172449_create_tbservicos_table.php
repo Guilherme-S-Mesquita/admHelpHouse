@@ -16,13 +16,10 @@ return new class extends Migration
             $table->string('nomeServicos', 50);
             $table->string('descServicos', 400);
             $table->string('categoriaServicos', 40);
-          
 
 
-          // Chave estrangeira para contratado (agora usando unsignedBigInteger)
-        //   $table->uuid('idcontratado');
-        //   $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
-        //         ->onUpdate('cascade')->onDelete('cascade');
+
+   
 
             $table->timestamps();
         });

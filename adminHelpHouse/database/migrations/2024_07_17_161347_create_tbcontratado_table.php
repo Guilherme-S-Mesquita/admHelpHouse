@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('profissaoContratado', 90);
             $table->string('descContratado', 400)->nullable();
             $table->date('nascContratado');
-
+            // $table->string('regiaoContratado');
             $table->string('ruaContratado', 90);
             $table->string('cepContratado', 9);
             $table->string('numCasaContratado', 14);

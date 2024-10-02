@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profissional;
@@ -43,6 +41,7 @@ class ProfissionalApiController extends Controller
             'ruaContratado' => 'required|string',
             'cepContratado' => 'required|string',
             'bairroContratado' => 'required|string',
+            // 'regiaoContratado' => 'required|string',
             'numCasaContratado' => 'required|string',
             'complementoContratado' => 'nullable|string',
 
@@ -115,4 +114,6 @@ class ProfissionalApiController extends Controller
             // 'token' => $token,
         ]);
     }
+
+
 }

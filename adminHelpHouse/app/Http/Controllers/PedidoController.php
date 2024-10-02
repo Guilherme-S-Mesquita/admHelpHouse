@@ -22,22 +22,17 @@ class PedidoController extends Controller
     {
 
             // Validação da requisição
-            $validatedData = $request->validate([
-                'descricaoPedido' => 'required|string|max:999',
-                'servicoPedido' => 'required|string',
-                'idServicos' => 'required|integer',
-                'idContratante'=>'string'
-            ]);
+    $validatedData = $request->validate([
+        'descricaoPedido' => 'required|string|max:999',
+        'idServicos' => 'required|integer',
+        'idContratante' => 'required|string', // Ensure idContratante is provided from the frontend
+    ]);
 
- 
-
-            // Criando um novo pedido
-            try {
-                Pedido::create($validatedData);
-                return response()->json(['message' => 'Pedido criado com sucesso!'], 201);
-            } catch (\Exception $e) {
-                return response()->json(['error' => $e->getMessage()], 500);
-            }
-
+    try {
+        Pedido::create($validatedData);
+        return response()->json(['message' => 'Pedido criado com sucesso!'], 201);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Erro ao criar o pedido: ' . $e->getMessage()], 500);
     }
+}
 }
