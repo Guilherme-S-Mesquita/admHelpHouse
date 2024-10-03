@@ -14,7 +14,7 @@ use App\Models\Servico;
 
 class Profissional extends Authenticatable
 {
-    use HasFactory,  Notifiable, HasFactory;
+    use HasApiTokens,  Notifiable, HasFactory;
 
     protected $table = 'tbcontratado';
 
@@ -44,6 +44,10 @@ class Profissional extends Authenticatable
         'cidadeContratado',
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     public $timestamps = false;
 

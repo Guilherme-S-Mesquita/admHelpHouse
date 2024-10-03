@@ -107,11 +107,12 @@ class ProfissionalApiController extends Controller
         }
 
         $userPro = Auth::guard('profissional')->user();
+        $token = $userPro->createToken('contratado_token')->plainTextToken;
 
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo', $userPro->nomeContratado,
-            // 'token' => $token,
+             'token' => $token,
         ]);
     }
 
