@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Pedido;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
+// use App\Notifications\NovoPedidoNotification;
 
 class PedidoController extends Controller
 {
+    // Listar todos os pedidos (apenas exemplo)
+    public function IndexPedido()
+    {
+        $pedidos = Pedido::all();
+        return $pedidos;
+    }
+
     // Método para criar um novo pedido
     public function store(Request $request)
     {
         // Validação da requisição
         $validatedData = $request->validate([
             'descricaoPedido' => 'required|string|max:999',
-            // 'idServicos' => 'required|integer',
+            'idServicos' => 'required|integer',
         ]);
 
         try {
@@ -28,10 +35,15 @@ class PedidoController extends Controller
 
             // Buscar o profissional relacionado ao serviço solicitado
             $profissional = Profissional::whereHas('servicos', function ($query) use ($validatedData) {
-                $query->where('idServicos', $validatedData['idServicos']);
+                // Defina explicitamente a tabela de onde vem a coluna idServicos
+                $query->where('tbservicos.idServicos', $validatedData['idServicos']);
             })->first();
 
+
             if ($profissional) {
+                // Notificar o profissional (opcional)
+                // $profissional->notify(new NovoPedidoNotification($pedido));
+
                 // Retornar o profissional encontrado junto com o pedido
                 return response()->json([
                     'message' => 'Pedido criado com sucesso!',

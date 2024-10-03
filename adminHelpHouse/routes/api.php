@@ -26,11 +26,18 @@ Route::post('/clii' ,[ContratanteController::class, 'storeApi']) ;
 Route::post('/auth' ,[ContratanteController::class, 'auth']) ;
 
 
-Route::get('/pedidos' ,[PedidoController::class, 'indexPedido']);
-Route::post('/pedido' ,[PedidoController::class, 'store']) ;
+//----------------------- PEDIDOS--------------------------------
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/pedido', [PedidoController::class, 'store']);
+    Route::get('/pedidos', [PedidoController::class, 'indexPedido']);
+});
+
+
+Route::get('/servicos', [PedidoController::class, 'servicoIndex']);
 
 
 
+//---------------------------------------CHAT
     // Rota para criar ou obter uma sala de chat
     Route::post('/chat-room/{contactId}', [ChatController::class, 'createOrGetChatRoom']);
 

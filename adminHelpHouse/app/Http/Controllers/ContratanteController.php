@@ -115,12 +115,13 @@ class ContratanteController extends Controller
         }
 
         $user = Auth::guard('contratante')->user();
-        // $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('contratante_token')->plainTextToken;
+
 
         return response()->json([
             'status' => 'Sucesso',
-            'message' => 'Seja bem-vindo', $user->nomeContratante,
-            // 'token' => $token,
+            'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,
+             'token' => $token,
         ]);
     }
 

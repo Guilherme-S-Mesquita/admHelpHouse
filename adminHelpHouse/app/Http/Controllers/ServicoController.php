@@ -70,5 +70,9 @@ class ServicoController extends Controller
 
         return redirect()->route('add.servico')->with('msg', 'Serviço excluido com sucesso!');
     }
+    public function servicoIndex(){
+            $servicos = Servico::all();
+            return $servicos;
+    }
 
 }

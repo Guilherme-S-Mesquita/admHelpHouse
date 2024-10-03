@@ -21,7 +21,7 @@ class Pedido extends Model
     protected $keyType = 'int'; // ou 'string', dependendo do tipo
 
 
-    protected $fillable = ['descricaoPedido', 'servicoPedido', 'idContratante', 'idServicos'];
+    protected $fillable = ['descricaoPedido', 'idContratante', 'idServicos'];
 
     public function contratante()
     {

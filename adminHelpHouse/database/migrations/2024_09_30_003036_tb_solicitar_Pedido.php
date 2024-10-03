@@ -19,7 +19,7 @@ return new class extends Migration
                   ->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('descricaoPedido');
-            $table->string('servicoPedido');
+            // $table->string('servicoPedido');
             $table->timestamps();
         });
     }
