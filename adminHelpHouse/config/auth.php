@@ -9,7 +9,7 @@ return [
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
-  
+
 
     'guards' => [
         'web' => [

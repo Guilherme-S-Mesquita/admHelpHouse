@@ -24,39 +24,82 @@ class PedidoController extends Controller
         $validatedData = $request->validate([
             'descricaoPedido' => 'required|string|max:999',
             'idServicos' => 'required|integer',
+            'idContratado' => 'required|uuid',  // UUID do profissional
+            'tituloPedido' => 'required|string|max:50'
         ]);
 
         try {
-            // Adicionar o idContratante automaticamente (usuário logado)
+            // Obter o UUID do contratante logado
             $validatedData['idContratante'] = Auth::user()->idContratante;
 
-            // Criar o pedido
+            // Criar o pedido no banco
             $pedido = Pedido::create($validatedData);
 
-            // Buscar o profissional relacionado ao serviço solicitado
-            $profissional = Profissional::whereHas('servicos', function ($query) use ($validatedData) {
-                // Defina explicitamente a tabela de onde vem a coluna idServicos
-                $query->where('tbservicos.idServicos', $validatedData['idServicos']);
-            })->first();
-
+            // Verificar se o UUID do profissional é válido
+            $profissional = Profissional::where('id', $validatedData['idContratado'])->first();
 
             if ($profissional) {
-                // Notificar o profissional (opcional)
-                // $profissional->notify(new NovoPedidoNotification($pedido));
-
-                // Retornar o profissional encontrado junto com o pedido
+                // Pedido criado com sucesso e o profissional foi encontrado
                 return response()->json([
                     'message' => 'Pedido criado com sucesso!',
                     'pedido' => $pedido,
                     'profissional' => $profissional
                 ], 201);
+            } else {
+                // Caso o profissional não seja encontrado
+                return response()->json(['message' => 'Pedido criado, mas nenhum profissional encontrado com esse ID.'], 201);
             }
-
-            // Se não encontrar um profissional
-            return response()->json(['message' => 'Pedido criado, mas nenhum profissional encontrado.'], 201);
-
         } catch (\Exception $e) {
+            // Tratar erros
             return response()->json(['error' => 'Erro ao criar o pedido: ' . $e->getMessage()], 500);
         }
     }
+
+
+    public function pedidosPendentes()
+    {
+        // Obtem o ID do profissional autenticado
+        $profissionalId = Auth::guard('profissional')->id();
+
+        $pedido= Pedido::select('pedido')
+        ->where('idContratado', $profissionalId)
+        ->where('status', 'pendente')
+        ->get();
+
+        // Busca os pedidos para o profissional autenticado com status pendente
+        $pedidos = Pedido::where('idContratado', $profissionalId)
+            ->where('statusPedido', 'pendente')
+            ->with('contratante')
+            ->get();
+
+        return response()->json($pedido);
+    }
+
+
+    public function responderPedido(Request $request, $id)
+    {
+        // Validação da requisição
+        $validacao = $request->validate([
+            'acao' => 'required|in:aceito,recusado',
+        ]);
+
+        // Busca o pedido pelo ID
+        $pedido = Pedido::findOrFail($id);
+
+        // Obtem o ID do profissional autenticado
+        $profissionalId = Auth::guard('profissional')->id();
+
+        // Verifica se o profissional autenticado é o dono do pedido
+        if ($pedido->idContratado !== $profissionalId) {
+            return response()->json(['error' => 'Você não está autorizado a responder este pedido.'], 403);
+        }
+
+        // Atualiza o status do pedido de acordo com a ação (aceitar ou recusar)
+        $pedido->statusPedido = $validacao['acao'];
+        $pedido->save();
+
+        return response()->json(['message' => 'Pedido ' . $validacao['acao'] . ' com sucesso!']);
+    }
+
+
 }

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('ufContratante', 10)->nullable();
             $table->string('cidadeContratante', 50)->nullable();
 
+            $table->timestamps();
         });
     }
 

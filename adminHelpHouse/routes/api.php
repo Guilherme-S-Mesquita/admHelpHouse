@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfissionalApiController;
 use App\Http\Controllers\ContratanteController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ServicoController;
 
 
 
@@ -27,14 +28,28 @@ Route::post('/auth' ,[ContratanteController::class, 'auth']) ;
 
 
 //----------------------- PEDIDOS--------------------------------
+
 Route::middleware('auth:sanctum')->group(function () {
+    // Cliente cria um novo pedido
     Route::post('/pedido', [PedidoController::class, 'store']);
+    // Lista todos os pedidos
     Route::get('/pedidos', [PedidoController::class, 'indexPedido']);
+
 });
 
 
-Route::get('/servicos', [PedidoController::class, 'servicoIndex']);
 
+    Route::get('/profissional/{id}/pedidos', [PedidoController::class, 'pedidosPendentes']);
+
+
+    Route::post('/profissional/pedido/{id}/responder', [PedidoController::class, 'responderPedido']);
+
+
+//  (aceitar ou recusar)
+
+
+
+Route::get('/servicos', [ServicoController::class, 'servicoIndex']);
 
 
 //---------------------------------------CHAT
