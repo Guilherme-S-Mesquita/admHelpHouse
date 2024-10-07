@@ -25,6 +25,14 @@ class Pedido extends Model
     ];
     protected $fillable = ['descricaoPedido', 'idContratante', 'idServicos', 'idContratado', 'tituloPedido', 'statusPedido'];
 
+
+    public function getAuthIdentifierName()
+    {
+        // Define 'idContratado' como o campo para autenticação
+        return 'idContratado';
+    }
+
+
     public function contratante()
     {
         return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');

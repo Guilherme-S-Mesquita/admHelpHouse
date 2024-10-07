@@ -115,7 +115,7 @@ class ProfissionalApiController extends Controller
 
         return response()->json([
             'status' => 'Sucesso',
-            'message' => 'Seja bem-vindo', $userPro->nomeContratado,
+            'message' => 'Seja bem-vindo' .  $userPro->nomeContratado,
             'token' => $token,
             'user'=>$userPro,
         ]);
