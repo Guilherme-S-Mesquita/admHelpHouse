@@ -19,6 +19,8 @@ class PedidoController extends Controller
     // Método para criar um novo pedido
     public function store(Request $request)
     {
+
+
         // Validação da requisição
         $validatedData = $request->validate([
             'descricaoPedido' => 'required|string|max:999',
@@ -40,7 +42,7 @@ class PedidoController extends Controller
             return response()->json([
                 'message' => 'Pedido criado com sucesso!',
                 'pedido' => $pedido,
-                'profissional' => $profissional ?: 'Nenhum profissional encontrado.'
+                'profissional' => $profissional->nomeContratado ?: 'Nenhum profissional encontrado.'
             ], 201);
         } catch (\Exception $e) {
             // Tratar erros
@@ -49,21 +51,33 @@ class PedidoController extends Controller
     }
 
     // Método para listar pedidos pendentes
-    public function pedidosPendentes()
-    {
-        $profissional = Auth::guard('profissional')->user();
+    public function pedidosPendentes(Request $request)
+{
+    try {
+        // Recupera o profissional autenticado
 
+        $profissional['idContratado'] = Auth::user()->idContratado;
+
+
+        // Verifica se o profissional está autenticado
         if (!$profissional) {
-            return response()->json(['error' => 'Nenhum profissional autenticado'], 400);
+            return response()->json(['error' => 'Profissional não autenticado'], 401);
         }
 
-        $pedidos = Pedido::select('idSolicitarPedido', 'descricaoPedido', 'idContratante')
-            ->where('idContratado', $profissional->idContratado)
-            ->where('status', 'pendente')
+        // Busca os pedidos pendentes para o profissional autenticado
+        $pedidos = Pedido::select('idSolicitarPedido',  'idContratante')
+            ->where('idContratado', $profissional) // Use o idContratado da autenticação
+            ->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
             ->get();
 
+        // Retorna os pedidos em formato JSON
         return response()->json($pedidos);
+    } catch (\Exception $e) {
+        // Retorna um erro caso algo ocorra
+        return response()->json(['error' => 'Erro ao buscar pedidos: ' . $e->getMessage()], 500);
     }
+}
+
 
     // Método para responder a um pedido
     public function responderPedido(Request $request, $id)

@@ -35,13 +35,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Lista todos os pedidos
     Route::get('/pedidos', [PedidoController::class, 'indexPedido']);
 
-    Route::get('/profissional/{idContratado}/pedidos', [PedidoController::class, 'pedidosPendentes']);
-
-
-    Route::post('/profissional/pedido/{id}/responder', [PedidoController::class, 'responderPedido']);
-
 
 });
+Route::middleware('auth:sanctum')->get('/profissional/{idContratado}/pedidos', [PedidoController::class, 'pedidosPendentes']);
 
 
 
