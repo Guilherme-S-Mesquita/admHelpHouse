@@ -65,7 +65,7 @@ class PedidoController extends Controller
         }
 
         // Busca os pedidos pendentes para o profissional autenticado
-        $pedidos = Pedido::select('idSolicitarPedido',  'idContratante')
+        $pedidos = Pedido::select('idSolicitarPedido', 'descricaoPedido', 'idContratante', 'tituloPedido')
             ->where('idContratado', $profissional) // Use o idContratado da autenticação
             ->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
             ->get();
