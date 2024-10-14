@@ -16,6 +16,7 @@ use App\Http\Controllers\ServicoController;
 
 //contrataDO/profissional
 Route::get('/pro' ,[ProfissionalApiController::class, 'indexApiPro']);
+Route::get('/pro/{id}' ,[ProfissionalApiController::class, 'showApi']);
 Route::post('/proo' ,[ProfissionalApiController::class, 'storeApiPro']);
 Route::post('/authpro' ,[ProfissionalApiController::class, 'authPro']);
 

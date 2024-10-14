@@ -74,9 +74,14 @@ class ProfissionalApiController extends Controller
 
     }
 
-    public function showaApi($id)
+    public function showApi($id)
     {
-        
+        $profissional = Profissional::find($id);
+        if ($profissional) {
+            return response()->json($profissional, 200);
+        } else {
+            return response()->json(['message' => 'Contratante não encontrado.'], 404);
+        }
     }
 
 
