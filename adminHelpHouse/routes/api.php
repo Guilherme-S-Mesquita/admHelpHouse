@@ -53,6 +53,7 @@ Route::get('/servicos', [ServicoController::class, 'servicoIndex']);
 
 
 //---------------------------------------CHAT
+Route::middleware('auth:sanctum')->group(function () {
     // Rota para criar ou obter uma sala de chat
     Route::post('/chat-room/{contactId}', [ChatController::class, 'createOrGetChatRoom']);
 
@@ -61,5 +62,5 @@ Route::get('/servicos', [ServicoController::class, 'servicoIndex']);
 
     // Rota para obter as mensagens de uma sala de chat
     Route::get('/chat/messages/{roomId}', [ChatController::class, 'getMessages']);
-
+});
 
