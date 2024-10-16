@@ -33,7 +33,7 @@ class Contratante extends Authenticatable
         'numCasaContratante',
         'complementoContratante',
         'bairroContratante',
-        // 'regiaoContratado'
+        'cidadeContratante'
     ];
 
     protected $hidden = [
@@ -69,5 +69,9 @@ class Contratante extends Authenticatable
         static::creating(function ($model) {
             $model->idContratante = Str::orderedUuid();
         });
+    }
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'idContratante', 'idContratante');
     }
 }
