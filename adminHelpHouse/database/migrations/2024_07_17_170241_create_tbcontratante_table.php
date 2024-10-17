@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('emailContratante', 180)->unique();
             $table->char('telefoneContratante', 18)->unique();
-            // $table->string('regiaoContratante');
             $table->string('ruaContratante', 90);
             $table->string('cepContratante', 9);
             $table->string('numCasaContratante', 14);

@@ -33,7 +33,11 @@ class Contratante extends Authenticatable
         'numCasaContratante',
         'complementoContratante',
         'bairroContratante',
+<<<<<<< HEAD
+        
+=======
         'cidadeContratante'
+>>>>>>> cb8a9357eb07a69898d4dfd0a618b10386ab7d9f
     ];
 
     protected $hidden = [
