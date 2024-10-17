@@ -70,6 +70,7 @@ class PedidoController extends Controller
             ->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
             ->get();
 
+
         // Retorna os pedidos em formato JSON
         return response()->json($pedidos);
     } catch (\Exception $e) {

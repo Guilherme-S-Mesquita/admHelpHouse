@@ -36,7 +36,7 @@ class Profissional extends Authenticatable
         'nascContratado',
         'ruaContratado',
         'cepContratado',
-        // 'regiaoContratado',
+        'regiaoContratado',
         'numCasaContratado',
         'complementoContratado',
         'bairroContratado',

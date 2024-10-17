@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Contratante;
 
-
-
-
-
-
 class ContratanteController extends Controller
 {
 
@@ -53,7 +48,7 @@ class ContratanteController extends Controller
             'numCasaContratante' => 'required|string',
             'complementoContratante' => 'required|string',
             'bairroContratante' => 'required|string',
-            // 'regiaoContratante'=> 'required|string'
+          
         ]);
 
         //Verifica se o usuario existe

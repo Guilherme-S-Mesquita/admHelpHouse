@@ -41,7 +41,7 @@ class ProfissionalApiController extends Controller
             'ruaContratado' => 'required|string',
             'cepContratado' => 'required|string',
             'bairroContratado' => 'required|string',
-            // 'regiaoContratado' => 'required|string',
+            'regiaoContratado' => 'required|string',
             'numCasaContratado' => 'required|string',
             'complementoContratado' => 'nullable|string',
 
@@ -83,7 +83,7 @@ class ProfissionalApiController extends Controller
             return response()->json(['message' => 'Contratante não encontrado.'], 404);
         }
     }
-
+       
 
     public function authPro(Request $request)
     {
@@ -128,3 +128,32 @@ class ProfissionalApiController extends Controller
 
 
 }
+ {/*
+        // Método para exibir os dados do PRofissional
+        public function dadosProfissionais(Request $request)
+        {
+            try {
+                // Recupera o profissional autenticado
+                $profissional['idContratado'] = Auth::user()->idContratado;
+        
+        
+                // Verifica se o profissional está autenticado
+                if (!$profissional) {
+                    return response()->json(['error' => 'Profissional não autenticado'], 401);
+                }
+    
+        
+                // Busca os dados do profissinal e leva para tela de perfil
+                $profissional = Profissional::select('idContratado', 'nomeContratado', 'sobrenomeContratado', 'descContratado','profissaoContratado','bairroContratado')
+                ->where('idContratado', $profissional) // Use o idContratado da autenticação
+                //->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
+                ->get();
+        
+                // Retorna os profissionais em formato JSON
+                return response()->json($profissional);
+            } catch (\Exception $e) {
+                // Retorna um erro caso algo ocorra
+                return response()->json(['error' => 'Erro ao trazer dados do PRO: ' . $e->getMessage()], 500);
+            }
+        }
+*/}

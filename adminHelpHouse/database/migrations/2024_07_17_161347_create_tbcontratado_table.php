@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('nascContratado');
             $table->string('descProfissaoContratado')->nullable();
             $table->string('ruaContratado', 90);
+            $table->string('regiaoContratado', 50);
             $table->string('cepContratado', 9);
             $table->string('numCasaContratado', 14);
             $table->string('complementoContratado')->nullable();

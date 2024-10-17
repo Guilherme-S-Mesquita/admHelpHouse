@@ -20,6 +20,9 @@ Route::get('/pro/{id}' ,[ProfissionalApiController::class, 'showApi']);
 Route::post('/proo' ,[ProfissionalApiController::class, 'storeApiPro']);
 Route::post('/authpro' ,[ProfissionalApiController::class, 'authPro']);
 
+//----------------------buscar dados do PRO
+Route::get('/perfilPro' ,[ProfissionalApiController::class, 'dadosProfissionais']);
+Route::middleware('auth:sanctum')->get('/profissional/{idContratado}/dadosProfissionais', [ProfissionalApiController::class, 'dadosProfissionais']);
 
 // ´------------------------CONTRATANTE API
 Route::get('/cli' ,[ContratanteController::class, 'indexApi']);
