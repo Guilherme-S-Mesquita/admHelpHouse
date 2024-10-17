@@ -37,6 +37,7 @@ class Pedido extends Model
     {
         return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
     }
+
     public function contratado()
     {
         return $this->belongsTo(Profissional::class, 'idContratado', 'idContratado');

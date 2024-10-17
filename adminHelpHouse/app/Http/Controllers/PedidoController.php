@@ -6,7 +6,7 @@ use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
-
+use App\Models\Contratante;
 class PedidoController extends Controller
 {
     // Listar todos os pedidos
@@ -51,11 +51,11 @@ class PedidoController extends Controller
     }
 
     // Método para listar pedidos pendentes
-    public function pedidosPendentes(Request $request)
+   public function pedidosPendentes()
 {
-    try {
-        // Recupera o profissional autenticado
+      $profissional['idContratado'] = Auth::user()->idContratado;
 
+<<<<<<< HEAD
         $profissional['idContratado'] = Auth::user()->idContratado;
 
 
@@ -76,31 +76,44 @@ class PedidoController extends Controller
     } catch (\Exception $e) {
         // Retorna um erro caso algo ocorra
         return response()->json(['error' => 'Erro ao buscar pedidos: ' . $e->getMessage()], 500);
+=======
+    if (!$profissional) {
+        return response()->json(['error' => 'Nenhum profissional autenticado'], 400);
+>>>>>>> cb8a9357eb07a69898d4dfd0a618b10386ab7d9f
     }
+
+    // Busca os pedidos pendentes e inclui os dados do contratante através do relacionamento
+    $pedidos = Pedido::with(['contratante' => function ($query) {
+            $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante'); // Campos do contratante que você quer trazer
+        }])
+        ->select('idSolicitarPedido', 'descricaoPedido', 'idContratante', 'tituloPedido', 'statusPedido')
+        ->where('idContratado', $profissional)
+        ->where('statusPedido', 'pendente')
+        ->get();
+
+    return response()->json($pedidos);
 }
 
-
     // Método para responder a um pedido
-    public function responderPedido(Request $request, $id)
+    public function meusPedidos()
     {
-        // Validação da requisição
-        $validacao = $request->validate([
-            'acao' => 'required|in:aceito,recusado',
-        ]);
+        $idContratante = Auth::user()->idContratante;
 
-        // Busca o pedido pelo ID
-        $pedido = Pedido::findOrFail($id);
-        $profissionalId = Auth::guard('profissional')->id();
+        $contratante = Contratante::with(['pedidos' => function ($query) {
+            $query->select('idSolicitarPedido', 'tituloPedido', 'idContratado', 'idContratante')
+                  ->with(['contratado:idContratado,nomeContratado']);
+        }])
+        ->where('idContratante', $idContratante)
+        ->first();
 
-        // Verifica se o profissional autenticado é o dono do pedido
-        if ($pedido->idContratado !== $profissionalId) {
-            return response()->json(['error' => 'Você não está autorizado a responder este pedido.'], 403);
+        if (!$contratante) {
+            return response()->json(['message' => 'Contratante não encontrado'], 404);
         }
 
-        // Atualiza o status do pedido
-        $pedido->statusPedido = $validacao['acao'];
-        $pedido->save();
-
-        return response()->json(['message' => 'Pedido ' . $validacao['acao'] . ' com sucesso!']);
+        return response()->json($contratante);
     }
+
+
+
+
 }
