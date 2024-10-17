@@ -74,7 +74,7 @@ class PedidoController extends Controller
     // Método para responder a um pedido
     public function meusPedidos()
     {
-        $idContratante = Auth::user()->idContratante;
+        $idContratante ['idContratante'] = Auth::user()->idContratante;
 
         $contratante = Contratante::with(['pedidos' => function ($query) {
             $query->select('idSolicitarPedido', 'tituloPedido', 'idContratado', 'idContratante')

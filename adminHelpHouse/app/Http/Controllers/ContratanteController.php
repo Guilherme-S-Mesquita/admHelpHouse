@@ -122,6 +122,7 @@ class ContratanteController extends Controller
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,
              'token' => $token,
+             'user'=> $user
         ]);
     }
 
