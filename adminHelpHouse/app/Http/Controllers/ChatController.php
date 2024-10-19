@@ -13,7 +13,7 @@ class ChatController extends Controller
     // Cria ou retorna uma sala de chat existente entre dois usuários
     public function createOrGetChatRoom($contactId, Request $request)
     {
-        $userId = $this->getUserId();
+        $userId = $this->getUserId();  // ID do usuário autenticado
 
         // Tenta localizar uma sala de chat existente entre o usuário autenticado e o contato
         $chatRoom = ChatRoom::where('participant', "$userId:$contactId")
@@ -32,6 +32,7 @@ class ChatController extends Controller
             'chat_room' => $chatRoom,
         ]);
     }
+
 
     // Função para enviar mensagens para uma sala de chat
     public function sendMessage(Request $request)

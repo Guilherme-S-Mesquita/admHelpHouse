@@ -48,11 +48,8 @@ class ContratanteController extends Controller
             'numCasaContratante' => 'required|string',
             'complementoContratante' => 'required|string',
             'bairroContratante' => 'required|string',
-<<<<<<< HEAD
-          
-=======
-             'cidadeContratante'=> 'required|string'
->>>>>>> cb8a9357eb07a69898d4dfd0a618b10386ab7d9f
+            'cidadeContratante'=> 'required|string'
+
         ]);
 
         //Verifica se o usuario existe
