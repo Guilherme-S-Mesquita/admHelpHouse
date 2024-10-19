@@ -46,7 +46,12 @@ class ContratanteController extends Controller
             'numCasaContratante' => 'required|string',
             'complementoContratante' => 'required|string',
             'bairroContratante' => 'required|string',
+<<<<<<< HEAD
             'cidadeContratante'=> 'required|string',
+=======
+            'cidadeContratante'=> 'required|string'
+
+>>>>>>> a83faf1dca8dedbe982726cec47708020d5541bf
         ]);
 
         //Verifica se o usuario existe
@@ -115,6 +120,7 @@ class ContratanteController extends Controller
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,
              'token' => $token,
+             'user'=> $user
         ]);
     }
 

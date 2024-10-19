@@ -7,13 +7,13 @@ use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-
+use App\Events\SendRealTimeMessage;
 class ChatController extends Controller
 {
     // Cria ou retorna uma sala de chat existente entre dois usuários
     public function createOrGetChatRoom($contactId, Request $request)
     {
-        $userId = $this->getUserId();
+        $userId = $this->getUserId();  // ID do usuário autenticado
 
         // Tenta localizar uma sala de chat existente entre o usuário autenticado e o contato
         $chatRoom = ChatRoom::where('participant', "$userId:$contactId")
@@ -32,6 +32,7 @@ class ChatController extends Controller
             'chat_room' => $chatRoom,
         ]);
     }
+
 
     // Função para enviar mensagens para uma sala de chat
     public function sendMessage(Request $request)
@@ -85,6 +86,9 @@ class ChatController extends Controller
 
         // Carrega o remetente e suas informações
         $newMessage->load($senderType); // Carrega o remetente baseado no tipo
+
+        event(new SendRealTimeMessage($newMessage->id, $request->roomId));
+
 
         // Retorna a resposta em JSON com a mensagem e o remetente
         return response()->json([

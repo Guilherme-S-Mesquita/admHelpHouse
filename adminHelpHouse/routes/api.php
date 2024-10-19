@@ -69,3 +69,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/chat/messages/{roomId}', [ChatController::class, 'getMessages']);
 });
 
+// <Image source={Imagens.iconEnviar} style={styles.icon} />
