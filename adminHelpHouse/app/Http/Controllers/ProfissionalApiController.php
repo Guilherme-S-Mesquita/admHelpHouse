@@ -73,6 +73,29 @@ class ProfissionalApiController extends Controller
         ], 201); // 201 Created
 
     }
+    // Método para listar dados do profissional
+    public function dadosProfissional()
+    {
+        try {
+            $profissionalId = Auth::user()->idContratado;
+
+            // Verifica se o profissional está autenticado
+            if (!$profissionalId) {
+                return response()->json(['error' => 'Profissional não autenticado'], 401);
+            }
+
+             // Busca os dados do profissinal e leva para tela de perfil
+             $profissional = Profissional::select('idContratado', 'nomeContratado', 'sobrenomeContratado', 'descContratado','profissaoContratado','bairroContratado')
+             ->where('idContratado', $profissional) // Use o idContratado da autenticação
+             //->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
+             ->get();
+
+            return response()->json($pedidos);
+        } catch (\Exception $e) {
+            // Retorna um erro caso algo ocorra
+            return response()->json(['error' => 'Erro ao trazer os dados: ' . $e->getMessage()], 500);
+        }
+    }
 
     public function showApi($id)
     {
