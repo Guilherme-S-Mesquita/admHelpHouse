@@ -10,6 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use App\Models\Chat;
 
 class SendRealTimeMessage implements ShouldBroadcastNow
 {
@@ -30,5 +31,16 @@ class SendRealTimeMessage implements ShouldBroadcastNow
             new PresenceChannel('channel.'.$this->roomId),
         ];
     }
+    public function broadcastWith()
+    {
+        $chatMessage = Chat::find($this->messageId);
+
+        return [
+            'messageId' => $this->messageId,
+            'message' => $chatMessage ? $chatMessage->message : 'Mensagem não encontrada', // Verifica se $chatMessage não é null
+            'roomId' => $this->roomId,
+        ];
+    }
+
 }
 

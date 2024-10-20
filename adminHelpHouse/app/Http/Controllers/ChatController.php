@@ -50,53 +50,49 @@ class ChatController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            // Verifica se é um usuário padrão
+            // Verifica se o usuário é um usuário padrão (admin)
             if ($user instanceof \App\Models\User) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
-                    'user_id' => $user->id,
+                    'user_id' => $user->id, // user_id sendo usado para usuários
                     'message' => $request->message,
                 ]);
                 $senderType = 'user';  // Marca como usuário padrão
 
+            // Verifica se o usuário é um profissional (contratado)
             } elseif ($user instanceof \App\Models\Profissional) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
+                    'idContratado' => $user->idContratado,  // idContratado sendo usado para profissionais
                     'message' => $request->message,
-                    'idContratado' => $user->idContratado,
                 ]);
                 $senderType = 'profissional';  // Marca como profissional
 
+            // Verifica se o usuário é um contratante
             } elseif ($user instanceof \App\Models\Contratante) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
+                    'idContratante' => $user->idContratante,  // idContratante sendo usado para contratantes
                     'message' => $request->message,
-                    'idContratante' => $user->idContratante,
                 ]);
                 $senderType = 'contratante';  // Marca como contratante
             }
-        }
 
-        if (!$newMessage) {
+            // Dispara o evento para enviar a mensagem em tempo real (broadcasting)
+            event(new SendRealTimeMessage($newMessage, $request->roomId));
+
+            // Retorna a mensagem recém-criada junto com o tipo de remetente
             return response()->json([
-                'status' => 'error',
-                'message' => 'Usuário não autenticado.',
-            ], 401);
+                'status' => 'success',
+                'message' => $newMessage,
+                'sender_type' => $senderType,
+            ]);
         }
 
-        // Carrega o remetente e suas informações
-        $newMessage->load($senderType); // Carrega o remetente baseado no tipo
-
-        event(new SendRealTimeMessage($newMessage->id, $request->roomId));
-
-
-        // Retorna a resposta em JSON com a mensagem e o remetente
-        return response()->json([
-            'status' => 'success',
-            'message' => $newMessage,
-            'sender' => $newMessage->$senderType  // Retorna as informações do remetente
-        ]);
+        // Caso o usuário não esteja autenticado, retorne um erro
+        return response()->json(['status' => 'error', 'message' => 'Usuário não autenticado.'], 401);
     }
+
 
 
     // Retorna as mensagens de uma sala de chat
