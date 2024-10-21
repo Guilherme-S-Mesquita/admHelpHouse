@@ -4,13 +4,21 @@
     overflow: hidden;
     transition: all 0.95s ease-in-out;
     background-color: #e2e2e2;
-    margin-left:4vw;
+    margin-left:5vw;
+    
+    
 }
 
 
 .table th{
     color: blue;
     font-weight: 800;
-
+    
 }
 
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+}

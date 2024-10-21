@@ -25,5 +25,5 @@ Broadcast::channel('channel.{roomId}', function ($user, $roomId) {
     }
 
     Log::warning("Usuário {$user->id} não autorizado a entrar na sala {$roomId}.");
-    return null;
+    return null;
 });

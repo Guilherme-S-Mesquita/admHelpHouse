@@ -13,9 +13,9 @@
             <h2 class="mb-4">Gerenciar administradores</h2>
 
             <table class="table">
-                <thead>
-                    <tr>
 
+                <thead >
+                    <tr>
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Nascimento</th>
@@ -24,6 +24,7 @@
                         <th>Excluir</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
@@ -50,4 +51,5 @@
                    @endforeach
                 </tbody>
 
+           
 @endsection

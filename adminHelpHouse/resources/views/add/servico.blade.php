@@ -4,11 +4,11 @@
 
 @section('contentAdmin')
 <div class="main p-3">
-    <div class="row">
+    <div class="row"    style="margin-left:4vh";>
         <div class="col-md-12">
             <h2 class="mb-4">Gerenciar Serviços</h2>
             <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Novo Serviço</a>
-            <table class="table">
+            <table class="table"    style="margin-top10%";>
                 <thead>
                     <tr>
                         <th>ID</th>
