@@ -1,20 +1,29 @@
 <?php
 
-use App\Models\User;
-use App\Models\ChatRoom;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
 
 Broadcast::channel('channel.{roomId}', function ($user, $roomId) {
-    if ($user->canJoinRoom($roomId)) {
-        return ['id' => $user->id, 'name' => $user->name];
-    } elseif (Auth::guard('profissional')->check()) {
-        $profissional = Auth::guard('profissional')->user();
-        return ['id' => $profissional->idContratado, 'name' => $profissional->nomeContratado];
-    } elseif (Auth::guard('contratante')->check()) {
-        $contratante = Auth::guard('contratante')->user();
-        return ['id' => $contratante->idContratante, 'name' => $contratante->nomeContratante];
+    Log::info("Tentativa de acesso ao canal {$roomId} pelo usuário {$user->id}");
+
+    if (Auth::check()) {
+        $user = Auth::user();
+
+        if ($user instanceof \App\Models\User && $user->canJoinRoom($roomId)) {
+            return ['id' => $user->id, 'name' => $user->name];
+            Log::info("Usuário padrão {$user->id} pode entrar na sala {$roomId}.");
+
+        }elseif  ($user instanceof \App\Models\Contratante && $user->canJoinRoom($roomId)){
+            return ['id' => $user->id, 'nomeContratante' => $user->nomeContratante];
+            Log::info("Usuário padrão {$user->id} pode entrar na sala {$roomId}.");
+
+        }elseif  ($user instanceof \App\Models\Profissional && $user->canJoinRoom($roomId)){
+            return ['id' => $user->id, 'nomeContratado' => $user->nomeContratado];
+            Log::info("Usuário padrão {$user->id} pode entrar na sala {$roomId}.");
+        }
     }
-    return null;
+
+    Log::warning("Usuário {$user->id} não autorizado a entrar na sala {$roomId}.");
+    return null;
 });
-
-

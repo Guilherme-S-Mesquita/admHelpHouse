@@ -42,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/chat-room/{contactId}', [ChatController::class, 'createOrGetChatRoom']);  // Criar ou obter sala de chat
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);  // Enviar mensagem
     Route::get('/chat/messages/{roomId}', [ChatController::class, 'getMessages']);  // Obter mensagens da sala de chat
+    Route::post('/pusher/auth', [PusherAuthController::class, 'authenticate']);
+
 });
 
-Route::post('/pusher/auth', [PusherAuthController::class, 'authenticate']);
+
+

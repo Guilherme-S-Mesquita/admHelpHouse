@@ -28,8 +28,6 @@ Route::post('/login/processo-registro',[loginController::class, 'processoDeRegis
 
 
 
-
-
 // -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
 Route::get('/editServico/{idServicos}', [ServicoController::class, 'edit'])->name('edit.servico');
@@ -43,14 +41,17 @@ Route::post('/adicionar', [ServicoController::class, 'store'])->name('inserir.se
 
 //--------------------------------- USUARIOS -------------------------------------------
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+
+
 // --------------------------------USUARIOS PAGINA ADM----------------------------------
 Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
 Route::get('/editadmin/{id}' ,[UsersController::class, 'edit']) ->name('edit.admins');
 Route::put('/editadmin/{id}' ,[UsersController::class, 'update']) ->name('update.admins');
 Route::delete('/editadmin/{id}' ,[UsersController::class, 'delete']) ->name('delete.admins');
+
+
 // --------------------------------USUARIOS PAGINA USUARIOS----------------------------------
 Route::get('/clientes' ,[UsersController::class, 'clientes']) ->name('users.clientes');
-
 
 
 
