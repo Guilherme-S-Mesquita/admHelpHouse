@@ -34,13 +34,13 @@ class SendRealTimeMessage implements ShouldBroadcastNow
     public function broadcastWith()
     {
         $chatMessage = Chat::find($this->messageId);
-
         return [
             'messageId' => $this->messageId,
             'message' => $chatMessage ? $chatMessage->message : 'Mensagem não encontrada', // Verifica se $chatMessage não é null
             'roomId' => $this->roomId,
         ];
     }
+
 
 }
 

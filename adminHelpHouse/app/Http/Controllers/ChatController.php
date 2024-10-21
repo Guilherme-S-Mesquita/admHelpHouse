@@ -50,36 +50,42 @@ class ChatController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            // Verifica se o usuário é um usuário padrão (admin)
+            // Verifica o tipo de usuário
             if ($user instanceof \App\Models\User) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
-                    'user_id' => $user->id, // user_id sendo usado para usuários
+                    'user_id' => $user->id,
                     'message' => $request->message,
                 ]);
                 $senderType = 'user';  // Marca como usuário padrão
 
-            // Verifica se o usuário é um profissional (contratado)
             } elseif ($user instanceof \App\Models\Profissional) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
-                    'idContratado' => $user->idContratado,  // idContratado sendo usado para profissionais
+                    'idContratado' => $user->idContratado,
                     'message' => $request->message,
                 ]);
                 $senderType = 'profissional';  // Marca como profissional
 
-            // Verifica se o usuário é um contratante
             } elseif ($user instanceof \App\Models\Contratante) {
                 $newMessage = Chat::create([
                     'chat_room_id' => $request->roomId,
-                    'idContratante' => $user->idContratante,  // idContratante sendo usado para contratantes
+                    'idContratante' => $user->idContratante,
                     'message' => $request->message,
                 ]);
                 $senderType = 'contratante';  // Marca como contratante
             }
 
             // Dispara o evento para enviar a mensagem em tempo real (broadcasting)
-            event(new SendRealTimeMessage($newMessage, $request->roomId));
+            if ($newMessage) {
+                Log::info("Mensagem criada: ", $newMessage->toArray());
+                broadcast(new SendRealTimeMessage($newMessage->id, $newMessage->chat_room_id))->toOthers();
+
+            } else {
+                Log::error("Falha ao criar a mensagem no Chat.");
+            }
+            Log::info("Evento disparado para a roomId: {$request->roomId}, Mensagem: {$request->message}");
+
 
             // Retorna a mensagem recém-criada junto com o tipo de remetente
             return response()->json([
@@ -92,6 +98,7 @@ class ChatController extends Controller
         // Caso o usuário não esteja autenticado, retorne um erro
         return response()->json(['status' => 'error', 'message' => 'Usuário não autenticado.'], 401);
     }
+
 
 
 
