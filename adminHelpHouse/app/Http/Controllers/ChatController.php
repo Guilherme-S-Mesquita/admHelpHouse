@@ -30,7 +30,9 @@ class ChatController extends Controller
         return response()->json([
             'status' => 'success',
             'chat_room' => $chatRoom,
+            'participants' => explode(':', $chatRoom->participant), // IDs dos participantes
         ]);
+
     }
 
 
@@ -79,12 +81,14 @@ class ChatController extends Controller
             // Dispara o evento para enviar a mensagem em tempo real (broadcasting)
             if ($newMessage) {
                 Log::info("Mensagem criada: ", $newMessage->toArray());
-                broadcast(new SendRealTimeMessage($newMessage->id, $newMessage->chat_room_id))->toOthers();
+                broadcast(new SendRealTimeMessage($newMessage->id, $newMessage->chat_room_id));
+
+                Log::info("Evento disparado para a roomId: {$request->roomId}, Mensagem: {$request->message}");
 
             } else {
                 Log::error("Falha ao criar a mensagem no Chat.");
             }
-            Log::info("Evento disparado para a roomId: {$request->roomId}, Mensagem: {$request->message}");
+
 
 
             // Retorna a mensagem recém-criada junto com o tipo de remetente

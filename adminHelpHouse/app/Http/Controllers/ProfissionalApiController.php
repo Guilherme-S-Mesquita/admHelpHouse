@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profissional;
-
+use Pusher\Pusher;
 
 
 
@@ -84,19 +84,17 @@ class ProfissionalApiController extends Controller
                 return response()->json(['error' => 'Profissional não autenticado'], 401);
             }
 
-             // Busca os dados do profissinal e leva para tela de perfil
-             $profissional = Profissional::select('idContratado', 'nomeContratado', 'sobrenomeContratado', 'descContratado','profissaoContratado','bairroContratado')
-             ->where('idContratado', $profissional) // Use o idContratado da autenticação
-             //->where('statusPedido', 'pendente') // Verifique se o status é 'pendente'
-             ->get();
+            // Busca os dados do profissional e leva para tela de perfil
+            $profissional = Profissional::select('idContratado', 'nomeContratado', 'sobrenomeContratado', 'descContratado','profissaoContratado','bairroContratado')
+                ->where('idContratado', $profissionalId) // Use o idContratado da autenticação
+                ->get();
 
-            return response()->json($pedidos);
+            return response()->json($profissional); // Retorna os dados do profissional
         } catch (\Exception $e) {
             // Retorna um erro caso algo ocorra
             return response()->json(['error' => 'Erro ao trazer os dados: ' . $e->getMessage()], 500);
         }
     }
-
     public function showApi($id)
     {
         $profissional = Profissional::find($id);
@@ -139,16 +137,32 @@ class ProfissionalApiController extends Controller
 
         $userPro = Auth::guard('profissional')->user();
         $token = $userPro->createToken('contratado_token')->plainTextToken;
-
+        $pusherAuthData = $this->authorizePusher($userPro);
 
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo' .  $userPro->nomeContratado,
             'token' => $token,
             'user'=>$userPro,
+            'pusher_auth' => $pusherAuthData,
         ]);
     }
 
+    protected function authorizePusher($userPro)
+    {
+        // Aqui você pode definir os dados necessários para autenticação do Pusher
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            ['cluster' => env('PUSHER_APP_CLUSTER'), 'useTLS' => true]
+        );
+
+        $channelName = 'private-my-channel';
+        $socketId = request('socket_id'); // Precisa ser enviado pelo front-end
+
+        return $pusher->socket_auth($channelName, $socketId);
+    }
 
 }
  {/*

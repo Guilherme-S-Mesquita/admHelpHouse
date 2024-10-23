@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
-
 use Illuminate\Http\Request;
 use App\Models\Contratante;
+use Pusher\Pusher;
 
 class ContratanteController extends Controller
 {
@@ -110,14 +109,32 @@ class ContratanteController extends Controller
         $user = Auth::guard('contratante')->user();
         $token = $user->createToken('contratante_token')->plainTextToken;
 
+        $pusherAuthData = $this->authorizePusher($user);
 
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,
              'token' => $token,
-             'user'=> $user
+             'user'=> $user,
+             'pusher_auth' => $pusherAuthData,
         ]);
     }
+    protected function authorizePusher($user)
+{
+    // Aqui você pode definir os dados necessários para autenticação do Pusher
+    $pusher = new Pusher(
+        env('PUSHER_APP_KEY'),
+        env('PUSHER_APP_SECRET'),
+        env('PUSHER_APP_ID'),
+        ['cluster' => env('PUSHER_APP_CLUSTER'), 'useTLS' => true]
+    );
+
+    // O canal deve ser dinâmico com base no roomId ou outra lógica
+    $channelName = request('channel_name');  // Recebido do frontend
+    $socketId = request('socket_id'); // Precisa ser enviado pelo front-end
+
+    return $pusher->socket_auth($channelName, $socketId);
+}
 
 
 }

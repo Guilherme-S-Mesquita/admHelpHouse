@@ -15,6 +15,7 @@ Route::get('/pro', [ProfissionalApiController::class, 'indexApiPro']);
 Route::get('/pro/{id}', [ProfissionalApiController::class, 'showApi']);
 Route::post('/proo', [ProfissionalApiController::class, 'storeApiPro']);
 Route::post('/authpro', [ProfissionalApiController::class, 'authPro']);
+Route::post('/pusher/authpro', [ProfissionalApiController::class, 'authorizePusher']);
 
 // Buscar dados do Profissional
 Route::middleware('auth:sanctum')->get('/perfilPro', [ProfissionalApiController::class, 'dadosProfissionais']);
@@ -24,7 +25,9 @@ Route::middleware('auth:sanctum')->get('/profissional/{idContratado}/dadosProfis
 Route::get('/cli', [ContratanteController::class, 'indexApi']);
 Route::get('/cli/{id}', [ContratanteController::class, 'showApi']);
 Route::post('/clii', [ContratanteController::class, 'storeApi']);
+
 Route::post('/auth', [ContratanteController::class, 'auth']);
+Route::post('/pusher/auth', [ContratanteController::class, 'authorizePusher']);
 
 // -------------------------------------- Rotas de Pedidos ------------------------------------------
 Route::middleware('auth:sanctum')->group(function () {
@@ -42,7 +45,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/chat-room/{contactId}', [ChatController::class, 'createOrGetChatRoom']);  // Criar ou obter sala de chat
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);  // Enviar mensagem
     Route::get('/chat/messages/{roomId}', [ChatController::class, 'getMessages']);  // Obter mensagens da sala de chat
-    Route::post('/pusher/auth', [PusherAuthController::class, 'authenticate']);
 
 });
 
