@@ -46,6 +46,7 @@ class ContratanteController extends Controller
             'complementoContratante' => 'required|string',
             'bairroContratante' => 'required|string',
             'cidadeContratante'=> 'required|string',
+            'imagemContratante' => 'required|string',
         ]);
 
         //Verifica se o usuario existe

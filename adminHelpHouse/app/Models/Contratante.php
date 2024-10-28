@@ -34,6 +34,7 @@ class Contratante extends Authenticatable
         'complementoContratante',
         'bairroContratante',
         'cidadeContratante',
+        'imagemContratante',
     ];
 
     protected $hidden = [
