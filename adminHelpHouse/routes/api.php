@@ -16,6 +16,7 @@ Route::get('/pro/{id}', [ProfissionalApiController::class, 'showApi']);
 Route::post('/proo', [ProfissionalApiController::class, 'storeApiPro']);
 Route::post('/authpro', [ProfissionalApiController::class, 'authPro']);
 Route::post('/pusher/authpro', [ProfissionalApiController::class, 'authorizePusher']);
+Route::put('/pro/{idContratado}', [ProfissionalApiController::class, 'update']);
 
 // Buscar dados do Profissional
 Route::middleware('auth:sanctum')->get('/perfilPro', [ProfissionalApiController::class, 'dadosProfissionais']);
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/profissional/{idContratado}/dadosProfis
 Route::get('/cli', [ContratanteController::class, 'indexApi']);
 Route::get('/cli/{id}', [ContratanteController::class, 'showApi']);
 Route::post('/clii', [ContratanteController::class, 'storeApi']);
+Route::put('/cli/{idContratante}', [ContratanteController::class, 'update']);
 
 Route::post('/auth', [ContratanteController::class, 'auth']);
 Route::post('/pusher/auth', [ContratanteController::class, 'authorizePusher']);
