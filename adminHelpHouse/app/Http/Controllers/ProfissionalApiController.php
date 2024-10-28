@@ -44,7 +44,8 @@ class ProfissionalApiController extends Controller
             'regiaoContratado' => 'required|string',
             'numCasaContratado' => 'required|string',
             'complementoContratado' => 'nullable|string',
-            'cidadeContratado'=>"required|string"
+            'cidadeContratado'=>"required|string",
+            'imagemContratado'=>"required|string"
 
         ]);
 
