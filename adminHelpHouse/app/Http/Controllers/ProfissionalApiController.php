@@ -44,7 +44,8 @@ class ProfissionalApiController extends Controller
             'regiaoContratado' => 'required|string',
             'numCasaContratado' => 'required|string',
             'complementoContratado' => 'nullable|string',
-            'cidadeContratado'=>"required|string"
+            'cidadeContratado'=>"required|string",
+            'imagemContratado'=>"required|string"
 
         ]);
 
@@ -73,6 +74,27 @@ class ProfissionalApiController extends Controller
         ], 201); // 201 Created
 
     }
+
+
+    public function update(Request $request, $idContratado){
+        $request->validate([
+            'telefoneContratado'=>'required|numeric|max:11',
+            'emailContratado'=>'required|email|max:255',
+            'cepContratado'=>'required|numeric|max:8',
+        ]);
+
+        try{
+            $pro = Profissional::findOrFail($idContratado);
+            $pro -> telefoneContratado = $request->telefoneContratado;
+            $pro -> emailContratado = $request->emailContratado;
+            $pro -> cepContratado = $request->cepContratado;
+
+        }catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao atualizar o usuário: ' . $e->getMessage());
+    }
+}
+
+
     // Método para listar dados do profissional
     public function dadosProfissional()
     {

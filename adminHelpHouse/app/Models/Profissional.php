@@ -42,6 +42,7 @@ class Profissional extends Authenticatable
         'bairroContratado',
         'ufContratado',
         'cidadeContratado',
+        'imagemContratado',
     ];
 
     protected $hidden = [

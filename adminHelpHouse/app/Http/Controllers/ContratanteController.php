@@ -46,6 +46,7 @@ class ContratanteController extends Controller
             'complementoContratante' => 'required|string',
             'bairroContratante' => 'required|string',
             'cidadeContratante'=> 'required|string',
+            'imagemContratante' => 'required|string',
         ]);
 
         //Verifica se o usuario existe
@@ -75,7 +76,35 @@ class ContratanteController extends Controller
     }
 
 
+    public function update(Request $request, $idContratante){
+        $request->validate([
+            'telefoneContratante'=>'required|numeric|digits:11',
+            'emailContratante'=>'required|email|max:255',
+            'cepContratante'=>'required|numeric|digits:8',
+        ]);
 
+        try{
+            $pro = Contratante::findOrFail($idContratante);
+            $pro -> telefoneContratante = $request->telefoneContratante;
+            $pro -> emailContratante = $request->emailContratante;
+            $pro -> cepContratante = $request->cepContratante;
+
+            $pro->save();
+
+
+            return response()->json([
+                'message' => 'Contratante atualizado com sucesso!',
+                'contratante' => $pro
+            ], 200);
+
+        }catch (\Exception $e) {
+
+            return response()->json([
+                'message' => 'Erro ao atualizar o contratante',
+                'error' => $e->getMessage()
+            ], 500);
+    }
+}
 
     public function auth(Request $request)
     {

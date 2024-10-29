@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('cidadeContratado', 50)->nullable();
 
             // $table->string('tokenContratado', 200)->unique()->nullable();
-            $table->string('imagemContratado', 100)->nullable();
+            $table->text('imagemContratado')->nullable();
 
             $table->timestamps();
         });
