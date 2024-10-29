@@ -30,7 +30,7 @@
             <textarea class="form-control" id="descricao" name="descServicos" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar</button >
+        <button style="margin-top: 10px;" type="submit" class="btn btn-primary" >Salvar</button >
     </form>
 </div>
 

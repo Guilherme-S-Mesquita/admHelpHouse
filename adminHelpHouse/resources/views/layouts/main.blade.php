@@ -67,24 +67,28 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
+
                 <li class="sidebar-item">
                     <a href="/admin/DashboardAdmin" class="sidebar-link">
                         <img src="/img/dashboard.png" alt="">
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+
+                <li class="sidebar-item"> 
+                    <a href="/atendimentos" class="sidebar-link">
                         <img src="/img/atendimento.png" alt="">
                         <span>Atendimento</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
                     <a href="/users" class="sidebar-link">
                         <img src="/img/usuarios.png" alt="">
                         <span>Usuário</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <img src="/img/denuncias.png" alt="">
@@ -99,6 +103,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="sidebar-item">
                     <a href="/infosgerais" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                         <div class="iconesidebar"><i class="material-icons">public</i></div>
@@ -106,12 +111,14 @@
                     </a>
 
                 </li>
+
                 <li class="sidebar-item">
                     <a href="/add/servico" class="sidebar-link">
                         <img src="/img/adicionar.png" alt="">
                         <span>Adicionar</span>
                     </a>
                 </li>
+
             </ul>
             <div class="sidebar-footer">
                 <form action="{{ route('login.logout') }}" method="POST" class="d-inline">
