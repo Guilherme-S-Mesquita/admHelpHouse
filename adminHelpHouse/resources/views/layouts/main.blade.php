@@ -32,23 +32,6 @@
     <div id="overlay"></div>
 
 
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#"></a>
-        <div class="search-container">
-            <input type="text" id="search" name="search" class="form-control" placeholder="Procurar">
-            <a href="#" class="btn btn-primary" id="search-submit">
-                <ion-icon name="search-outline"></ion-icon>
-            </a>
-        </div>
-        <div class="d-flex justify-content-end">
-            <div class="administradorDashboard">
-                <a class="entrar-main" href="{{ route('login.index') }}">entrar</a>
-                <a href="#">
-                    <ion-icon style="border-width: 4px;" size="large" name="person-circle-outline"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </nav>
 
     @if(session('msg'))
         <p class="msg">{{session('msg')}}</p>
