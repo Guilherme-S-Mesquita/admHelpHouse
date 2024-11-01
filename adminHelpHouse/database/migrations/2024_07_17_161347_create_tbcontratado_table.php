@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('descContratado', 400)->nullable();
             $table->date('nascContratado');
             $table->string('descProfissaoContratado')->nullable();
-            $table->string('ruaContratado', 90); 
+            $table->string('ruaContratado', 90);
             $table->string('regiaoContratado', 50);
             $table->string('cepContratado', 9);
             $table->string('numCasaContratado', 14);
@@ -32,10 +32,7 @@ return new class extends Migration
             $table->string('bairroContratado', 90);
             $table->string('ufContratado', 10)->nullable();
             $table->string('cidadeContratado', 50)->nullable();
-
-            // $table->string('tokenContratado', 200)->unique()->nullable();
-            $table->text('imagemContratado')->nullable();
-
+            $table->string('imagemContratado', 399);
             $table->timestamps();
         });
     }

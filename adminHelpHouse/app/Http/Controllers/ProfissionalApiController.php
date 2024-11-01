@@ -67,6 +67,7 @@ class ProfissionalApiController extends Controller
 
         $profissional = Profissional::create($validadeDataPro);
 
+
         return response()->json([
             'status' => 'Cadastro realizado com sucesso',
             'alert' => 'Cadastro realizado com sucesso!',

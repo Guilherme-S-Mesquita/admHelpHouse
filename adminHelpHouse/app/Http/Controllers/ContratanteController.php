@@ -66,7 +66,7 @@ class ContratanteController extends Controller
 
         // Criando um novo Contratante com os dados validados
         $contratante = Contratante::create($validatedData);
-
+        
         // Retornando resposta de sucesso com os detalhes do Contratante criado
         return response()->json([
             'status' => 'Deu certinho filho',

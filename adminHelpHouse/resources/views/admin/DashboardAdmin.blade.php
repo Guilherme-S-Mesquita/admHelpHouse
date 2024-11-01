@@ -20,10 +20,27 @@
     </div>
 
     <div class="pai">
-        <div class="retangulo"></div>
-        <div class="retangulo"></div>
-        <div class="retangulo"></div>
-        <div class="retangulo"></div>
+        <div class="retanguloPro">
+            <i class="icon fas fa-hard-hat"></i> <!-- Icon for 'Pro' -->
+            <span class="labelP"> Pro |</span>
+            <span class="countP">{{ $acountContratados ?? 18 }}</span> <!-- Example default value 18 -->
+        </div>
+        <div class="retanguloCli">
+            <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
+            <span class="labelC">Cli  |</span>
+            <span class="countC">{{ $acountContratantes ?? 9 }}</span>
+        </div>
+        <div class="retanguloServ">
+            <i class="icon fas fa-briefcase"></i> <!-- Icon for 'Services' -->
+            <span class="label">Serviços</span>
+            <span class="count">{{ $serviceCount ?? 15 }}</span>
+        </div>
+        <div class="retanguloZona">
+            <i class="icon fas fa-map-marker-alt"></i> <!-- Icon for 'Zone' -->
+            <span class="label">Zona</span>
+            <span class="count">{{ $zone ?? 'ZL' }}</span>
+        </div>
+
     </div>
 
     <hr>
@@ -33,42 +50,86 @@
             <h2 style="color: #004AAD">Serviços mais procurados</h2>
             <div class="grafico">
                 <canvas id="chart" style="width: 370px; height: 370px;">
-                <script>
-                    const ctx = document.getElementById('chart');
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Gráfico de Pedidos por Serviço</title>
+                        <!-- Adicione o Chart.js -->
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    </head>
+                    <body>
 
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                        labels: ['Montador', 'Pedreiro', 'Eletricista', 'Encanador'],
-                        datasets: [{
-                            label: '# of Votes',
-                            data: [40, 10, 25, 35],
-                            backgroundColor: [
-                                    '#FFA500', // Laranja para Pedreiro
-                                    '#3DAEDB', // Azul para Eletricista
-                                    '#6BCFCF', // Azul claro para Encanador
-                                    '#2D5186'  // Azul escuro para Montador
-                                ],
-                                borderColor: [
-                                    '#FFFFFF',
-                                    '#FFFFFF',
-                                    '#FFFFFF',
-                                    '#FFFFFF'
-                                ],
-                                borderWidth: 0
-                            }]
-                        
-                        },
-                       
-                    });
+                    <div class="chart-container" style="width: 50%; margin: auto;">
+                        <canvas id="chart"></canvas>
+                    </div>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const ctx = document.getElementById('chart').getContext('2d');
+
+                            new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: {!! json_encode($labels) !!}, // Passando as labels dinâmicas
+                                    datasets: [{
+                                        label: 'Quantidade de Pedidos por Serviço',
+                                        data: {!! json_encode($data) !!}, // Passando os dados dinâmicos
+                                        backgroundColor: [
+                                            '#FFA500', // Cor para Pedreiro
+                                            '#3DAEDB', // Cor para Eletricista
+                                            '#6BCFCF', // Cor para Encanador
+                                            '#2D5186', // Cor para Montador
+                                            '#FF6384', // Cor adicional para outro serviço
+                                            '#36A2EB', // Cor adicional para outro serviço
+                                            '#FFCE56'  // Cor adicional para outro serviço
+                                        ],
+                                        borderColor: [
+                                            '#FFFFFF',
+                                            '#FFFFFF',
+                                            '#FFFFFF',
+                                            '#FFFFFF',
+                                            '#FFFFFF',
+                                            '#FFFFFF',
+                                            '#FFFFFF'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            position: 'top',
+                                        },
+                                        tooltip: {
+                                            callbacks: {
+                                                label: function(context) {
+                                                    let label = context.label || '';
+                                                    let value = context.raw || 0;
+                                                    let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                                    let percentage = ((value / total) * 100).toFixed(1);
+                                                    return `${label}: ${value} (${percentage}%)`;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
                     </script>
+
+                    </body>
+                    </html>
+
                 </canvas>
 
             </div>
             <div class="servicos">
                 <div class="oncinha">
                     <h2>Serviços <span style="color:#f1c100 ">Solicitados</span></h2>
-                    <h2 class="numero" style="color:#f1c100">10</h2>
+                    <h2 class="numero" style="color:#f1c100">{{$contadorPedidos}}</h2>
                 </div>
                 <div class="oncinha">
                     <h2>Serviços <span style="color:#009245">Concluidos</span> </h2>
@@ -78,47 +139,45 @@
         </div>
 
 
-        
+
         <div class="partes">
         <h2 style="color: #004AAD">Últimas perguntas</h2>
                 <div class="perguntas"></div>
         </div>
         <div class="partes1">
             <h2 style="color: #004AAD">Crescimento de usúarios</h2>
+
+
             <div class="grafico2">
                 <canvas id="chart2" style="width: 370px; height: 370px;">
-                                    
-                <script>
-                const ctx = document.getElementById('chart2');
 
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        borderWidth: 1
-                    }]
-                    },
-                    options: {
-                    scales: {
-                        y: {
-                        beginAtZero: true
-                        }
-                    }
-                    }
-                });
+                <script>
+                    const config = {
+                type: 'line',
+            data: data,
+                };
+                const labels = Utils.months({count: 7});
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    fill: false,
+    borderColor: 'rgb(75, 192, 192)',
+    tension: 0.1
+  }]
+};
                 </script>
-                
+
                                 </canvas>
             </div>
             <div class="botoes"></div>
         </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- 
+<!--
     <div class="containerAdmin">
         <div class="infosAdmin">
             <div class="contratantes">

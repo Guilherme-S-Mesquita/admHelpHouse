@@ -92,5 +92,22 @@ class PedidoController extends Controller
 
 
 
+    public function finalizarPedido($idSolicitarPedido){
+
+        $pedido = Pedido::findOrFail($idSolicitarPedido);
+
+        if($pedido->status !=='em andamento'){
+            return response()->json(['message'=>'Pedido não pode ser finalizado'], 403);
+        }
+
+        $pedido->status = 'finalizado';
+        $pedido->save();
+
+        return response()->json(['message'=>'pedido realizado com sucesso!']);
+
+    }
+
+
+
 
 }
