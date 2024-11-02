@@ -50,5 +50,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
+// -------------------------------------- Rotas de Avaliacao ---------------------------------------------
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
+    Route::get('/avaliacao/{idContratado}', [AvaliacaoController::class, 'avaliacoesProfissionais']);  
+    
+});
 
