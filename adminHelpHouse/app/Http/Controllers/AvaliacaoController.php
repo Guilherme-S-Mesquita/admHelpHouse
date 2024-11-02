@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
 use App\Models\Avaliacao; 
 
 
@@ -23,8 +21,8 @@ class AvaliacaoController extends Controller
     {
         // Valida os dados de entrada
         $validated = $request->validate([
-            'idContratado' => 'required|exists:Contratado,id',
-            'idContratante' => 'required|exists:contratante,id',
+            'idContratado' => 'required|string',
+            'idContratante' => 'required|string',
             'ratingAvaliacao' => 'required|integer|min:1|max:5',
             'descavaliacao' => 'nullable|string|max:255', // Alterado para texto
         ]);
@@ -35,7 +33,7 @@ class AvaliacaoController extends Controller
                 'idContratado' => $validated['idContratado'],
                 'idContratante' => $validated['idContratante'],
                 'ratingAvaliacao' => $validated['ratingAvaliacao'],
-                'descavaliacao' => $validated['descavaliacao'],
+                'descavaliacao' => $validated['descavaliacao'] ?? null,
             ]);
 
             return response()->json([

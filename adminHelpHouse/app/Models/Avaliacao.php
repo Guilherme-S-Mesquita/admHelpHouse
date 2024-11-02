@@ -11,18 +11,14 @@ class Avaliacao extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbAvaliacao';
+    protected $table = 'tbavaliacao';
 
-    protected $fillable = ['idContratado', 'idContratante', 'ratingAvaliacao', 'descavaliacao'];
+    protected $fillable = ['idContratado',
+                            'idContratante',
+                            'ratingAvaliacao',
+                            'descavaliacao'
+                          ];
 
+    public $timestamps = false;
 
-    public function contratante()
-    {
-        return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
-    }
-
-    public function contratado()
-    {
-        return $this->belongsTo(Profissional::class, 'idContratado', 'idContratado');
-    }
 }
