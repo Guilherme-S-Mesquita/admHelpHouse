@@ -32,13 +32,13 @@
         </div>
         <div class="retanguloServ">
             <i class="icon fas fa-briefcase"></i> <!-- Icon for 'Services' -->
-            <span class="label">Serviços</span>
-            <span class="count">{{ $serviceCount ?? 15 }}</span>
+            <span class="labelS">Serviços  |</span>
+            <span class="countS">{{ $serviceCount ?? 15 }}</span>
         </div>
         <div class="retanguloZona">
             <i class="icon fas fa-map-marker-alt"></i> <!-- Icon for 'Zone' -->
-            <span class="label">Zona</span>
-            <span class="count">{{ $zone ?? 'ZL' }}</span>
+            <span class="labelZ">Zona  |</span>
+            <span class="countZ">{{ $zone ?? 'ZL' }}</span>
         </div>
 
     </div>
@@ -52,7 +52,7 @@
                 <canvas id="chart" style="width: 370px; height: 370px;">
                     <!DOCTYPE html>
                     <html lang="en">
-                    <head>
+                    <head class= "grafico">
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Gráfico de Pedidos por Serviço</title>
@@ -128,12 +128,12 @@
             </div>
             <div class="servicos">
                 <div class="oncinha">
-                    <h2>Serviços <span style="color:#f1c100 ">Solicitados</span></h2>
-                    <h2 class="numero" style="color:#f1c100">{{$contadorPedidos}}</h2>
+                    <h3>Serviços <span style="color:#f1c100 ">Solicitados</span></h3>
+                    <h3 class="numero" style="color:#f1c100">{{$contadorPedidos}}</h3>
                 </div>
                 <div class="oncinha">
-                    <h2>Serviços <span style="color:#009245">Concluidos</span> </h2>
-                    <h2 class="numero" style="color:#009245">24</h2>
+                    <h3>Serviços <span style="color:#009245">Concluidos</span> </h3>
+                    <h3 class="numero" style="color:#009245">24</h3>
                 </div>
             </div>
         </div>
