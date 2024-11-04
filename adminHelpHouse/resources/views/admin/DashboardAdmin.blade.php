@@ -203,6 +203,7 @@
                 </script>
               
             <div class="botoes">
+                <a href="/users">
                 <div class="usuarios">
                 <div class="iconezinho">
                     <i class="fa-solid fa-user" style="color: #003ac2;"></i>
@@ -211,7 +212,9 @@
                     <h2>Usuários</h2>
                 </div>
                 </div>
+                </a>
 
+                <a href="/add/servico">
                 <div class="addservicos">
                 <div class="iconezinho">
                     <i class="fa-solid fa-screwdriver-wrench" style="color: #0027c2;"></i>
@@ -220,7 +223,7 @@
                     <h2>Adicionar serviços</h2>
                 </div>
                 </div>
-               
+                </a>
             </div>
         </div>
     </div>
