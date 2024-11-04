@@ -39,67 +39,59 @@
 
     <div class="wrapper">
         <aside id="sidebar">
+
+            
+
             <div class="d-flex">
                 <button class="toggle-btn"  type="button" onclick="toggleOverlay()">
-                    <i>
-                        <ion-icon size="large" name="menu-sharp"></ion-icon>
-                    </i>
+                <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
                 </button>
-                <div class="sidebar-logo">
-                    <img class="helphouseImg" src="/img/helphouse.png" alt="">
+            </div>
+
+            <ul class="sidebar-nav">
+
+            <div class="infosconta">
+                <div class="ftperfil">
+                        <div class="foto"></div>
+                </div>
+                <div class="infosadd">
+                    <h3>Nome</h3>
+                    <h5>Administrador</h5>
+                    
                 </div>
             </div>
-            <ul class="sidebar-nav">
+
+            <div class="fio"></div>
 
                 <li class="sidebar-item">
                     <a href="/admin/DashboardAdmin" class="sidebar-link">
-                        <img src="/img/dashboard.png" alt="">
+                    <i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item"> 
-                    <a href="/atendimentos" class="sidebar-link">
-                        <img src="/img/atendimento.png" alt="">
-                        <span>Atendimento</span>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-bell" style="color: #ffffff;"></i>
+                        <span>Atendimentos</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a href="/users" class="sidebar-link">
-                        <img src="/img/usuarios.png" alt="">
-                        <span>Usuário</span>
+                    <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+                        <span>Usuários</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                        <img src="/img/denuncias.png" alt="">
-                        <span>Denuncias</span>
-                    </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Banimentos</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Suspensões</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="/infosgerais" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <div class="iconesidebar"><i class="material-icons">public</i></div>
-                        <span>Central</span>
-                    </a>
-
-                </li>
+               
 
                 <li class="sidebar-item">
                     <a href="/add/servico" class="sidebar-link">
-                        <img src="/img/adicionar.png" alt="">
-                        <span>Adicionar</span>
+                    <i class="fa-solid fa-screwdriver-wrench" style="color: #ffffff;"></i>
+                        <span>Serviços</span>
                     </a>
+
                 </li>
 
             </ul>
