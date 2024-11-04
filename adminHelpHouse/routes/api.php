@@ -8,6 +8,7 @@ use App\Http\Controllers\ContratanteController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\PusherAuthController;
+use App\Http\Controllers\AvaliacaoController;
 
 
 // -------------------------------------- Rotas de Profissional --------------------------------------
@@ -56,5 +57,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
+// -------------------------------------- Rotas de Avaliacao ---------------------------------------------
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
+    Route::get('/avaliacao/{idContratado}', [AvaliacaoController::class, 'avaliacoesProfissionais']);  
+    
+});
 
