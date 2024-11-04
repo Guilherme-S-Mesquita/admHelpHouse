@@ -37,6 +37,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/pedidos', [PedidoController::class, 'indexPedido']);  // Listar pedidos
     Route::get('/meusPedidos/{idContratante}', [PedidoController::class, 'meusPedidos']);  // Pedidos do contratante
     Route::get('/profissional/{idContratado}/pedidos', [PedidoController::class, 'pedidosPendentes']);  // Pedidos do profissional
+    Route::put('/pedido/aceitar/{idSolicitarPedido}', [PedidoController::class, 'aceitarPedido']);
+
+    Route::get('/pedidos/aceitos', [PedidoController::class, 'meusPedidosAceitos']);  // Pedidos do profissional
+    Route::post('/pedidos/{idSolicitarPedido}/contrato', [PedidoController::class, 'storeContrato']);  
+
+
 });
 
 // -------------------------------------- Rotas de Serviços ------------------------------------------

@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->string( 'descricaoPedido');
             $table->string( 'tituloPedido');
             $table->enum('statusPedido', ['pendente', 'aceito', 'recusado'])->default('pendente');
+            $table->enum('andamentoPedido', ['concluido', 'andamento', 'cancelado'])->default('andamento');
             $table->timestamps();
         });
     }

@@ -160,14 +160,14 @@ class ProfissionalApiController extends Controller
 
         $userPro = Auth::guard('profissional')->user();
         $token = $userPro->createToken('contratado_token')->plainTextToken;
-        $pusherAuthData = $this->authorizePusher($userPro);
+        // $pusherAuthData = $this->authorizePusher($userPro);
 
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo' .  $userPro->nomeContratado,
             'token' => $token,
             'user'=>$userPro,
-            'pusher_auth' => $pusherAuthData,
+            // 'pusher_auth' => $pusherAuthData,
         ]);
     }
 

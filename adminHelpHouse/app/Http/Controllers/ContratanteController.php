@@ -66,7 +66,7 @@ class ContratanteController extends Controller
 
         // Criando um novo Contratante com os dados validados
         $contratante = Contratante::create($validatedData);
-        
+
         // Retornando resposta de sucesso com os detalhes do Contratante criado
         return response()->json([
             'status' => 'Deu certinho filho',
@@ -138,14 +138,14 @@ class ContratanteController extends Controller
         $user = Auth::guard('contratante')->user();
         $token = $user->createToken('contratante_token')->plainTextToken;
 
-        $pusherAuthData = $this->authorizePusher($user);
+        //  $pusherAuthData = $this->authorizePusher($user);
 
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,
              'token' => $token,
              'user'=> $user,
-             'pusher_auth' => $pusherAuthData,
+            //   'pusher_auth' => $pusherAuthData,
         ]);
     }
     protected function authorizePusher($user)

@@ -47,4 +47,9 @@ class Pedido extends Model
     {
         return $this->belongsTo(Servico::class, 'idServicos', 'idServicos');
     }
+
+    public function contrato()
+{
+    return $this->hasOne(Contrato::class, 'idSolicitarPedido'); // Supondo que idPedido seja a chave estrangeira
+}
 }
