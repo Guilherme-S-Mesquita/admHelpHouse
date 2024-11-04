@@ -20,7 +20,7 @@
 .title {
     display: flex;
     width: 80%;
-    height: 1vh;
+    height: 2vh;
     justify-content: start;
     align-items: center;
     padding-left: 11vw;
@@ -33,7 +33,7 @@
 
 .title p {
     color: #004AAD;
-    font-size: 45px;
+    font-size: 50px;
     font-weight: 700;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
@@ -152,13 +152,14 @@
 
  .retanguloPro, .retanguloCli, .retanguloServ, .retanguloZona {
     display: flex;
-
+    align-items: center;
+    justify-content: space-evenly;
     flex-direction: row;
-    border-radius: 12px;
-    width: 200px;
+    border-radius: 25px;
+    width: 350px;
+    height: 80px;
     padding: 10px;
-    box-shadow: 3px 4px 8px #000;
-
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: transform 0.2s ease;
 }
 
@@ -172,9 +173,29 @@
     color: #004AAD;
 }
 
+
+.urus {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #004AAD;
+}
+
+.uracan {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #e38144;
+}
+
+.mccan{
+    font-size: 40px;
+    font-weight: bolder;
+    color: #A6A6A6;
+}
+
+
 .retanguloPro .labelP {
     margin-top: 0.5vh;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     color: #004AAD;
     margin-bottom: 5px;
@@ -224,7 +245,7 @@
 
 .retanguloServ .labelS {
     margin-top: 1vh;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     color: #A6A6A6;
     margin-bottom: 5px;
@@ -233,8 +254,8 @@
 }
 
 .retanguloServ .countS {
-    margin-top: 1vh;
-    font-size: 20px;
+   
+    font-size: 30px;
     font-weight: bold;
     color: #A6A6A6;
 }
@@ -248,7 +269,7 @@
 
 .retanguloZona .labelZ {
     margin-top: 0.8vh;
-    font-size: 23px;
+    font-size: 30px;
     font-weight: bold;
     color: #A6A6A6;
     margin-bottom: 5px;
@@ -257,8 +278,8 @@
 }
 
 .retanguloZona .countZ {
-    margin-top: 1vh;
-    font-size: 23px;
+   
+    font-size: 30px;
     font-weight: bold;
     color: #A6A6A6;
 }

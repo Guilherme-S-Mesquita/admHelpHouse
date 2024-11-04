@@ -26,19 +26,34 @@
             <span class="labelP"> Pro |</span>
             <span class="countP">{{ $acountContratados ?? 18 }}</span> <!-- Example default value 18 -->
         </div>
+
+
         <div class="retanguloCli">
+
+        <div class="mckevin">
             <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
-            <span class="labelC">Cli  |</span>
+            <span class="labelC">⠀Cli</span>
+        </div>
+            <span class="uracan">|</span>
             <span class="countC">{{ $acountContratantes ?? 9 }}</span>
         </div>
+
+
         <div class="retanguloServ">
+        <div class="mcig">
             <i class="icon fas fa-briefcase"></i> <!-- Icon for 'Services' -->
-            <span class="labelS">Serviços  |</span>
+            <span class="labelS">⠀Serviços</span>
+        </div>
+            <span class="mccan">|</span>
             <span class="countS">{{ $serviceCount ?? 15 }}</span>
         </div>
+
         <div class="retanguloZona">
+        <div class="mcgp">
             <i class="icon fas fa-map-marker-alt"></i> <!-- Icon for 'Zone' -->
-            <span class="labelZ">Zona  |</span>
+            <span class="labelZ">⠀Zona</span>
+        </div>
+            <span class="mccan">|</span>
             <span class="countZ">{{ $zone ?? 'ZL' }}</span>
         </div>
 
