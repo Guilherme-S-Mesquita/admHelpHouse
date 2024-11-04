@@ -21,6 +21,7 @@
 
     <div class="pai">
         <div class="retanguloPro">
+            <div class="vtnc"></div>
             <i class="icon fas fa-hard-hat"></i> <!-- Icon for 'Pro' -->
             <span class="labelP"> Pro |</span>
             <span class="countP">{{ $acountContratados ?? 18 }}</span> <!-- Example default value 18 -->
