@@ -21,7 +21,7 @@ class Contrato extends Model
         'remember_token',
     ];
 
-    protected $fillable = ['idSolicitarPedido', 'idContratante', 'idContratado', 'valor', 'data','hora', 'desc_servicoRealizado', 'status'];
+    protected $fillable = ['idSolicitarPedido', 'idContratante', 'idContratado', 'valor', 'data','hora', 'desc_servicoRealizado', 'status','forma_pagamento'];
 
 
 

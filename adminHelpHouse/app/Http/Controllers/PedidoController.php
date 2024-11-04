@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
+
+
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -107,18 +110,19 @@ class PedidoController extends Controller
     {
         $idContratado = Auth::user()->idContratado;
 
-        // Executa a consulta e armazena o resultado em $pedidos
+        // Executa a consulta e inclui dados do contratante e do contrato
         $pedidos = Pedido::with([
             'contratante' => function ($query) {
                 $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante');
-
+            },
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status');
             }
         ])
-
-            ->where('statusPedido', 'aceito')
-            ->whereIn('andamentoPedido', ['andamento', 'concluido'])
-            ->where('idContratado', $idContratado)
-            ->get();
+        ->where('statusPedido', 'aceito')
+        ->whereIn('andamentoPedido', ['andamento', 'concluido'])
+        ->where('idContratado', $idContratado)
+        ->get();
 
         // Verifica se existem pedidos
         if ($pedidos->isEmpty()) {

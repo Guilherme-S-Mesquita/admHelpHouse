@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->time('hora');
             $table->string('desc_servicoRealizado');
             $table->enum('status', ['pendente', 'aceito', 'concluido', 'cancelado'])->default('pendente');
-
+            $table->string('forma_pagamento');
             $table->timestamps();
 
             // Foreign keys
