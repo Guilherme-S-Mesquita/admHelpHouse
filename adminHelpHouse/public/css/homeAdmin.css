@@ -76,7 +76,7 @@
 }
 
     .partes {
-        width: 475px;
+        width: 30%;
         height: 800px;
         flex-direction: column;
         display: flex;
@@ -121,7 +121,8 @@
             display: flex;
             justify-content: start;
             padding-left: 3.5vh;
-            padding-top: 2.5vh;
+            padding-top: 2vh;
+            margin-left: 8vh;
         }
 
             .oncinha h3 {
@@ -130,7 +131,7 @@
             }
             
                 .numero {
-                    margin-left: 4vh;
+                    margin-left: 2vh;
                     margin-top: -1vh;
                     font-size: 40px;
                 }
@@ -297,7 +298,70 @@
     height: 380px;
     justify-content: center;
     display: flex;
-    background-color: antiquewhite;
+   
+}
+
+.botoes {
+    height: 380px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+
+}
+
+.usuarios {
+    height: 80px;
+    width: 80%;
+    background-color: #e4e2e2;
+    border-radius: 40px;
+    margin-bottom: 3vh;
+    margin-left: 10%;
+    display: flex;
+    padding: 2vh;
+    flex-direction: row;
+    justify-content: start;
+    padding-left: 4vh;
+    transition: 0.6s;
+}
+
+.usuarios:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.415);
+    cursor: pointer;
+}
+
+        .iconezinho {
+            font-size: 40px;
+        }
+ 
+.addservicos {
+    height: 80px;
+    width: 80%;
+    background-color: #e4e2e2;
+    border-radius: 40px;
+    margin-left: 10%;
+    display: flex;
+    padding: 2vh;
+    flex-direction: row;
+    justify-content: start;
+    padding-left: 4vh;
+    transition: 0.6s;
+}
+
+.addservicos:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.415);
+    cursor: pointer;
+}
+.tituloaa {
+    color: #004AAD;
+    font-size: 55px;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 /* 2xl */

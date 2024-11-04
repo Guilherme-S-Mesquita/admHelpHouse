@@ -21,9 +21,11 @@
 
     <div class="pai">
         <div class="retanguloPro">
-            <div class="vtnc"></div>
+            <div class="vtnc">
             <i class="icon fas fa-hard-hat"></i> <!-- Icon for 'Pro' -->
-            <span class="labelP"> Pro |</span>
+            <span class="labelP">⠀Pro</span>
+            </div>
+            <span class="urus">|</span>
             <span class="countP">{{ $acountContratados ?? 18 }}</span> <!-- Example default value 18 -->
         </div>
 
@@ -136,8 +138,7 @@
                         });
                     </script>
 
-                    </body>
-                    </html>
+                 
 
                 </canvas>
 
@@ -165,156 +166,63 @@
 
 
             <div class="grafico2">
-                <canvas id="chart2" style="width: 370px; height: 370px;">
-
+    <canvas id="veigh" style="width: 500px; height: 280px;"></canvas>
+                </div>
                 <script>
-                    const config = {
-                type: 'line',
-            data: data,
-                };
-                const labels = Utils.months({count: 7});
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First Dataset',
-    data: [65, 59, 80, 81, 56, 55, 40],
-    fill: false,
-    borderColor: 'rgb(75, 192, 192)',
-    tension: 0.1
-  }]
-};
-                </script>
+                    const ctx = document.getElementById('veigh');
 
-                                </canvas>
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Agosto', 'Setembro', 'Outubro', 'Novembro'],
+                            datasets: [
+                                {
+                                    label: 'Profissionais',
+                                    data: [2, 9, 10, 15],
+                                    borderColor: '#004AAD',
+                                    backgroundColor: '#004AAD',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Clientes',
+                                    data: [1, 11, 9, 13,],
+                                    borderColor: '#FF914D',
+                                    backgroundColor: '#FF914D',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+              
+            <div class="botoes">
+                <div class="usuarios">
+                <div class="iconezinho">
+                    <i class="fa-solid fa-user" style="color: #003ac2;"></i>
+                </div>
+                <div class="tituloaa">
+                    <h2>Usuários</h2>
+                </div>
+                </div>
+
+                <div class="addservicos">
+                <div class="iconezinho">
+                    <i class="fa-solid fa-screwdriver-wrench" style="color: #0027c2;"></i>
+                </div>
+                <div class="tituloaa">
+                    <h2>Adicionar serviços</h2>
+                </div>
+                </div>
+               
             </div>
-            <div class="botoes"></div>
         </div>
     </div>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!--
-    <div class="containerAdmin">
-        <div class="infosAdmin">
-            <div class="contratantes">
-                <div class="contratantes-itens">
-                    <ion-icon size="large" name="add-outline"></ion-icon>
-                    <p class="numContratados">{{$acountContratantes}}</p>
-                    <div class="novosContratantes">
-                        <p class="novos">Novos</p>
-                        <p class="contratantes">Contratantes</p>
-                    </div>
-                </div>
-            </div>
-            <div class="Profissionais">
-                <div class="contratantes-itens">
-                    <ion-icon size="large" name="add-outline"></ion-icon>
-                    <p class="numProfissionais">{{$acountContratados}}</p>
-                    <div class="novosProfissionais">
-                        <p class="novosProf">Novos</p>
-                        <p class="profissionais">Profissionais</p>
-                    </div>
-                </div>
-            </div>
-            <div class="osNaoSei">
-                <div class="grafico">
-                    <canvas id="myChart" width="750" height="280"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="infoAdmin2">
-            <div class="segundaColuna">
-                <div class="numPerguntas">
-                        <p class="num">84</p>
-                        <div class="textPerguntas">
-                            <p class="perguntas">Perguntas</p>
-                            <p class="emAberto">em aberto</p>
-
-                        </div>
-                </div>
-                <div class="infoAdmin">
-                    <div class="solicitacoes">
-                        <p class="num2">+23</p>
-                        <h2 class="ig">Solicitações</h2>
-                        <h2 class="ryan">em aberto</h2>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="segundaLinha">
-
-            <div class="safadinha">
-
-            <a href="../users/">
-                <div class="info">
-                    <div class="icon"><i class="material-icons">account_circle</i></div>
-                    <div class="chupapal"><h2 class="chupapal">Usuários</h2></div>
-                </div>
-            </a>
-
-            <a href="/infosgerais">
-                <div class="info2">
-                <div class="icon"><i class="material-icons">public</i></div>
-                    <div class="chupapal"><h2 class="chupapal">Informações</h2></div>
-                </div>
-            </a>
-
-            </div>
-
-            <div class="vish">
-                <div class="atendimentos">
-                    <a href=""></a>
-                <i class="material-icons">access_time</i>
-                    <h2 class="amarelo">Atendimentos</h2>
-                    <h2 class="preto">em aberto</h2>
-                </div>
-            </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
- <div class="chart">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const data = {
-        labels: ['January', 'February', 'March'],
-        datasets: [
-            {
-                label: 'Contratantes',
-                data: [65, 59, 80, 81],
-                backgroundColor: '#6CE5E8',
-                borderColor: '#6CE5E8',
-                borderWidth: 1
-            },
-            {
-                label: 'Profissionais',
-                data: [28, 48, 40,],
-                backgroundColor: '#41B8D5',
-                borderColor: '#41B8D5',
-                borderWidth: 1
-            }
-        ]
-    };
-
-    new Chart(ctx, {
-        type: 'bar', // ou 'line', 'pie', etc.
-        data: data,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-});
-</script>
-</div>
-
-@endsection
