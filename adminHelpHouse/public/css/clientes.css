@@ -11,12 +11,14 @@
 
 .titleContainer p {
     color: #004AAD;
-    font-size: 50px;
+    height: 77px;
+    font-size: 30px;
     font-weight: 700;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
 }
+
 
 #containerClientes {
     position: relative;
@@ -66,7 +68,7 @@
     align-items: center;
     border-top-left-radius: 38px;
     border-top-right-radius: 38px;
-    background-color: #ffffff;
+    background-color: red;
     z-index: 4;
 }
 .emAbertoCli button{

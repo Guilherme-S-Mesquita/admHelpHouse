@@ -10,7 +10,7 @@
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
 <div class="inicio">
 <div class="header mb-4 ">
-    <h3>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h3>
+    <h3>Olá, <span style="color: #ff6347; ">{{$user->name}}</span></h3>
 </div>
 </div>
 
@@ -32,10 +32,10 @@
 
         <div class="retanguloCli">
 
-        <div class="mckevin">
-            <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
-            <span class="labelC">⠀Cli</span>
-        </div>
+            <div class="mckevin">
+                <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
+                <span class="labelC">⠀Cli</span>
+            </div>
             <span class="uracan">|</span>
             <span class="countC">{{ $acountContratantes ?? 9 }}</span>
         </div>
