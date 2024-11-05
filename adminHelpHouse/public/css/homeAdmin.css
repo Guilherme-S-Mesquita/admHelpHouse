@@ -20,14 +20,14 @@
 .title {
     display: flex;
     width: 80%;
-    height: 2vh;
+    height: 5vh;
     justify-content: start;
     align-items: center;
     padding-left: 11vw;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
-
+    height: 51px;  /* 51 É PINGAA*/
 
 }
 
@@ -41,29 +41,55 @@
 }
 
 
-.pai
- {
+.pai {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    height: 200px;
-
-    flex-direction: row;
-    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 5px;
+    justify-content: space-around;
     align-items: center;
- }
-    .retangulo {
-        height: 40%;
-        width: 17%;
+    margin-left: 10px; /* Ajuste este valor para mover levemente à direita */
+}
 
-        border-radius: 30px;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    }
 
-    hr{
-        border: solid 2px;
-        width: 85%;
-        margin-left: 7.5%;
-    }
+.retangulo {
+    height: 80px; /* Reduz a altura */
+    flex-grow: 1; /* Expande cada item para ocupar o espaço disponível */
+    max-width: 120px; /* Limita a largura máxima de cada retângulo */
+    margin: 5px; /* Reduz o espaçamento */
+    padding: 8px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon, .icon1 {
+    font-size: 1.2rem; /* Ícones menores */
+    margin-bottom: 3px;
+}
+
+.labelP, .labelC, .labelS, .labelZ {
+    font-size: 0.9rem; /* Fonte menor */
+    margin-bottom: 3px;
+}
+
+.countP, .countC, .countS, .countZ {
+    font-size: 1rem; /* Fonte menor */
+    font-weight: bold;
+}
+
+.urus, .uracan, .mccan {
+    display: none; /* Remove o separador '|' */
+}
+
+hr {
+    display: none; /* Remove a linha horizontal para liberar espaço */
+}
+
 
 .principal {
     display: flex;
@@ -102,15 +128,16 @@
 
         }
 
-    .servicos {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        height: 375px;
-        width: 425px;
-        margin-left: 20px;
-    }
+        .servicos {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 800px;
+            margin: 1vh;
+            transform: translateX(-50px); /* Ajuste o valor conforme necessário */
+        }
+        
 
         .oncinha {
             width: 100%;

@@ -9,7 +9,7 @@
 
 
     <div class="titleContainer">
-        <p class="titleClientes" id="titleDashboard">Solicitações em aberto</p>
+        <p class="titleClientes " id="titleDashboard">Atendimentos | Perguntas</p>
     </div>
 
     <div class="containerEstadoCli">

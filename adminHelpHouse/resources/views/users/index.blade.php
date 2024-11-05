@@ -6,8 +6,8 @@
 
 <div class="main p-3" style="height: 100vh;">
 
-    <div class="header mb-4 "    style="margin-left:3vh;">
-        <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
+    <div class="header mb-4 "   style="margin-left:3vh; margin-top: 10vh">
+       
         <h2>Controle de Usuários</h2>
     </div>
 
