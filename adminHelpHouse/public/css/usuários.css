@@ -1,38 +1,5 @@
-.card-title {
-    color: white;
-    font-weight: 800;
-    position: relative;
-    top: 20%;
-}
-
-.card {
-    background-color: #004AAC;
-    height: 150%;
-    width: 100%;
-    border-radius: 25px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card img {
-    position: relative;
-    right: 38%;
-    max-width: 50%;
-    height: auto;
-}
-
-.card-body {
-    margin-bottom: 20px;
-    padding: 1.5rem; /* Adicione algum espaçamento interno */
-}
-
 .header h1{
-    font-size: 60px;
+    font-size: 40px;
     padding: 2rem;
 }
 
@@ -41,4 +8,63 @@
     color: #004AAC;
     font-weight: 700;
     padding-left: 1.5rem;
+} 
+
+
+
+
+.card-title {
+    color: white;
+    font-weight: 800;
+    position: relative;
+    top: 20%;
+}
+
+.icon {
+    font-size: 47px;
+    margin: 2vh;
+}
+
+.titulo h2 {
+    font-size: 35px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+a{
+    background-color: #e2e2e2;
+    height: 13%;
+    width: 95%;
+    border-radius: 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2vh;
+    justify-content: start;
+    transition: transform 0.9s, box-shadow 0.9s;
+}
+
+
+ a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #004AAD;
+    color: #e2e2e2;
+}
+
+.tudo {
+    flex-direction: column;
+    display: flex;
+    height: 900px;
+    align-items: centerd;
+    width: 25%;
+    margin-top: 10vh;
+    margin-left: 12vh;
+}
+
+.container-fluid {
+    flex-direction: column;
+    display: flex;
 }
