@@ -176,22 +176,40 @@ class PedidoController extends Controller
     }
 
 
+
+
+    public function andamentoPedido($idSolicitarPedido)
+    {
+        $pedido = Pedido::findOrFail($idSolicitarPedido);
+    
+        if ($pedido->statusPedido !== 'aceito') {
+            return response()->json(['message' => 'Pedido não pode ser iniciado, pois não foi aceito'], 403);
+        }
+    
+        $pedido->andamentoPedido = 'em_andamento';
+        $pedido->data_inicio = now();
+        $pedido->save();
+    
+        return response()->json(['message' => 'Pedido está em andamento!', 'pedido' => $pedido]);
+    }
+    
+
+
     public function finalizarPedido($idSolicitarPedido)
     {
-
         $pedido = Pedido::findOrFail($idSolicitarPedido);
-
-        if ($pedido->status !== 'aceito') {
-            return response()->json(['message' => 'Pedido não pode ser finalizado'], 403);
+    
+        if ($pedido->andamentoPedido !== 'em_andamento') {
+            return response()->json(['message' => 'Pedido não pode ser finalizado, pois ainda não está em andamento'], 403);
         }
-
-        $pedido->status = 'finalizado';
+    
+        $pedido->andamentoPedido = 'concluido';
+        $pedido->statusPedido = 'concluido'; // Marca como finalizado
+        $pedido->data_conclusao = now();
         $pedido->save();
-
-        return response()->json(['message' => 'pedido realizado com sucesso!']);
-
+    
+        return response()->json(['message' => 'Pedido finalizado com sucesso!', 'pedido' => $pedido]);
     }
-
 
 
 

@@ -23,7 +23,15 @@ class Pedido extends Model
     protected $hidden = [
         'remember_token',
     ];
-    protected $fillable = ['descricaoPedido', 'idContratante', 'idServicos', 'idContratado', 'tituloPedido', 'statusPedido'];
+    protected $fillable = [
+    'descricaoPedido', 
+    'idContratante', 
+    'idServicos', 
+    'idContratado', 
+    'tituloPedido',
+     'statusPedido',
+     'data_inicio',
+    'data_conclusao'];
 
 
     public function getAuthIdentifierName()
