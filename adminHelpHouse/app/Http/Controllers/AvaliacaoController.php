@@ -13,7 +13,7 @@ class AvaliacaoController extends Controller
     public function index()
     {
         $avaliacao = Avaliacao::all();
-        return response()->json($avaliacao);
+        return $avaliacao;
     }
 
     // Método para criar uma nova avaliação
@@ -43,7 +43,7 @@ class AvaliacaoController extends Controller
 
         } catch (\Exception $e) {
             // Loga o erro em caso de falha
-            Log::error("Erro ao salvar avaliação: " . $e->getMessage());
+            Log::error("Erro ao salvar avaliação: " . $e);
             return response()->json([
                 'status' => 'error',
                 'message' => 'Falha ao salvar a avaliação.',
@@ -51,22 +51,4 @@ class AvaliacaoController extends Controller
         }
     }
 
-    // Método para obter as avaliações de um profissional específico
-    public function avaliacoesProfissionais($idContratado)
-    {
-        $idContratado ['idContratado'] = Auth::user()->idContratado;
-
-        $contratado = Contratado::with(['avaliacao' => function ($query) {
-            $query->select('idContratado', 'idContratante', 'ratingAvaliacao', 'descavaliacao')
-                  ->with(['contratado:idContratado,nomeContratado']);
-        }])
-        ->where('idContratado', $idContratado)
-        ->first();
-
-        if (!$contratado) {
-            return response()->json(['message' => 'Profissional não encontrado'], 404);
-        }
-
-        return response()->json($contratato);
-    }
 }

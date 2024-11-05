@@ -28,7 +28,6 @@ Route::get('/cli', [ContratanteController::class, 'indexApi']);
 Route::get('/cli/{id}', [ContratanteController::class, 'showApi']);
 Route::post('/clii', [ContratanteController::class, 'storeApi']);
 Route::put('/cli/{idContratante}', [ContratanteController::class, 'update']);
-
 Route::post('/auth', [ContratanteController::class, 'auth']);
 Route::post('/pusher/auth', [ContratanteController::class, 'authorizePusher']);
 
@@ -45,7 +44,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
-
 // -------------------------------------- Rotas de Serviços ------------------------------------------
 Route::get('/servicos', [ServicoController::class, 'servicoIndex']);
 
@@ -59,9 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // -------------------------------------- Rotas de Avaliacao ---------------------------------------------
 
-Route::middleware('auth:sanctum')->group(function () {
+
     Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
-    Route::get('/avaliacao/{idContratado}', [AvaliacaoController::class, 'avaliacoesProfissionais']);  
+    Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);  
     
-});
 
