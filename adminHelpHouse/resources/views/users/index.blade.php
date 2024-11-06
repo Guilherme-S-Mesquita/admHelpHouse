@@ -5,7 +5,7 @@
 @section('contentAdmin')
 
 <div class="main p-3" style="height: 100vh;">
-
+<link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
     <div class="header mb-4 "    style="margin-left:3vh;">
         <h1>Olá,<span style="color: #ff6347;">{{$user->name}}</span></h1>
         <h2>Usuários</h2>
@@ -63,3 +63,7 @@
 </style>
 
 @endsection
+
+
+
+

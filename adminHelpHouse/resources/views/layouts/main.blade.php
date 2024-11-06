@@ -17,7 +17,6 @@
     <!-- CSS da aplicação e JS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homeAdmin.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
 
     <!-- fontess -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
