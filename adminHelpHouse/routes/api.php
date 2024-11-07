@@ -60,5 +60,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
     Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);  
-    
+    Route::get('/avaliacoes/{idContratado}', [AvaliacaoController::class, 'getAvaliacoesByContratado']);
 
