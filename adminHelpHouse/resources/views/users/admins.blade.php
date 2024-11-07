@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard')
+@section('title', 'admins')
 
 @section('contentAdmin')
 
@@ -25,14 +25,11 @@
                     </tr>
                 </thead>
 
-                
+
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->date}}</td>
-                        <td>{{$user->cpf}}</td>
+                       
                         <td>
                             <a href="{{ route('edit.admins', $user->id) }}" class="btn btn-info edit-btn">
                                 <ion-icon name="create-outline"></ion-icon> Editar
@@ -52,5 +49,6 @@
                    @endforeach
                 </tbody>
 
-           
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 @endsection

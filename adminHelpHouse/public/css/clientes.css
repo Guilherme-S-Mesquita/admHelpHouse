@@ -1,137 +1,120 @@
 .main {
     min-height: 100vh;
-    width: 97%;
-    overflow: hidden;
-    transition: all 0.95s ease-in-out;
+    width: 100%;
     background-color: #fff;
-    margin-left: 5vw;
-
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza todo o conteúdo */
 }
 
+
+
+.titleContainer {
+    margin-left: -65rem; /* Margem ajustada para mais perto da esquerda */
+    text-align: left; /* Alinha o conteúdo à esquerda */
+}
 
 .titleContainer p {
     color: #004AAD;
-    font-size: 50px;
-    font-weight: 700;
+    font-size: 38px;
+    font-weight: bold;
     font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+    margin-bottom: 1.5rem;
+    padding: 50px 0; /* Ajuste o valor para mais ou menos espaço vertical */
 }
 
-#containerClientes {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    height: 50%;
 
+.containerEstadoCli {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    margin-left: -70rem; /* margem pra esquerda */
+    padding: 50px 0; /* Ajuste o valor para mais ou menos espaço vertical */
 }
 
-.tabelaClientes {
+.estado {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.status {
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 33px;
+    width: 220px;
+    text-align: center;
+}
+
+.emAbertoCli {
+    background-color: red;
+}
+
+.emAndamentoCli {
+    background-color: #f1c100;
+}
+
+.concluidasCli {
+    background-color: green;
+}
+
+#containerPergunta {
     width: 100%;
-    height: 100%;
-    border-radius: 50px;
-    transition: 0.95s ease-in-out; /* Adicionando transição para uma mudança suave */
-    background-color: #ffff;
+    max-width: 700px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 38rem;
+    position: relative;
+    top: -280px; /* Valor negativo move para cima */
+}
+
+
+.pergunta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .imgCliente {
     width: 50px;
     height: 50px;
-    border-radius: 40px;
+    border-radius: 50%;
     background-color: cadetblue;
 }
 
-.containerEstadoCli {
-    width: 40%;
-    height: 7%;
-    position: relative;
-    left: 10%;
-
+.conteudoPergunta {
+    flex: 1;
 }
 
-.estado {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-
-}
-
-.emAbertoCli {
-    width: 33%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 38px;
-    border-top-right-radius: 38px;
-    background-color: #ffffff;
-    z-index: 4;
-}
-.emAbertoCli button{
-    border: none;
-}
-.aceitos{
-    width: 33%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 38px;
-    border-top-right-radius: 38px;
-    background-color: #14C467;
-    position: relative;
-    right: 36px;
-
-    z-index: 3;
-}
-.verde{
-   z-index: 1;
-    background-color: #14C467 !important;
-}
-.vermelho{
-    z-index: 1;
-    background-color: #ED5959 !important;
-}
-.branco{
-    z-index: 1;
-    background-color: #ece8e8 !important;
-}
-
-.negados
-{
-    width: 33%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 38px;
-    border-top-right-radius: 38px;
-    background-color: #ED5959;
-    position: relative;
-    right: 70px;
-    z-index: 2;
-}
-.negados button{
-    border: none;
-}
-
-.estado p{
+.nomeCliente {
     font-weight: bold;
-    font-size:25px;
-    color: black;
-    cursor: pointer;
+    font-size: 1rem;
+    margin: 0;
+    color: #333;
 }
-.btnGreen {
-   border: none;
-   width: 50px;
-   position: absolute;
-   height: 50px;
-   background-color: rgba(255, 255, 255, 0);
 
+.textoPergunta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.25rem;
 }
-.table{
-    background-color: none;
-    border-bottom: solid 2px #000;
+
+.dataPergunta {
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    text-align: right; /* Alinha a data à direita */
 }
+
+

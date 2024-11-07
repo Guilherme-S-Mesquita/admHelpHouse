@@ -6,14 +6,14 @@
 
 <div class="main p-3">
 <div class="backdrop">
+    <link rel="stylesheet" href="{{ asset('css/homeAdmin.css') }}">
 
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
 <div class="inicio">
 <div class="header mb-4 ">
-    <h3>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h3>
+    <h3>Olá, <span style="color: #ff6347; ">{{$user->name}}</span></h3>
 </div>
 </div>
-
 
     <div class="title">
         <p class="titleDashboard">Dashboard</p>
@@ -32,10 +32,10 @@
 
         <div class="retanguloCli">
 
-        <div class="mckevin">
-            <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
-            <span class="labelC">⠀Cli</span>
-        </div>
+            <div class="mckevin">
+                <i class="icon1 fas fa-user"></i> <!-- Icon for 'Client' -->
+                <span class="labelC">⠀Cli</span>
+            </div>
             <span class="uracan">|</span>
             <span class="countC">{{ $acountContratantes ?? 9 }}</span>
         </div>
@@ -47,7 +47,7 @@
             <span class="labelS">⠀Serviços</span>
         </div>
             <span class="mccan">|</span>
-            <span class="countS">{{ $serviceCount ?? 15 }}</span>
+            <span class="countS">{{ $contadorServicos ?? 15 }}</span>
         </div>
 
         <div class="retanguloZona">
@@ -138,7 +138,7 @@
                         });
                     </script>
 
-                 
+
 
                 </canvas>
 
@@ -174,18 +174,18 @@
                     new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: ['Agosto', 'Setembro', 'Outubro', 'Novembro'],
+                            labels: [{ !! $cadastroMes !! }],
                             datasets: [
                                 {
                                     label: 'Profissionais',
-                                    data: [2, 9, 10, 15],
+                                    data: [{ $profissionalTotal  }],
                                     borderColor: '#004AAD',
                                     backgroundColor: '#004AAD',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'Clientes',
-                                    data: [1, 11, 9, 13,],
+                                    data: [{!!$contratanteTotal!!}],
                                     borderColor: '#FF914D',
                                     backgroundColor: '#FF914D',
                                     borderWidth: 1
@@ -201,7 +201,7 @@
                         }
                     });
                 </script>
-              
+
             <div class="botoes">
                 <a href="/users">
                 <div class="usuarios">

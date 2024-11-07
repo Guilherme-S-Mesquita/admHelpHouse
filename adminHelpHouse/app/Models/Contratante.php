@@ -31,6 +31,7 @@ class Contratante extends Authenticatable
         'ruaContratante',
         'cepContratante',
         'numCasaContratante',
+        'nascContratante',
         'complementoContratante',
         'bairroContratante',
         'cidadeContratante',

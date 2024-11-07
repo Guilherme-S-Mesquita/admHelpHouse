@@ -1,61 +1,136 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard')
+@section('title', 'Controle de Usuários')
 
 @section('contentAdmin')
-
-<div class="main p-3" style="height: 100vh;">
-
-    <div class="header mb-4 "    style="margin-left:3vh;">
-        <h1>Olá, <span style="color: #ff6347;">{{$user->name}}</span></h1>
-        <h2>Controle de Usuários</h2>
+<div class="container-fluid d-flex p-4">
+    <!-- Menu lateral -->
+    <div class="menu-lateral">
+        <button class="btn-nav active" onclick="showSection('clientes')">
+            <i class="fas fa-users"></i>   Clientes
+        </button>
+        <button class="btn-nav" onclick="showSection('profissionais')">
+            <i class="fas fa-user-tie"></i>   Profissionais
+        </button>
+        <button class="btn-nav" onclick="showSection('administradores')">
+            <i class="fas fa-user-shield"></i>   Administradores
+        </button>
     </div>
+    <div class="linha"></div>
+    <!-- Seções das tabelas -->
+    <div class="conteudo">
+        <div id="clientes-section" class="table-section">
+            <h3>Clientes</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Data nas.</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($contratantes as $contratante)
 
-    <div class="container-fluid h-85 d-flex justify-content-center align-items-center"   style= "margin-left:2vh;">
-        <div class="row w-100 d-flex justify-content-around">
-            
-            <div class="col-md-4 mb-4">
-                <a href="{{route('users.admins')}}" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/engrenagemAdm.png" alt="Ícone de Administradores">
-                            <h3 class="card-title">Administradores</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    <tr>
+                        <td>{{$contratante->id}}</td>
+                        <td>{{$contratante->nomeContratante}}</td>
+                        <td>25/02/1977</td>
+                        <td>{{$contratante->cpfContratante}}</td>
+                        <td>{{$contratante->emailContratante}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-            <div class="col-md-4 mb-4">
-                <a href="{{route('users.clientes')}}" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/usuariosClientes.png" alt="Ícone de Clientes">
-                            <h3 class="card-title">Clientes</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <div id="profissionais-section" class="table-section" style="display: none;">
+            <h3>Profissionais</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Data nas.</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($contratados as $contratado)
+                    <tr>
+                        {{-- <td>{{$contratado->id}}</td> --}}
+                        <td>{{$contratado->nomeContratado}}</td>
+                        <td>{{$contratado->nascContratado}}</td>
+                        <td>{{$contratado->cpfContratado}}</td>
+                        <td>{{$contratado->emailContratado}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-            <div class="col-md-4 mb-4">
-                <a href="#" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/profissionais.png" alt="Ícone de Profissionais">
-                            <h3 class="card-title">Profissionais</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            
+        <div id="administradores-section" class="table-section" style="display: none;">
+            <h3>Administradores</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Data nas.</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                    <tr>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->date}}</td>
+                        <td>{{$user->cpf}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
+<script>
+function showSection(sectionId) {
+    // Oculta todas as seções
+    document.querySelectorAll('.table-section').forEach(section => {
+        section.style.display = 'none';
+    });
 
+    // Remove a classe 'active' de todos os botões
+    document.querySelectorAll('.btn-nav').forEach(btn => {
+        btn.classList.remove('active');
+    });
 
-<style> 
-
-    
-
-</style>
-
+    // Exibe a seção específica e destaca o botão
+    document.getElementById(sectionId + '-section').style.display = 'block';
+    document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+}
+</script>
 @endsection
