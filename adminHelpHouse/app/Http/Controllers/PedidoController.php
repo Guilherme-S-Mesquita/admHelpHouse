@@ -54,8 +54,8 @@ class PedidoController extends Controller
             ], 201);
         } catch (\Exception $e) {
             // Tratar erros
-            $erro= $e;
-            Log::info("Mensagem criada: ".$erro);
+            $erro = $e;
+            Log::info("Mensagem criada: " . $erro);
             return response()->json(['error' => 'Erro ao criar o pedido: ' . $e->getMessage()], 500);
         }
     }
@@ -106,11 +106,26 @@ class PedidoController extends Controller
 
         return response()->json($contratante);
     }
-    public function meusPedidosAceitos()
-    {
-        $idContratado = Auth::user()->idContratado;
+    public function pedido($idSolicitarPedido){
+        $pedido = Pedido::find($idSolicitarPedido);
 
-        // Executa a consulta e inclui dados do contratante e do contrato
+        if($pedido){
+        return response()->json($pedido, 200);
+        }else{
+            return response()->json(['message' =>'Deu ruim']);
+        }
+    }
+    public function meusPedidosAceitos($idContratado)
+    {
+        $profissional['idContratado'] = Auth::user()->idContratado;
+
+
+        // Verificar se o ID do contratado fornecido corresponde ao usuário autenticado
+        if (Auth::user()->idContratado !== $idContratado) {
+            return response()->json(['message' => 'Acesso negado'], 403);
+        }
+
+        // Consultar pedidos aceitos e incluir informações do contratante e do contrato
         $pedidos = Pedido::with([
             'contratante' => function ($query) {
                 $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante');
@@ -120,8 +135,8 @@ class PedidoController extends Controller
             }
         ])
         ->where('statusPedido', 'aceito')
-        ->whereIn('andamentoPedido', ['andamento', 'concluido'])
-        ->where('idContratado', $idContratado)
+        ->whereIn('andamentoPedido', ['pendente', 'concluido'])
+        ->where('idContratado', $profissional['idContratado'])
         ->get();
 
         // Verifica se existem pedidos
@@ -157,7 +172,7 @@ class PedidoController extends Controller
                 'valor' => $request->valor,
                 'data' => $request->data,
                 'hora' => $request->hora,
-                'desc_servicoRealizado'=>$request->desc_servicoRealizado,
+                'desc_servicoRealizado' => $request->desc_servicoRealizado,
                 'tipo_servico' => $pedido->tituloPedido,
                 'status' => 'pendente',
                 'forma_pagamento' => $request->forma_pagamento
@@ -180,34 +195,54 @@ class PedidoController extends Controller
 
     public function andamentoPedido($idSolicitarPedido)
     {
-        $pedido = Pedido::findOrFail($idSolicitarPedido);
-    
+
+
+        $pedido = Pedido::with([
+
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'status');
+            }
+        ])
+            ->findOrFail($idSolicitarPedido);
+
+
         if ($pedido->statusPedido !== 'aceito') {
             return response()->json(['message' => 'Pedido não pode ser iniciado, pois não foi aceito'], 403);
         }
-    
+
+
+        // Atualiza o status do pedido para 'em_andamento'
         $pedido->andamentoPedido = 'em_andamento';
         $pedido->data_inicio = now();
         $pedido->save();
-    
-        return response()->json(['message' => 'Pedido está em andamento!', 'pedido' => $pedido]);
+
+        // Verifica se o contrato existe e altera o status para 'aceito'
+        if ($pedido->contrato) {
+            $pedido->contrato->status = 'aceito'; // Altera o status do contrato
+            $pedido->contrato->save(); // Salva as alterações no contrato
+        }
+
+        return response()->json([
+            'message' => 'Pedido está em andamento e contrato aceito!',
+            'pedido' => $pedido
+        ]);
     }
-    
+
 
 
     public function finalizarPedido($idSolicitarPedido)
     {
         $pedido = Pedido::findOrFail($idSolicitarPedido);
-    
+
+
         if ($pedido->andamentoPedido !== 'em_andamento') {
             return response()->json(['message' => 'Pedido não pode ser finalizado, pois ainda não está em andamento'], 403);
         }
-    
+
         $pedido->andamentoPedido = 'concluido';
-        $pedido->statusPedido = 'concluido'; // Marca como finalizado
         $pedido->data_conclusao = now();
         $pedido->save();
-    
+
         return response()->json(['message' => 'Pedido finalizado com sucesso!', 'pedido' => $pedido]);
     }
 

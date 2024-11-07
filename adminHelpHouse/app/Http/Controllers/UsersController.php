@@ -6,26 +6,35 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profissional;
+use App\Models\Contratante;
 use App\Http\Controllers\loginController;
 
 class UsersController extends Controller
 {
 
     public function index(){
+
+        $users = User::all();
+
+        $contratantes = Contratante::all();
+        $contratados = Profissional::all();
+
+
+
         if (!auth()->check()) {
             return redirect()->route('login'); // Redireciona para a página de login
         }
 
         $user = auth()->user();
-        return view('users.index', compact('user'));
+        return view('users.index', compact('user' ,'users', 'contratantes', 'contratados'));
     }
 
     public function userAdm(){
-        $users = User::all();
+
 
         $user = auth()->user();
 
-        return view('users.admins'  ,compact('user', 'users'));
+        return view('users.admins'  ,compact('user', ));
 
     }
     public function edit($id){

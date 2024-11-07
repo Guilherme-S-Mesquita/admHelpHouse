@@ -6,6 +6,7 @@
 
 <div class="main p-3">
 <div class="backdrop">
+    <link rel="stylesheet" href="{{ asset('css/homeAdmin.css') }}">
 
 {{-- Aqui ele busca o usuario logado -> name para apenas pegar o nome --}}
 <div class="inicio">
@@ -46,7 +47,7 @@
             <span class="labelS">⠀Serviços</span>
         </div>
             <span class="mccan">|</span>
-            <span class="countS">{{ $serviceCount ?? 15 }}</span>
+            <span class="countS">{{ $contadorServicos ?? 15 }}</span>
         </div>
 
         <div class="retanguloZona">
@@ -137,7 +138,7 @@
                         });
                     </script>
 
-                 
+
 
                 </canvas>
 
@@ -173,18 +174,18 @@
                     new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: ['Agosto', 'Setembro', 'Outubro', 'Novembro'],
+                            labels: [{ !! $cadastroMes !! }],
                             datasets: [
                                 {
                                     label: 'Profissionais',
-                                    data: [2, 9, 10, 15],
+                                    data: [{ $profissionalTotal  }],
                                     borderColor: '#004AAD',
                                     backgroundColor: '#004AAD',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'Clientes',
-                                    data: [1, 11, 9, 13,],
+                                    data: [{!!$contratanteTotal!!}],
                                     borderColor: '#FF914D',
                                     backgroundColor: '#FF914D',
                                     borderWidth: 1
@@ -200,7 +201,7 @@
                         }
                     });
                 </script>
-              
+
             <div class="botoes">
                 <a href="/users">
                 <div class="usuarios">

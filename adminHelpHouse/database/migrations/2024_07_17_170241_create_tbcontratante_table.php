@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nomeContratante', 55);
             $table->char('cpfContratante', 14)->unique();
             $table->string('password');
+            $table->date('nascContratante');
+
             $table->string('emailContratante', 180)->unique();
             $table->char('telefoneContratante', 18)->unique();
             $table->string('ruaContratante', 90);

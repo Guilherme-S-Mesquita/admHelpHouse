@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profissional;
 use Pusher\Pusher;
+use Carbon\Carbon;
 
 
 
@@ -37,7 +38,7 @@ class ProfissionalApiController extends Controller
             'profissaoContratado' => 'required|string',
             'telefoneContratado' => 'required|string',
             'descContratado' => 'nullable|string',
-            'nascContratado' => 'required|date',
+            'nascContratado' => 'required|date_format:d/m/Y',
             'ruaContratado' => 'required|string',
             'cepContratado' => 'required|string',
             'bairroContratado' => 'required|string',
@@ -49,6 +50,7 @@ class ProfissionalApiController extends Controller
 
         ]);
 
+        $validadeDataPro['nascContratado'] = Carbon::createFromFormat('d/m/Y', $validadeDataPro['nascContratado'])->format('Y-m-d');
 
         $existingPro = Profissional::where('emailContratado', $validadeDataPro['emailContratado'])->first();
 

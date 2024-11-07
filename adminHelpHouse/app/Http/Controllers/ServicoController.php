@@ -9,17 +9,22 @@ class ServicoController extends Controller
 {
     public function servico()
     {
+        $user = auth()->user();
+
         $servicos = Servico::all();
-        return view('add.servico', compact('servicos'));
+        return view('add.servico', compact('servicos', 'user'));
     }
 
     public function create()
     {
-        return view('add.criarServico');
+
+        $user = auth()->user();
+        return view('add.criarServico',compact( 'user'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
             'nomeServicos' => 'required|string|max:255',
             'descServicos' => 'required|string',
@@ -39,11 +44,13 @@ class ServicoController extends Controller
 
     public function edit($idServicos)
     {
+        $user = auth()->user();
+
         // Certifique-se de usar findOrFail para lidar com IDs inexistentes
         $servico = Servico::findOrFail($idServicos);
 
         // Retorne a view de edição com o serviço específico
-        return view('add.editServico', compact('servico'));
+        return view('add.editServico', compact('servico', 'user'));
     }
 
     public function update(Request $request, $idServicos)

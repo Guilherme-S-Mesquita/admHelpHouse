@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Contratante;
 use Pusher\Pusher;
+use Carbon\Carbon;
 
 class ContratanteController extends Controller
 {
@@ -39,6 +40,7 @@ class ContratanteController extends Controller
             'cpfContratante' => 'required|string',
             'password' => 'required|string',
             'emailContratante' => 'required|email',
+            'nascContratante' => 'required|date_format:d/m/Y',
             'telefoneContratante' => 'required|string',
             'ruaContratante' => 'required|string',
             'cepContratante' => 'required|string',
@@ -48,6 +50,7 @@ class ContratanteController extends Controller
             'cidadeContratante'=> 'required|string',
             'imagemContratante' => 'required|string',
         ]);
+        $validatedData['nascContratante'] = Carbon::createFromFormat('d/m/Y', $validatedData['nascContratante'])->format('Y-m-d');
 
         //Verifica se o usuario existe
         $existingUser = Contratante::where('emailContratante', $validatedData['emailContratante'])->first();
