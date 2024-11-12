@@ -19,6 +19,18 @@ class Avaliacao extends Model
                             'descavaliacao'
                           ];
 
+
+                          public function contratado()
+                          {
+                              return $this->belongsTo(Contratado::class, 'idContratado');
+                          }
+                          
+                          public function contratante()
+                          {
+                              return $this->belongsTo(Contratante::class, 'idContratante');
+                          }
+                          
+
     public $timestamps = false;
 
 }

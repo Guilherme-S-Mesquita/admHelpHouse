@@ -62,16 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // -------------------------------------- Rotas de Avaliacao ---------------------------------------------
 
-<<<<<<< HEAD
 
     Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
     Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);  
     Route::get('/avaliacoes/{idContratado}', [AvaliacaoController::class, 'getAvaliacoesByContratado']);
-=======
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/avaliacao', [AvaliacaoController::class, 'store']);
-    Route::get('/avaliacao/{idContratado}', [AvaliacaoController::class, 'avaliacoesProfissionais']);
-
-});
->>>>>>> 035d64ce646d721ddd076b32ea34f0fe6bc89d18
 
