@@ -220,7 +220,7 @@
                     <i class="fa-solid fa-screwdriver-wrench" style="color: #0027c2;"></i>
                 </div>
                 <div class="tituloaa">
-                    <h2>Adicionar serviços</h2>
+                    <h2>+ Serviços</h2>
                 </div>
                 </div>
                 </a>

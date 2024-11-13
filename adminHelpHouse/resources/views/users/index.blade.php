@@ -16,10 +16,15 @@
             <i class="fas fa-user-shield"></i>   Administradores
         </button>
     </div>
+
     <div class="linha"></div>
+
+
+
     <!-- Seções das tabelas -->
     <div class="conteudo">
-        <div id="clientes-section" class="table-section">
+        
+        <div id="clientes-section" class="table-section" style=" ">
             <h3>Clientes</h3>
             <table class="table table-striped">
                 <thead>
@@ -52,7 +57,8 @@
             </table>
         </div>
 
-        <div id="profissionais-section" class="table-section" style="display: none;">
+
+        <div id="profissionais-section" class="table-section" style="display: none; ">
             <h3>Profissionais</h3>
             <table class="table table-striped">
                 <thead>
@@ -115,6 +121,7 @@
         </div>
     </div>
 </div>
+
 <link rel="stylesheet" href="{{ asset('css/usuários.css') }}">
 <script>
 function showSection(sectionId) {

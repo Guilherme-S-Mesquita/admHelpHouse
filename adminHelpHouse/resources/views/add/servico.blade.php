@@ -4,7 +4,7 @@
 
 @section('contentAdmin')
 <div class="main p-3">
-    <div class="row"    style="margin-left:4vh";>
+    <div class="row"    style="margin-left:8vh";>
         <div class="col-md-12">
 
             <h2 class="mb-4">Gerenciar Serviços</h2>

@@ -55,7 +55,7 @@
                         <div class="foto"></div>
                 </div>
                 <div class="infosadd">
-                    <h3>{{$user->name}}</h3>
+                   
                     <h5>Administrador</h5>
 
                 </div>
@@ -71,7 +71,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{route('atendimento')}}" class="sidebar-link">
                     <i class="fa-solid fa-bell" style="color: #ffffff;"></i>
                         <span>Atendimentos</span>
                     </a>
