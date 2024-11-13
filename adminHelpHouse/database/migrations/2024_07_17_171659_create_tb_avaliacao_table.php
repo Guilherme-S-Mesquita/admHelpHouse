@@ -23,6 +23,8 @@ return new class extends Migration
             $table->uuid('idcontratado');
             $table->foreign('idcontratado')->references('idContratado')->on('tbcontratado')
                   ->onUpdate('cascade')->onDelete('cascade');
+            $table->string('imagem', 399)->nullable();
+            $table->string('nome', 55)->nullable();
         });
     }
 
