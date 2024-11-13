@@ -31,7 +31,7 @@
   flex-direction: column;
   display: flex;
   border-right: 3px solid rgb(110, 110, 110);
-  margin-left: 405px;
+  margin-left: 205px;
   margin-top: -125px;
 }
 
@@ -41,12 +41,12 @@
   flex-direction: column;
   display: flex;
   border-right: 3px solid rgb(110, 110, 110);
-  margin-left: 385px;
+  margin-left: 200px;
 }
 .linha {
     position: absolute;
-    top: 130px;
-    left: 635px;
+    top: 150px;
+    left: 680px;
     height: 70%;
     width: 3px;
     background-color: rgba(53, 52, 52, 0.664);
@@ -63,39 +63,79 @@
 
 }
 
-.btn-nav {
+.header h3{
+  display: flex;
+  width: 80%;
+  height: 2vh;
+  justify-content: start;
+  align-items: center;
+  padding-left: 11vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin-left: -230px;
+  margin-top: 30px;
+}
 
+.titulo {
+  display: flex;
+  width: 80%;
+  height: 2vh;
+  justify-content: start;
+  align-items: center;
+  padding-left: 11vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-left: -200px;
+}
+
+.titulo p {
+  color: #004AAD;
+  font-size: 35px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.btn-nav {
+    font-weight: bold;
+    font-size: 18px;
     background-color: #D9D9D9;
-    margin-left: -492px;
-    height: 70px;
+    margin-right: 360px;
+    height: 73px;
     width: 300px;
-    border-radius: 45px;
+    border-radius: 33px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    top: 140px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     position: relative;
-    top: 100px;
+    top: 95px;
     border-color: #ffffff00;
     }
 
 .btn-nav.active {
+    font-weight: bold;
+    font-size: 21px;
     background-color: #004AAC;
     color: #fff;
 }
 
 .btn-nav:hover {
+    font-weight: bold;
+    font-size: 16px;
     transition: 0.6s;
     background-color: #0b72e0;
     color: #fff;
 }
 
 .table-section {
-    width: 100%;
+    width: 70%;
 }
 
 .table {
     margin-top: 10px;
+    margin-right: 350px;
 }
 
 

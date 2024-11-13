@@ -4,8 +4,19 @@
 
 @section('contentAdmin')
 <div class="container-fluid d-flex p-4">
+
     <!-- Menu lateral -->
     <div class="menu-lateral">
+
+
+        <div class="header mb-4 ">
+            <h3>Olá, <span style="color: #ff6347; ">{{$user->name}}</span></h3>
+        </div>
+
+        <div class="titulo">
+            <p class="titleUsers">Usuários</p>
+        </div>
+
         <button class="btn-nav active" onclick="showSection('clientes')">
             <i class="fas fa-users"></i>   Clientes
         </button>
