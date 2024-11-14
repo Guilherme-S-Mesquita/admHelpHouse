@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('ufContratado', 10)->nullable();
             $table->string('cidadeContratado', 50)->nullable();
             $table->string('imagemContratado', 399);
+            $table->string('valorTotalRecebido')->nullable();
             $table->timestamps();
         });
     }

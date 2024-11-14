@@ -16,7 +16,9 @@ class Avaliacao extends Model
     protected $fillable = ['idContratado',
                             'idContratante',
                             'ratingAvaliacao',
-                            'descavaliacao'
+                            'descavaliacao',
+                            'imagem',
+                            'nome',
                           ];
 
 
@@ -25,10 +27,10 @@ class Avaliacao extends Model
                               return $this->belongsTo(Contratado::class, 'idContratado');
                           }
                           
-                          public function contratante()
-                          {
-                              return $this->belongsTo(Contratante::class, 'idContratante');
-                          }
+    public function contratante()
+{
+    return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
+}
                           
 
     public $timestamps = false;

@@ -12,22 +12,22 @@ return new class extends Migration {
             $table->uuid('idContratante');
             $table->foreign('idContratante')->references('idContratante')->on('tbcontratante')
                 ->onUpdate('cascade')->onDelete('cascade');
-        
+
             $table->uuid('idContratado');
             $table->foreign('idContratado')->references('idContratado')->on('tbcontratado')
                 ->onUpdate('cascade')->onDelete('cascade');
-        
+
             $table->foreignId('idServicos')->constrained('tbservicos', 'idServicos')
                 ->onUpdate('cascade')->onDelete('cascade');
-        
+
             $table->string('descricaoPedido');
             $table->string('tituloPedido');
             $table->enum('statusPedido', ['pendente', 'aceito', 'recusado'])->default('pendente');
-            $table->enum('andamentoPedido', ['pendente', 'a_caminho', 'em_andamento', 'concluido', 'cancelado'])->default('pendente');
-            
+            $table->enum('andamentoPedido', ['pendente', 'a_caminho', 'em_andamento','ReceberPagamento', 'concluido', 'cancelado'])->default('pendente');
+
             $table->timestamp('data_inicio')->nullable();
             $table->timestamp('data_conclusao')->nullable();
-        
+
             $table->timestamps();
         });
     }

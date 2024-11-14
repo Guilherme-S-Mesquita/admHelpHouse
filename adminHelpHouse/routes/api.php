@@ -44,8 +44,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/pedidos/aceitos/{idContratado}', [PedidoController::class, 'meusPedidosAceitos']);
     Route::post('/pedidos/{idSolicitarPedido}/contrato', [PedidoController::class, 'storeContrato']);
 
-    Route::patch('/pedidos/{idSolicitarPedido}/andamento', [PedidoController::class, 'andamentoPedido']);
-    Route::patch('/pedidos/{idSolicitarPedido}/finalizado', [PedidoController::class, 'finalizarPedido']);
+    Route::patch('/pedidos/{idSolicitarPedido}/pendente', [PedidoController::class, 'pendentePedido']);
+    Route::patch('/pedidos/{idSolicitarPedido}/acoes', [PedidoController::class, 'acoesPedido']);
 
 
 });

@@ -44,39 +44,39 @@ class AdminController extends Controller
 
 
 
+// Contagem de cadastros por mês para Contratantes
+$cadastrosMesContratante = Contratante::select([
+    DB::raw('MONTH(created_at) as mes'),
+    DB::raw('COUNT(*) as total')
+])
+->groupBy('mes')
+->orderBy('mes', 'asc')
+->get();
 
-        $cadastrosMesContratantes = Contratante::select([
-            DB::raw('MONTH(created_at) as mes'),
-            DB::raw('COUNT(*) as total')
-        ])
-        ->groupBy('mes')
-        ->orderBy('mes', 'asc')
-        ->get();
-        
-        $cadastrosMesProfissionais = Profissional::select([
-            DB::raw('MONTH(created_at) as mes'),
-            DB::raw('COUNT(*) as total')
-        ])
-        ->groupBy('mes')
-        ->orderBy('mes', 'asc')
-        ->get();
-        
+// Contagem de cadastros por mês para Profissionais
+$cadastrosMesProfissional = Profissional::select([
+    DB::raw('MONTH(created_at) as mes'),
+    DB::raw('COUNT(*) as total')
+])
+->groupBy('mes')
+->orderBy('mes', 'asc')
+->get();
 
-     // Contratantes
+
 $mes = [];
 $totalContratantes = [];
-foreach ($cadastrosMesContratantes as $contratante) {
+$totalProfissionais = [];
+
+// Preenche os meses e totais de contratantes
+foreach ($cadastrosMesContratante as $contratante) {
     $mes[] = $contratante->mes;
     $totalContratantes[] = $contratante->total;
 }
 
-// Profissionais
-$totalProfissionais = [];
-foreach ($cadastrosMesProfissionais as $profissional) {
+// Preenche os totais de profissionais
+foreach ($cadastrosMesProfissional as $profissional) {
     $totalProfissionais[] = $profissional->total;
 }
-
-// Convertendo arrays para strings
 $cadastroMes = implode(',', $mes);
 $contratanteTotal = implode(',', $totalContratantes);
 $profissionalTotal = implode(',', $totalProfissionais);
