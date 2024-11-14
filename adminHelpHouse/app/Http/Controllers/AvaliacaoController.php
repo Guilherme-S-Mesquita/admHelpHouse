@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Avaliacao;
-use App\Models\Profissional;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Contratante;
+
+
+
 class AvaliacaoController extends Controller
 {
-
+    // Método que retorna todas as avaliações (pode ser mantido ou não)
     public function index()
     {
         $avaliacao = Avaliacao::all();
-        return response()->json($avaliacao);
+        return $avaliacao;
     }
 
     // Método para criar uma nova avaliação
@@ -24,7 +26,9 @@ class AvaliacaoController extends Controller
             'idContratado' => 'required|string',
             'idContratante' => 'required|string',
             'ratingAvaliacao' => 'required|integer|min:1|max:5',
-            'descavaliacao' => 'nullable|string|max:255', // Alterado para texto
+            'descavaliacao' => 'nullable|string|max:255',
+            'imagem' => 'required|string',
+            'nome' => 'required|string',
         ]);
 
         try {
@@ -33,6 +37,8 @@ class AvaliacaoController extends Controller
                 'idContratado' => $validated['idContratado'],
                 'idContratante' => $validated['idContratante'],
                 'ratingAvaliacao' => $validated['ratingAvaliacao'],
+                'nome' => $validated['nome'] ?? null,
+                'imagem' => $validated['imagem'] ?? null,
                 'descavaliacao' => $validated['descavaliacao'] ?? null,
             ]);
 
@@ -43,7 +49,7 @@ class AvaliacaoController extends Controller
 
         } catch (\Exception $e) {
             // Loga o erro em caso de falha
-            Log::error("Erro ao salvar avaliação: " . $e->getMessage());
+            Log::error("Erro ao salvar avaliação: " . $e);
             return response()->json([
                 'status' => 'error',
                 'message' => 'Falha ao salvar a avaliação.',
@@ -51,22 +57,29 @@ class AvaliacaoController extends Controller
         }
     }
 
-    // Método para obter as avaliações de um profissional específico
-    public function avaliacoesProfissionais($idContratado)
-    {
-        $idContratado ['idContratado'] = Auth::user()->idContratado;
 
-        $contratado = Profissional::with(['avaliacao' => function ($query) {
-            $query->select('idContratado', 'idContratante', 'ratingAvaliacao', 'descavaliacao')
-                  ->with(['contratado:idContratado,nomeContratado']);
-        }])
-        ->where('idContratado', $idContratado)
-        ->first();
 
-        if (!$contratado) {
-            return response()->json(['message' => 'Profissional não encontrado'], 404);
-        }
+public function getAvaliacoesByContratado($idContratado)
+{
+    try {
+        // Busca as avaliações pelo id do contratado e inclui os dados do contratante
+        $avaliacoes = Avaliacao::where('idContratado', $idContratado)
+            ->with('contratante') // Garante que traz os dados do contratante associado
+            ->get();
 
-        return response()->json($contratado);
+        return response()->json([
+            'status' => 'success',
+            'avaliacoes' => $avaliacoes,
+        ], 200);
+
+    } catch (\Exception $e) {
+        Log::error("Erro ao buscar avaliações: " . $e);
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Falha ao buscar avaliações.',
+        ], 500);
     }
+}
+
+
 }

@@ -76,9 +76,17 @@ class Contratante extends Authenticatable
     {
         return $this->hasMany(Pedido::class, 'idContratante', 'idContratante');
     }
+
     public function contratos()
     {
         return $this->hasMany(Contrato::class, 'idContratante', 'idContratante');
     }
+
+    public function avaliacoes()
+{
+    return $this->hasMany(Avaliacao::class, 'idContratante', 'idContratante');
+}
+
+
 
 }

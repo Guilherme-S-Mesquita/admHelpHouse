@@ -1,61 +1,94 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard')
+@section('title', 'clientes')
 
 @section('contentAdmin')
 
-<div class="main p-3" style="height: 100vh; ">
+<div class="main p-3">
+    <link rel="stylesheet" href="{{ asset('css/clientes.css') }}">
 
-    <div class="header mb-4 "    style="margin-left:3vh;">
-    <h1 style="color: #004aac;">Atendimentos</h1>
-    
-        <h2  style="color: black;">Denúncias</h2>
+    <div class="titleContainer">
+        <p class="titleClientes" id="titleDashboard">Atendimento | Perguntas</p>
     </div>
 
-    <div class="container-fluid h-85 d-flex justify-content-center align-items-center"   style= "margin-left:2vh;">
-        <div class="row w-100 d-flex justify-content-around">
-            
-            <div class="col-md-4 mb-4"> 
-                <a href="{{route('users.admins')}}" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/engrenagemAdm.png" alt="Ícone de Administradores">
-                            <h3   style="color:#009245;"  class="card-title">Em aberto</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+    <div class="containerEstadoCli">
+        <div class="estado">
+            <div class="status emAbertoCli">Em aberto</div>
+            <div class="status emAndamentoCli">Em andamento</div>
+            <div class="status concluidasCli">Concluídas</div>
+        </div>
+    </div>
 
-            <div class="col-md-4 mb-4">
-                <a href="{{route('users.clientes')}}" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/usuariosClientes.png" alt="Ícone de Clientes">
-                            <h3  style="color:#ffde59;" class="card-title">Em andamento</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
 
-            <div class="col-md-4 mb-4">
-                <a href="#" class="card-link">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="/img/profissionais.png" alt="Ícone de Profissionais">
-                            <h3   style="color:#ff3131;" class="card-title">Encerradas</h3>
-                        </div>
-                    </div>
-                </a>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal de Pergunta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="containerPergunta">
+    <div class="pergunta" id="pergunta1">
+        <div class="imgCliente"></div>
+        <div class="conteudoPergunta">
+            <p class="nomeCliente">Aline Mendonça</p>
+            <p class="textoPergunta">Como cancelar um serviço após já ter fechado?</p>
+        </div>
+        <p class="dataPergunta">25/10/2024</p>
+    </div>
+</div>
+
+
+<!-- Estrutura do Modal -->
+<div id="modalPergunta" class="modal">
+    <div class="modal-content">
+        <h4>Pergunta de Aline Mendonça</h4>
+        <p>Como cancelar um serviço após já ter fechado?</p>
+        <p><strong>Enviada por:</strong> <span style="color: #ff914d;">HelpHouse</span></p>
+        <p><strong>Data:</strong> 25/10/2024</p>
+        <div class="modal-footer">
+            <textarea id="resposta" rows="4" placeholder="Digite sua resposta aqui..."></textarea>
+            <div class="button-group">
+                <button class="btn fechar" id="closeModal">Fechar</button>
+                <button class="btn enviar" >Enviar</button>
             </div>
-            
         </div>
     </div>
 </div>
 
 
-<style> 
+<script>
+    // Abre o modal ao clicar na pergunta
+    document.getElementById('pergunta1').addEventListener('click', function() {
+        document.getElementById('modalPergunta').style.display = 'block';
+    });
+
+    // Fecha o modal ao clicar no botão de fechar
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('modalPergunta').style.display = 'none';
+    });
+
+    // Fecha o modal ao clicar fora dele
+    window.onclick = function(event) {
+        var modal = document.getElementById('modalPergunta');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
 
 
-</style>
 
-@endsection
+
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<script src="{{ asset('js/clientes.js') }}"></script>
