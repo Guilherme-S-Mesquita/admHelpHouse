@@ -45,41 +45,48 @@ class AdminController extends Controller
 
 
 
-        $cadastrosMes = Contratante::select([
-            DB::raw('MONTH(created_at)as mes'),
+        $cadastrosMesContratantes = Contratante::select([
+            DB::raw('MONTH(created_at) as mes'),
             DB::raw('COUNT(*) as total')
         ])
         ->groupBy('mes')
         ->orderBy('mes', 'asc')
         ->get();
-
-        $cadastrosMes = Profissional::select([
-            DB::raw('MONTH(created_at)as mes'),
+        
+        $cadastrosMesProfissionais = Profissional::select([
+            DB::raw('MONTH(created_at) as mes'),
             DB::raw('COUNT(*) as total')
         ])
         ->groupBy('mes')
         ->orderBy('mes', 'asc')
         ->get();
+        
 
-        foreach($cadastrosMes as $profissional){
-            $mes[] = $profissional->mes;
-            $total[] = $profissional->total;
-        }
+     // Contratantes
+$mes = [];
+$totalContratantes = [];
+foreach ($cadastrosMesContratantes as $contratante) {
+    $mes[] = $contratante->mes;
+    $totalContratantes[] = $contratante->total;
+}
 
-            foreach($cadastrosMes as $contratante){
-                $total[] = $contratante->total;
-            }
+// Profissionais
+$totalProfissionais = [];
+foreach ($cadastrosMesProfissionais as $profissional) {
+    $totalProfissionais[] = $profissional->total;
+}
 
-            $cadastroMes = implode(',', $mes ?? [1,2,3]);
-            $contratanteTotal = implode(',', $total ?? [12]);
-            $profissionalTotal = implode(',', $total ??[10]);
+// Convertendo arrays para strings
+$cadastroMes = implode(',', $mes);
+$contratanteTotal = implode(',', $totalContratantes);
+$profissionalTotal = implode(',', $totalProfissionais);
 
-
-        return view('/admin/DashboardAdmin',
-        compact(
-          'acountContratantes','contadorServicos','profissionalTotal','acountContratados' , 'contratanteTotal', 'contadorServicosPedidos', 'contadorPedidos','cadastroMes','labels', 'data', 'user')) ;
-
-        }
+return view('/admin/DashboardAdmin', compact(
+    'acountContratantes', 'contadorServicos', 'profissionalTotal', 
+    'acountContratados', 'contratanteTotal', 'contadorServicosPedidos', 
+    'contadorPedidos', 'cadastroMes', 'labels', 'data', 'user'
+));
+    }
     }
 
 

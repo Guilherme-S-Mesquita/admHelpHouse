@@ -4,6 +4,7 @@
 
 @section('contentAdmin')
 <div class="main p-3">
+
     <div class="row">
         <div class="col-md-12">
             <h2 class="mb-4">Editar Serviço</h2>
@@ -23,7 +24,7 @@
 
 
 
-                <button type="submit" class="btn btn-primary">Atualizar Serviço</button>
+                <button type="submit" class="btn">Atualizar Serviço</button>
             </form>
         </div>
     </div>

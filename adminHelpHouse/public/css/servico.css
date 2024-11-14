@@ -1,0 +1,38 @@
+.table {
+    width: 90%;
+    height: 100%;
+    background-color: rgb(222, 222, 222);
+    margin-left: 10vh;
+    border-radius: 20px;
+    margin-top: 5vh;
+
+}
+.inicio {
+    margin-top: 4vh;
+    padding-left: 8.5vh;
+}
+.table {
+    background-color:rgb(222, 222, 222) ;
+}
+.inicio p {
+    font-size: 35px ;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+.title p {
+    color: #004AAD;
+    font-size: 50px;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 8vh;
+    margin-top: -3vh;
+   
+}
+
+.botao {
+    margin-left:10vh ;
+}

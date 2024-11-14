@@ -4,15 +4,21 @@
 
 @section('contentAdmin')
 
+<link rel="stylesheet" href="{{ asset('css/criarServico.css') }}">
 
-<div class="container"     >
-    <h1>Criar Serviço</h1>
+
+            <div class="title">
+                <p class="titleservico">Criar serviço</p>
+            </div>
+           
 
     @if(session('msg'))
         <div class="alert alert-success">
             {{ session('msg') }}
         </div>
     @endif
+
+    <div class="tudo">
 
     <form action="{{ route('inserir.servico') }}" method="POST">
         @csrf
@@ -32,6 +38,6 @@
 
         <button style="margin-top: 10px;" type="submit" class="btn btn-primary" >Salvar</button >
     </form>
-</div>
+    </div>
 
 @endsection

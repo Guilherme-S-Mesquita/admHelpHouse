@@ -7,16 +7,26 @@
     <div class="row"    style="margin-left:4vh";>
         <div class="col-md-12">
 
-            <h2 class="mb-4">Gerenciar Serviços</h2>
-            <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Novo Serviço</a>
-            <table class="table"    style="margin-top10%";>
+
+    <link rel="stylesheet" href="{{ asset('css/servico.css') }}">
+        
+            <div class="inicio">
+            <div class="header mb-4 ">
+                <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
+            </div>
+            </div>
+           
+
+
+            <div class="tudo">
+            <table class="table" style="background-color: rgb(222, 222, 222)"  >
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Categoria</th>
                         <th>Descrição</th>
-                        <th>editar</th>
+                        <th>Editar</th>
                         <th>Excluir</th>
 
                     </tr>
@@ -49,6 +59,11 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
+
+            <div class="botao">
+            <a href="/criarServico" class="btn btn-primary mb-3">Adicionar Novo Serviço</a>
+            </div>
         </div>
 
 </div>
