@@ -85,4 +85,7 @@ class Profissional extends Authenticatable
     {
         return $this->belongsToMany(Servico::class, 'profissional_servico', 'idContratado', 'idServicos');
     }
+
+
+
 }

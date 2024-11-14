@@ -169,37 +169,38 @@
     <canvas id="veigh" style="width: 500px; height: 280px;"></canvas>
                 </div>
                 <script>
-                    const ctx = document.getElementById('veigh');
+                const ctx = document.getElementById('veigh');
 
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: [{ !! $cadastroMes !! }],
-                            datasets: [
-                                {
-                                    label: 'Profissionais',
-                                    data: [{ $profissionalTotal  }],
-                                    borderColor: '#004AAD',
-                                    backgroundColor: '#004AAD',
-                                    borderWidth: 1
-                                },
-                                {
-                                    label: 'Clientes',
-                                    data: [{!!$contratanteTotal!!}],
-                                    borderColor: '#FF914D',
-                                    backgroundColor: '#FF914D',
-                                    borderWidth: 1
-                                }
-                            ]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{{ $cadastroMes }}],
+        datasets: [
+            {
+                label: 'Profissionais',
+                data: [{{ $profissionalTotal }}],
+                borderColor: '#004AAD',
+                backgroundColor: '#004AAD',
+                borderWidth: 1
+            },
+            {
+                label: 'Clientes',
+                data: [{{ $contratanteTotal }}],
+                borderColor: '#FF914D',
+                backgroundColor: '#FF914D',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
                 </script>
 
             <div class="botoes">

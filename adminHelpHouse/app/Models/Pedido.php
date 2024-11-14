@@ -24,14 +24,15 @@ class Pedido extends Model
         'remember_token',
     ];
     protected $fillable = [
-    'descricaoPedido', 
-    'idContratante', 
-    'idServicos', 
-    'idContratado', 
+    'descricaoPedido',
+    'idContratante',
+    'idServicos',
+    'idContratado',
     'tituloPedido',
      'statusPedido',
      'data_inicio',
-    'data_conclusao'];
+    'data_conclusao',
+    'andamentoPedido'];
 
 
     public function getAuthIdentifierName()
@@ -60,4 +61,5 @@ class Pedido extends Model
 {
     return $this->hasOne(Contrato::class, 'idSolicitarPedido'); // Supondo que idPedido seja a chave estrangeira
 }
+
 }

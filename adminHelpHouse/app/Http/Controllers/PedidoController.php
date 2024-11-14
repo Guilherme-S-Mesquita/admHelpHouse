@@ -11,6 +11,7 @@ use App\Models\Profissional;
 use App\Models\Contratante;
 
 
+
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -106,46 +107,43 @@ class PedidoController extends Controller
 
         return response()->json($contratante);
     }
-    public function pedido($idSolicitarPedido){
+    public function pedido($idSolicitarPedido)
+    {
         $pedido = Pedido::find($idSolicitarPedido);
 
-        if($pedido){
-        return response()->json($pedido, 200);
-        }else{
-            return response()->json(['message' =>'Deu ruim']);
+        if ($pedido) {
+            return response()->json($pedido, 200);
+        } else {
+            return response()->json(['message' => 'Deu ruim']);
         }
     }
-    public function meusPedidosAceitos($idContratado)
+    public function meusPedidosAceitos()
     {
-        $profissional['idContratado'] = Auth::user()->idContratado;
+        // Obtém o ID do contratado autenticado
+        $idContratado = Auth::user()->idContratado;
 
-
-        // Verificar se o ID do contratado fornecido corresponde ao usuário autenticado
-        if (Auth::user()->idContratado !== $idContratado) {
-            return response()->json(['message' => 'Acesso negado'], 403);
-        }
-
-        // Consultar pedidos aceitos e incluir informações do contratante e do contrato
+        // Busca pedidos aceitos e em andamento ou concluídos para o profissional autenticado
         $pedidos = Pedido::with([
             'contratante' => function ($query) {
-                $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante');
+                $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante', 'cepContratante');
             },
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status');
             }
         ])
-        ->where('statusPedido', 'aceito')
-        ->whereIn('andamentoPedido', ['pendente', 'concluido'])
-        ->where('idContratado', $profissional['idContratado'])
-        ->get();
+            ->where('statusPedido', 'aceito')
 
-        // Verifica se existem pedidos
+            ->where('idContratado', $idContratado)  // Usa a variável simples
+            ->get();
+
         if ($pedidos->isEmpty()) {
             return response()->json(['message' => 'Nenhum pedido foi realizado a você']);
         }
 
         return response()->json($pedidos);
     }
+
+
 
 
     public function storeContrato(Request $request, $idSolicitarPedido)
@@ -163,6 +161,7 @@ class PedidoController extends Controller
 
             // Atualizar o status do pedido para 'aceito'
             $pedido->statusPedido = 'aceito';
+            $pedido->andamentoPedido = 'a_caminho';
             $pedido->save();
 
             // Criar o contrato relacionado ao pedido
@@ -193,15 +192,19 @@ class PedidoController extends Controller
 
 
 
-    public function andamentoPedido($idSolicitarPedido)
+    public function pendentePedido($idSolicitarPedido)
     {
 
 
         $pedido = Pedido::with([
 
             'contrato' => function ($query) {
-                $query->select('id', 'idSolicitarPedido', 'status');
+                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento');
+            },
+            'contratante' => function ($query) {
+                $query->select('idContratante', 'nomeContratante', 'cidadeContratante', 'bairroContratante','emailContratante','cepContratante');
             }
+      
         ])
             ->findOrFail($idSolicitarPedido);
 
@@ -211,8 +214,6 @@ class PedidoController extends Controller
         }
 
 
-        // Atualiza o status do pedido para 'em_andamento'
-        $pedido->andamentoPedido = 'em_andamento';
         $pedido->data_inicio = now();
         $pedido->save();
 
@@ -229,22 +230,68 @@ class PedidoController extends Controller
     }
 
 
-
-    public function finalizarPedido($idSolicitarPedido)
+    public function acoesPedido($idSolicitarPedido, Request $request)
     {
-        $pedido = Pedido::findOrFail($idSolicitarPedido);
+        $novaEtapa = $request->input('novaEtapa');
+        $valorTotal = $request->input('valorTotal');
+        Log::info("Nova etapa recebida: {$novaEtapa}");
+        Log::info("Valor total recebido: {$valorTotal}");
 
+        $pedido = Pedido::with('contrato', 'contratado')->findOrFail($idSolicitarPedido);
 
-        if ($pedido->andamentoPedido !== 'em_andamento') {
-            return response()->json(['message' => 'Pedido não pode ser finalizado, pois ainda não está em andamento'], 403);
+        Log::info("Etapa atual do pedido (andamentoPedido): " . $pedido->andamentoPedido);
+
+        try {
+            // Correção na ordem de verificação das etapas
+            switch ($novaEtapa) {
+                case 'a_caminho':
+                    if ($pedido->andamentoPedido !== 'pendente') {
+                        return response()->json(['message' => 'O pedido só pode ser marcado como "a caminho" se estiver "pendente".'], 400);
+                    }
+                    break;
+                case 'em_andamento':
+                    if ($pedido->andamentoPedido !== 'a_caminho') {
+                        return response()->json(['message' => 'O pedido só pode ser marcado como "em andamento" se estiver "a caminho".'], 400);
+                    }
+                    break;
+                case 'ReceberPagamento':
+                    if ($pedido->andamentoPedido !== 'em_andamento') {
+                        return response()->json(['message' => 'O pedido só pode receber pagamento se estiver "em andamento".'], 400);
+                    }
+                    break;
+                case 'concluido':
+                    if ($pedido->andamentoPedido !== 'ReceberPagamento') {
+                        return response()->json(['message' => 'O pedido só pode ser finalizado se o pagamento tiver sido recebido.'], 400);
+                    }
+                    $pedido->data_conclusao = now();
+                    break;
+                default:
+                    return response()->json(['message' => 'Etapa inválida.'], 400);
+            }
+
+            // Atualizar o andamento do pedido
+            $pedido->andamentoPedido = $novaEtapa;
+            $pedido->save();
+
+            // Atualizar o contrato e o valor total recebido
+            if ($pedido->contrato && $pedido->contratado) {
+                $pedido->contrato->valor = $valorTotal;
+                $pedido->contrato->save();
+
+                $pedido->contratado->valorTotalRecebido += $valorTotal;
+                $pedido->contratado->save();
+            }
+
+            return response()->json(['message' => 'Etapa atualizada com sucesso!', 'pedido' => $pedido]);
+        } catch (ValidationException $e) {
+            Log::error("Erro de validação: " . $e);
+            return response()->json(['error' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            Log::error("Erro inesperado: " . $e->getMessage());
+            return response()->json(['error' => 'Erro ao atualizar o pedido: ' . $e->getMessage()], 500);
         }
-
-        $pedido->andamentoPedido = 'concluido';
-        $pedido->data_conclusao = now();
-        $pedido->save();
-
-        return response()->json(['message' => 'Pedido finalizado com sucesso!', 'pedido' => $pedido]);
     }
+
 
 
 

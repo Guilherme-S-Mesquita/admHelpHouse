@@ -44,35 +44,42 @@ class AdminController extends Controller
 
 
 
+// Contagem de cadastros por mês para Contratantes
+$cadastrosMesContratante = Contratante::select([
+    DB::raw('MONTH(created_at) as mes'),
+    DB::raw('COUNT(*) as total')
+])
+->groupBy('mes')
+->orderBy('mes', 'asc')
+->get();
 
-        $cadastrosMes = Contratante::select([
-            DB::raw('MONTH(created_at)as mes'),
-            DB::raw('COUNT(*) as total')
-        ])
-        ->groupBy('mes')
-        ->orderBy('mes', 'asc')
-        ->get();
+// Contagem de cadastros por mês para Profissionais
+$cadastrosMesProfissional = Profissional::select([
+    DB::raw('MONTH(created_at) as mes'),
+    DB::raw('COUNT(*) as total')
+])
+->groupBy('mes')
+->orderBy('mes', 'asc')
+->get();
 
-        $cadastrosMes = Profissional::select([
-            DB::raw('MONTH(created_at)as mes'),
-            DB::raw('COUNT(*) as total')
-        ])
-        ->groupBy('mes')
-        ->orderBy('mes', 'asc')
-        ->get();
 
-        foreach($cadastrosMes as $profissional){
-            $mes[] = $profissional->mes;
-            $total[] = $profissional->total;
-        }
+$mes = [];
+$totalContratantes = [];
+$totalProfissionais = [];
 
-            foreach($cadastrosMes as $contratante){
-                $total[] = $contratante->total;
-            }
+// Preenche os meses e totais de contratantes
+foreach ($cadastrosMesContratante as $contratante) {
+    $mes[] = $contratante->mes;
+    $totalContratantes[] = $contratante->total;
+}
 
-            $cadastroMes = implode(',', $mes ?? [1,2,3]);
-            $contratanteTotal = implode(',', $total ?? [12]);
-            $profissionalTotal = implode(',', $total ??[10]);
+// Preenche os totais de profissionais
+foreach ($cadastrosMesProfissional as $profissional) {
+    $totalProfissionais[] = $profissional->total;
+}
+$cadastroMes = implode(',', $mes);
+$contratanteTotal = implode(',', $totalContratantes);
+$profissionalTotal = implode(',', $totalProfissionais);
 
 
         return view('/admin/DashboardAdmin',

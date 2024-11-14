@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Models\Avaliacao; 
-
-
+use App\Models\Avaliacao;
+use App\Models\Profissional;
+use Illuminate\Support\Facades\Auth;
 class AvaliacaoController extends Controller
 {
 
@@ -56,7 +56,7 @@ class AvaliacaoController extends Controller
     {
         $idContratado ['idContratado'] = Auth::user()->idContratado;
 
-        $contratado = Contratado::with(['avaliacao' => function ($query) {
+        $contratado = Profissional::with(['avaliacao' => function ($query) {
             $query->select('idContratado', 'idContratante', 'ratingAvaliacao', 'descavaliacao')
                   ->with(['contratado:idContratado,nomeContratado']);
         }])
@@ -67,6 +67,6 @@ class AvaliacaoController extends Controller
             return response()->json(['message' => 'Profissional não encontrado'], 404);
         }
 
-        return response()->json($contratato);
+        return response()->json($contratado);
     }
 }
