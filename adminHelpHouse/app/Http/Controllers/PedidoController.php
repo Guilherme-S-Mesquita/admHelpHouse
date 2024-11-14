@@ -204,7 +204,7 @@ class PedidoController extends Controller
             'contratante' => function ($query) {
                 $query->select('idContratante', 'nomeContratante', 'cidadeContratante', 'bairroContratante','emailContratante','cepContratante');
             }
-      
+
         ])
             ->findOrFail($idSolicitarPedido);
 
@@ -234,51 +234,54 @@ class PedidoController extends Controller
     {
         $novaEtapa = $request->input('novaEtapa');
         $valorTotal = $request->input('valorTotal');
+
         Log::info("Nova etapa recebida: {$novaEtapa}");
         Log::info("Valor total recebido: {$valorTotal}");
 
         $pedido = Pedido::with('contrato', 'contratado')->findOrFail($idSolicitarPedido);
-
         Log::info("Etapa atual do pedido (andamentoPedido): " . $pedido->andamentoPedido);
 
         try {
-            // Correção na ordem de verificação das etapas
             switch ($novaEtapa) {
                 case 'a_caminho':
                     if ($pedido->andamentoPedido !== 'pendente') {
                         return response()->json(['message' => 'O pedido só pode ser marcado como "a caminho" se estiver "pendente".'], 400);
                     }
+                    Log::info("Pedido movido para a etapa 'a_caminho'.");
                     break;
                 case 'em_andamento':
                     if ($pedido->andamentoPedido !== 'a_caminho') {
                         return response()->json(['message' => 'O pedido só pode ser marcado como "em andamento" se estiver "a caminho".'], 400);
                     }
+                    Log::info("Pedido movido para a etapa 'em_andamento'.");
                     break;
                 case 'ReceberPagamento':
                     if ($pedido->andamentoPedido !== 'em_andamento') {
                         return response()->json(['message' => 'O pedido só pode receber pagamento se estiver "em andamento".'], 400);
                     }
+                    Log::info("Pedido movido para a etapa 'ReceberPagamento'.");
                     break;
                 case 'concluido':
                     if ($pedido->andamentoPedido !== 'ReceberPagamento') {
                         return response()->json(['message' => 'O pedido só pode ser finalizado se o pagamento tiver sido recebido.'], 400);
                     }
                     $pedido->data_conclusao = now();
+                    Log::info("Pedido movido para a etapa 'concluido'.");
                     break;
                 default:
                     return response()->json(['message' => 'Etapa inválida.'], 400);
             }
 
-            // Atualizar o andamento do pedido
             $pedido->andamentoPedido = $novaEtapa;
             $pedido->save();
 
-            // Atualizar o contrato e o valor total recebido
             if ($pedido->contrato && $pedido->contratado) {
                 $pedido->contrato->valor = $valorTotal;
                 $pedido->contrato->save();
 
-                $pedido->contratado->valorTotalRecebido += $valorTotal;
+                $pedido->contratado->valorTotalRecebido = is_numeric($pedido->contratado->valorTotalRecebido)
+                    ? $pedido->contratado->valorTotalRecebido + $valorTotal
+                    : $valorTotal;
                 $pedido->contratado->save();
             }
 
@@ -291,6 +294,7 @@ class PedidoController extends Controller
             return response()->json(['error' => 'Erro ao atualizar o pedido: ' . $e->getMessage()], 500);
         }
     }
+
 
 
 
