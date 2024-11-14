@@ -16,7 +16,11 @@
             </div>
             </div>
            
-
+            
+            <div class="title">
+                <p class="titleservico">Serviços</p>
+            </div>
+           
 
             <div class="tudo">
             <table class="table" style="background-color: rgb(222, 222, 222)"  >
