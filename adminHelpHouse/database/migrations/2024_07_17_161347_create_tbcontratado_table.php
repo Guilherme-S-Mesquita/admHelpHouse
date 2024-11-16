@@ -32,8 +32,11 @@ return new class extends Migration
             $table->string('bairroContratado', 90);
             $table->string('ufContratado', 10)->nullable();
             $table->string('cidadeContratado', 50)->nullable();
-            $table->string('imagemContratado', 399);
+            $table->string('imagemContratado', 999);
             $table->string('valorTotalRecebido')->nullable();
+            $table->string('portifilioPro1', 999)->nullable();
+            $table->string('portifilioPro2', 999)->nullable();
+            $table->string('portifilioPro3', 999)->nullable();
             $table->timestamps();
         });
     }

@@ -25,9 +25,6 @@ class ProfissionalApiController extends Controller
     public function storeApiPro(Request $request)
     {
 
-
-
-
         // Validação dos campos recebidos no request
         $validadeDataPro = $request->validate([
             'nomeContratado' => 'required|string',
@@ -46,8 +43,10 @@ class ProfissionalApiController extends Controller
             'numCasaContratado' => 'required|string',
             'complementoContratado' => 'nullable|string',
             'cidadeContratado'=>"required|string",
-            'imagemContratado'=>"required|string"
-
+            'imagemContratado'=>"required|string",
+            'portifilioPro1'=>"nullable|string",
+            'portifilioPro2'=>"nullable|string",
+            'portifilioPro3'=>"nullable|string",
         ]);
 
         $validadeDataPro['nascContratado'] = Carbon::createFromFormat('d/m/Y', $validadeDataPro['nascContratado'])->format('Y-m-d');
