@@ -28,6 +28,8 @@
 
 <body>
 
+
+
     <!-- Overlay para o efeito de desfoque -->
     <div id="overlay"></div>
 
@@ -36,6 +38,8 @@
     @if(session('msg'))
         <p class="msg">{{session('msg')}}</p>
     @endif
+
+
 
     <div class="wrapper">
         <aside id="sidebar">
