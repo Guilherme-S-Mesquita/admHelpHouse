@@ -91,10 +91,7 @@ class ContratanteController extends Controller
             $pro -> telefoneContratante = $request->telefoneContratante;
             $pro -> emailContratante = $request->emailContratante;
             $pro -> cepContratante = $request->cepContratante;
-
             $pro->save();
-
-
             return response()->json([
                 'message' => 'Contratante atualizado com sucesso!',
                 'contratante' => $pro
