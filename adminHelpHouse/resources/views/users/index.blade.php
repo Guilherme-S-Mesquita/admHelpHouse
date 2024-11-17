@@ -3,19 +3,26 @@
 @section('title', 'Controle de Usuários')
 
 @section('contentAdmin')
-<div class="container-fluid d-flex p-4">
+
+
+<div class="inicio">
+            <div class="header mb-4 ">
+                <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
+            </div>
+            </div>
+           
+            
+            <div class="title">
+                <p class="titleservico">Controle de usuários</p>
+            </div>
+
+
+<div class="tudo">
 
     <!-- Menu lateral -->
     <div class="menu-lateral">
 
 
-        <div class="header mb-4 ">
-            <h3>Olá, <span style="color: #ff6347; ">{{$user->name}}</span></h3>
-        </div>
-
-        <div class="titulo">
-            <p class="titleUsers">Usuários</p>
-        </div>
 
         <button class="btn-nav active" onclick="showSection('clientes')">
             <i class="fas fa-users"></i>   Clientes
@@ -45,7 +52,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                        <th>Ações</th>
+                    
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +78,8 @@
 
         <div id="profissionais-section" class="table-section" style="display: none; ">
             <h3>Profissionais</h3>
+
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -79,7 +88,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                        <th>Ações</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -110,7 +119,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                        <th>Ações</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
