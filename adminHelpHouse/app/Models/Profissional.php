@@ -43,6 +43,9 @@ class Profissional extends Authenticatable
         'ufContratado',
         'cidadeContratado',
         'imagemContratado',
+        'portifilioPro1',
+        'portifilioPro2',
+        'portifilioPro3',
     ];
 
     protected $hidden = [

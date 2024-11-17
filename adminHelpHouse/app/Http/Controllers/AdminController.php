@@ -81,12 +81,12 @@ $cadastroMes = implode(',', $mes);
 $contratanteTotal = implode(',', $totalContratantes);
 $profissionalTotal = implode(',', $totalProfissionais);
 
-
-        return view('/admin/DashboardAdmin',
-        compact(
-          'acountContratantes','contadorServicos','profissionalTotal','acountContratados' , 'contratanteTotal', 'contadorServicosPedidos', 'contadorPedidos','cadastroMes','labels', 'data', 'user')) ;
-
-        }
+return view('/admin/DashboardAdmin', compact(
+    'acountContratantes', 'contadorServicos', 'profissionalTotal', 
+    'acountContratados', 'contratanteTotal', 'contadorServicosPedidos', 
+    'contadorPedidos', 'cadastroMes', 'labels', 'data', 'user'
+));
+    }
     }
 
 

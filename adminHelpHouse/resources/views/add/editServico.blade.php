@@ -4,8 +4,9 @@
 
 @section('contentAdmin')
 <div class="main p-3">
-    <div class="d-flex justify-content-center">
-        <div class="col-md-8">
+
+    <div class="row">
+        <div class="col-md-12">
             <h2 class="mb-4">Editar Serviço</h2>
             <form action="{{ route('update.servico', $servico->idServicos) }}" method="POST">
                 @csrf
@@ -21,7 +22,9 @@
                     <textarea class="form-control" id="descServicos" name="descServicos" required>{{ old('descServicos', $servico->descServicos) }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Atualizar Serviço</button>
+
+
+                <button type="submit" class="btn">Atualizar Serviço</button>
             </form>
         </div>
     </div>
