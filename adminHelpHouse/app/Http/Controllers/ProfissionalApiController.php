@@ -80,9 +80,9 @@ class ProfissionalApiController extends Controller
 
     public function update(Request $request, $idContratado){
         $request->validate([
-            'telefoneContratado'=>'required|numeric|max:11',
+            'telefoneContratado'=>'required|numeric|digits:11',
             'emailContratado'=>'required|email|max:255',
-            'cepContratado'=>'required|numeric|max:8',
+            'cepContratado'=>'required|numeric|digits:8',
         ]);
 
         try{
@@ -90,6 +90,11 @@ class ProfissionalApiController extends Controller
             $pro -> telefoneContratado = $request->telefoneContratado;
             $pro -> emailContratado = $request->emailContratado;
             $pro -> cepContratado = $request->cepContratado;
+            $pro->save();
+            return response()->json([
+                'message' => 'Contratado atualizado com sucesso!',
+                'contratante' => $pro
+            ], 200);
 
         }catch (\Exception $e) {
             return redirect()->back()->withErrors('Erro ao atualizar o usuário: ' . $e->getMessage());
