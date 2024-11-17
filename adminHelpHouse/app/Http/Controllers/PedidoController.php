@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
 
-
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Validation\ValidationException;
 
@@ -81,7 +81,16 @@ class PedidoController extends Controller
             ->where('statusPedido', 'pendente')
             ->get();
 
-        return response()->json($pedidos);
+
+
+            $pedidosPendentes = $pedidos->count();
+
+
+
+    return response()->json([
+        'pedidos' => $pedidos,
+        'contadorPedidos' => $pedidosPendentes,
+    ]);
     }
 
     // Método para responder a um pedido
@@ -128,11 +137,13 @@ class PedidoController extends Controller
                 $query->select('idContratante', 'nomeContratante', 'emailContratante', 'telefoneContratante', 'cidadeContratante', 'bairroContratante', 'cepContratante');
             },
             'contrato' => function ($query) {
-                $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status');
+                $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
+                ->where('status', 'aceito');
+
             }
         ])
-            ->where('statusPedido', 'aceito')
-
+            ->where( 'statusPedido', 'aceito')
+            ->where( 'andamentoPedido',['a_caminho', 'ReceberPagamento', 'pendente'])
             ->where('idContratado', $idContratado)  // Usa a variável simples
             ->get();
 
@@ -154,6 +165,7 @@ class PedidoController extends Controller
                 'data' => 'required|date',
                 'hora' => 'required|date_format:H:i',
                 'forma_pagamento' => 'required|string',
+
             ]);
 
             // Buscar o pedido e verificar se existe
@@ -190,12 +202,63 @@ class PedidoController extends Controller
     }
 
 
+    public function meusContratos (){
 
+        $idContratante = Auth::user()->idContratante;
+
+        $pedido = Pedido::with([
+
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
+                ->where('status', 'pendente');
+            }
+        ])
+             ->where('idContratante', $idContratante)
+             ->where('statusPedido', 'aceito')
+             ->get();
+
+             return response()->json($pedido);
+
+        }
+
+        public function acaoContrato($idSolicitarPedido, Request $request)
+        {
+            $idContratante = Auth::user()->idContratante;
+
+            // Busca o contrato associado ao pedido e ao contratante autenticado
+            $contrato = Contrato::where('idSolicitarPedido', $idSolicitarPedido)
+                ->where('idContratante', $idContratante)
+                ->with('contratante', 'contratado')
+                ->firstOrFail();
+
+
+            $acao = $request->input('acao');
+
+            if ($acao === 'aceitar') {
+                $contrato->status = 'aceito';
+                $contrato->save();
+                \Log::info("Contrato {$contrato->id} aceito com sucesso pelo usuário {$idContratante}");
+
+                $pedido = Pedido::findOrFail($idSolicitarPedido);
+                $pedido->data_inicio = now();
+                $pedido->save();
+
+                return response()->json(['message' => 'Contrato foi aceito e atualizado com sucesso']);
+            } elseif ($acao === 'recusar') {
+                $contrato->status = 'cancelado';
+                $contrato->save();
+
+                // Exclui o contrato após marcar como cancelado
+                $contrato->delete();
+
+                return response()->json(['message' => 'Contrato foi cancelado e excluído com sucesso']);
+            } else {
+                return response()->json(['error' => 'Ação inválida'], 400);
+            }
+        }
 
     public function pendentePedido($idSolicitarPedido)
     {
-
-
         $pedido = Pedido::with([
 
             'contrato' => function ($query) {
@@ -204,24 +267,15 @@ class PedidoController extends Controller
             'contratante' => function ($query) {
                 $query->select('idContratante', 'nomeContratante', 'cidadeContratante', 'bairroContratante','emailContratante','cepContratante');
             }
-
         ])
             ->findOrFail($idSolicitarPedido);
-
 
         if ($pedido->statusPedido !== 'aceito') {
             return response()->json(['message' => 'Pedido não pode ser iniciado, pois não foi aceito'], 403);
         }
 
 
-        $pedido->data_inicio = now();
-        $pedido->save();
 
-        // Verifica se o contrato existe e altera o status para 'aceito'
-        if ($pedido->contrato) {
-            $pedido->contrato->status = 'aceito'; // Altera o status do contrato
-            $pedido->contrato->save(); // Salva as alterações no contrato
-        }
 
         return response()->json([
             'message' => 'Pedido está em andamento e contrato aceito!',
@@ -296,7 +350,44 @@ class PedidoController extends Controller
     }
 
 
+    public function meusPedidosFinalizadosCliente ( $idContratante){
+        $idContratante = Auth::user()->idContratante;
 
+
+        $pedido = Pedido::with([
+
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
+                ->where('status', 'aceito');
+            }
+        ])
+             ->where('idContratante', $idContratante)
+             ->where('statusPedido', 'aceito')
+             ->where('andamentoPedido','concluido')
+             ->get();
+
+             return response()->json($pedido);
+
+    }
+    public function meusPedidosFinalizadosProfissional ($idContratado){
+
+        $idContratado = Auth::user()->idContratado;
+
+        $pedido = Pedido::with([
+
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
+                ->where('status', 'aceito');
+            }
+        ])
+             ->where('idContratante', $idContratado)
+             ->where('statusPedido', 'aceito')
+             ->where('andamentoPedido','concluido')
+             ->get();
+
+             return response()->json($pedido);
+
+    }
 
 
 }

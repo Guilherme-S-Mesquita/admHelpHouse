@@ -38,14 +38,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meusPedidos/{idContratante}', [PedidoController::class, 'meusPedidos']);  // Pedidos do contratante
     Route::get('/profissional/{idContratado}/pedidos', [PedidoController::class, 'pedidosPendentes']);  // Pedidos do profissional
     Route::put('/pedido/aceitar/{idSolicitarPedido}', [PedidoController::class, 'aceitarPedido']);
-
     Route::get('/pedido/{idSolicitarPedido}', [PedidoController::class, 'pedido']);
-
     Route::get('/pedidos/aceitos/{idContratado}', [PedidoController::class, 'meusPedidosAceitos']);
     Route::post('/pedidos/{idSolicitarPedido}/contrato', [PedidoController::class, 'storeContrato']);
-
     Route::patch('/pedidos/{idSolicitarPedido}/pendente', [PedidoController::class, 'pendentePedido']);
     Route::patch('/pedidos/{idSolicitarPedido}/acoes', [PedidoController::class, 'acoesPedido']);
+    Route::get( '/contratos/recebidos/{idContratante}', [PedidoController::class , 'meusContratos']);
+    Route::patch('/contratos/{idSolicitarPedido}/acao', [PedidoController::class, 'acaoContrato']);
+    Route::get( '/pedidos/finalizados/{idContratante}', [PedidoController::class , 'meusPedidosFinalizadosCliente']);
+    Route::get( '/pedidos/finalizados/{idContratado}', [PedidoController::class , 'meusPedidosFinalizadosProfissional']);
 
 
 });
@@ -63,7 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // -------------------------------------- Rotas de Avaliacao ---------------------------------------------
 
 
-    Route::post('/avaliacao', [AvaliacaoController::class, 'store']);  
-    Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);  
+    Route::post('/avaliacao', [AvaliacaoController::class, 'store']);
+    Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);
     Route::get('/avaliacoes/{idContratado}', [AvaliacaoController::class, 'getAvaliacoesByContratado']);
 
