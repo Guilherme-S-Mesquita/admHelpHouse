@@ -47,6 +47,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>  </th>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Data nas.</th>
@@ -59,6 +60,11 @@
                     @foreach ($contratantes as $contratante)
 
                     <tr>
+                        <td>
+                            <img src="{{ $contratante->imagemContratante }}" 
+                                 alt="Imagem do Contratante" 
+                                 style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        </td>      
                         <td>{{$contratante->id}}</td>
                         <td>{{$contratante->nomeContratante}}</td>
                         <td>25/02/1977</td>
@@ -83,6 +89,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>  </th>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Data nas.</th>
@@ -95,6 +102,12 @@
                     @foreach ($contratados as $contratado)
                     <tr>
                         {{-- <td>{{$contratado->id}}</td> --}}
+                        <td>
+                            <img src="{{ $contratado->imagemContratado }}" 
+                                 alt="Imagem do Contratado" 
+                                 style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        </td>
+                        <td>{{$contratado->id}}</td>
                         <td>{{$contratado->nomeContratado}}</td>
                         <td>{{$contratado->nascContratado}}</td>
                         <td>{{$contratado->cpfContratado}}</td>
