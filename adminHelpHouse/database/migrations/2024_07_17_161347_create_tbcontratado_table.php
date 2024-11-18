@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('cidadeContratado', 50)->nullable();
             $table->string('imagemContratado', 999);
             $table->string('valorTotalRecebido')->nullable();
+            $table->boolean('is_suspended')->default(false);
             $table->string('portifilioPro1', 999)->nullable();
             $table->string('portifilioPro2', 999)->nullable();
             $table->string('portifilioPro3', 999)->nullable();

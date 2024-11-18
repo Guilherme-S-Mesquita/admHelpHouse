@@ -142,7 +142,11 @@ class ContratanteController extends Controller
         $token = $user->createToken('contratante_token')->plainTextToken;
 
         // $pusherAuthData = $this->authorizePusher($user);
-
+        if ($user->is_suspended) {
+            // Desloga imediatamente se a conta estiver suspensa
+            Auth::logout();
+            return response()->json(['error' => 'Sua conta está suspensa. Entre em contato com o suporte.'], 403);
+        }
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo, ' .  $user->nomeContratante,

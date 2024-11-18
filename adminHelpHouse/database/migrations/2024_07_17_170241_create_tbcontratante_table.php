@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('cpfContratante', 14)->unique();
             $table->string('password');
             $table->date('nascContratante');
-
+            $table->boolean('is_suspended')->default(false);
             $table->string('emailContratante', 180)->unique();
             $table->char('telefoneContratante', 18)->unique();
             $table->string('ruaContratante', 90);

@@ -16,7 +16,7 @@
                     <label for="nomeServicos" style="font-weight:700; font-size:24px; margin-left:95px; margin-top:55px; padding:7px;">Nome do Serviço:</label>
                     <input type="text" class="form-control" id="nomeServicos" style="font-weight:500; font-size:20px; width:800px; margin-left:225px;"  name="nomeServicos" value="{{ old('nomeServicos', $servico->nomeServicos) }}" required>
 
-                
+
                     <label for="descServicos" style="font-weight:700; font-size:24px; margin-left:95px; margin-top:45px;padding:7px;">Descrição:</label>
                     <textarea class="form-control" id="descServicos" style="font-weight:500; font-size:20px; width:800px; margin-left:225px;" name="descServicos" required>{{ old('descServicos', $servico->descServicos) }}</textarea>
 

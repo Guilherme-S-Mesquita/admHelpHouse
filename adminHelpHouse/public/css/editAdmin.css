@@ -22,12 +22,12 @@
     flex-direction: row;
     display: flex;
 }
-   
+
 
 
 .parteum {
     flex-direction: column;
-   
+
     width: 45%;
     height: 400px;
     justify-content: start;
@@ -46,7 +46,7 @@
     color: white;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-   
+
 }
 .ptbotao button:hover {
     background-color: rgb(119, 119, 119);
@@ -56,13 +56,13 @@
 
 .ptbotao {
     flex-direction: row;
- 
+
     width: 40%;
     height: 120px;
     justify-content: center;
     align-items: center;
     display: flex;
-    
+
 }
 
 .foto {
@@ -79,11 +79,11 @@
 
 .partedois {
     flex-direction: column;
-    
+
     width: 55%;
     height: 400px;
     justify-content: center;
-    
+
     display: flex;
 }
 
@@ -97,7 +97,7 @@
     color: rgb(20, 20, 143) ;
     justify-content: center;
     display: flex;
-   
+
 }
 
 label {
@@ -109,14 +109,14 @@ label {
     width: 70%;
     height: 10%;
     margin-left: 10vh;
-    
+
 }
 .botoes {
     display: flex;
     justify-content: end;
     margin-right: 15%;
     margin-top: 5vh;
-    
+
 }
 .planos {
     justify-content: space-between;

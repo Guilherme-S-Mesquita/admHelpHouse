@@ -14,8 +14,11 @@ use App\Http\Controllers\AvaliacaoController;
 // -------------------------------------- Rotas de Profissional --------------------------------------
 Route::get('/pro', [ProfissionalApiController::class, 'indexApiPro']);
 Route::get('/pro/{id}', [ProfissionalApiController::class, 'showApi']);
+
 Route::post('/proo', [ProfissionalApiController::class, 'storeApiPro']);
+
 Route::post('/authpro', [ProfissionalApiController::class, 'authPro']);
+
 Route::post('/pusher/authpro', [ProfissionalApiController::class, 'authorizePusher']);
 Route::put('/pro/{idContratado}', [ProfissionalApiController::class, 'update']);
 

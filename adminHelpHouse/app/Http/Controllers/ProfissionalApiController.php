@@ -163,6 +163,12 @@ class ProfissionalApiController extends Controller
         $token = $userPro->createToken('contratado_token')->plainTextToken;
         // $pusherAuthData = $this->authorizePusher($userPro);
 
+        if ($userPro->is_suspended) {
+            // Desloga imediatamente se a conta estiver suspensa
+            Auth::logout();
+            return response()->json(['error' => 'Sua conta está suspensa. Entre em contato com o suporte.'], 403);
+        }
+
         return response()->json([
             'status' => 'Sucesso',
             'message' => 'Seja bem-vindo' .  $userPro->nomeContratado,
