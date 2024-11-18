@@ -10,7 +10,45 @@
 .inicio {
     margin-top: 4vh;
     padding-left: 8.5vh;
+   
+    flex-direction: row;
+    display: flex;
+    height: 60px;
 }
+
+.header {
+    width: 60%;
+}
+
+.search-container {
+    background-color: rgba(0, 0, 255, 0.415);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 15px;
+    background-color: #fff;
+    width: 355px;
+    margin-right: 10vh;
+    margin-top: 1vh;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+
 .table {
     background-color:rgb(222, 222, 222) ;
 }

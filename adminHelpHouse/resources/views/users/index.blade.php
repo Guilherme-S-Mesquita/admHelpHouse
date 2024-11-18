@@ -5,10 +5,17 @@
 @section('contentAdmin')
 
 
-<div class="inicio">
+    <div class="inicio">
+        
             <div class="header mb-4 ">
                 <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
             </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar...">
+                <button class="search-btn"><i class="bi bi-search"></i></button>
+            </div>
+
             </div>
            
             

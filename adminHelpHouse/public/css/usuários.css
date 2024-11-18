@@ -4,6 +4,41 @@
 .inicio {
   margin-top: 4vh;
   padding-left: 15vh;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+}
+
+.header {
+  width: 60%;
+}
+.search-container {
+  background-color: rgba(0, 0, 255, 0.415);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  padding: 5px 15px;
+  background-color: #fff;
+  width: 350px;
+  margin-right: 10vh;
+  margin-top: 2vh;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+button {
+  border: none;
+  background-color: transparent;
 }
 
 .inicio p {
@@ -50,12 +85,13 @@
 
 .partes {
   width: 55px;
-  height: 350px;
+  height: 400px;
   flex-direction: column;
   display: flex;
   border-right: 3px solid rgb(110, 110, 110);
   margin-left: 205px;
   margin-top: -125px;
+  background-color: aquamarine;
 }
 
 .partes2 {
