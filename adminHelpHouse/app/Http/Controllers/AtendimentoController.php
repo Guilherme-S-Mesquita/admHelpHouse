@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class AtendimentoController extends Controller
 {
     public function index()
-    {
-        return view('atendimentos.atendimentos');
+    {       
+         $user = auth()->user();
+        return view('atendimentos.atendimentos', compact(
+             'user'
+        ));
     }
 }

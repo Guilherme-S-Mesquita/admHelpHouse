@@ -12,7 +12,7 @@
         
             <div class="inicio">
             <div class="header mb-4 ">
-                <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
+                <p>Olá,<span style="color: #ff6347; font-size:30px ">{{$user->name}}</span></p>
             </div>
             </div>
            
