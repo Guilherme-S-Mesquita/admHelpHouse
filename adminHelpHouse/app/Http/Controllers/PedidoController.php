@@ -295,6 +295,10 @@ class PedidoController extends Controller
         $pedido = Pedido::with('contrato', 'contratado')->findOrFail($idSolicitarPedido);
         Log::info("Etapa atual do pedido (andamentoPedido): " . $pedido->andamentoPedido);
 
+
+        if (!$pedido->contrato || $pedido->contrato->status !== 'aceito') {
+            return response()->json(['message' => 'O contrato ainda não foi aceito pelo cliente. O pedido não pode ser iniciado.'], 400);
+        }
         try {
             switch ($novaEtapa) {
                 case 'a_caminho':
