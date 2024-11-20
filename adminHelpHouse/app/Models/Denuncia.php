@@ -21,7 +21,7 @@ class Denuncia extends Model
         'idContratado',
         'status',
         'categoria',
-
+        'imagemDenuncia'
     ];
 
 
