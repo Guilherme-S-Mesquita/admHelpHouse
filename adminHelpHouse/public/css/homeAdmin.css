@@ -114,7 +114,7 @@ hr {
     .partes h2 {
         font-weight: 600;
         font-family: "Poppins", sans-serif;
-        margin-left: 5vh;
+        margin-left: 1vh;
         margin-bottom: 3vh;
     }
 
@@ -183,6 +183,20 @@ hr {
     width: 90%;
     background-color: #f9e63b;
     border-radius: 30px;
+    margin-top: 150px;
+    margin-left: 18px;
+}
+
+.avaliacoes h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-left: 1vw;
+    padding: 17px;
+}
+
+.avaliacoes .icon {
+    font-size: 25px;
+    color: #fff;
 }
 
  .retanguloPro, .retanguloCli, .retanguloServ, .retanguloZona {
