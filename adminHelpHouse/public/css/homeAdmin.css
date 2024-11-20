@@ -38,6 +38,7 @@
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
+    margin-bottom: 6vh;
 }
 
 
@@ -163,8 +164,8 @@ hr {
                     font-size: 40px;
                 }
 
-.perguntas {
-    height: 730px;
+.graficopro {
+    height: 300px;
     width: 90%;
     background-color: #e4e2e2;
     border-radius: 30px;
@@ -177,6 +178,12 @@ hr {
     display: flex;
 }
 
+.avaliacoes {
+    height: 60px;
+    width: 90%;
+    background-color: #f9e63b;
+    border-radius: 30px;
+}
 
  .retanguloPro, .retanguloCli, .retanguloServ, .retanguloZona {
     display: flex;
@@ -334,7 +341,7 @@ hr {
     display: flex;
     justify-content: center;
     flex-direction: column;
-   
+   margin-top: -10vh;
 
 }
 
@@ -390,6 +397,9 @@ hr {
     font-weight: 700;
     font-style: normal;
 }
+
+
+
 
 /* 2xl */
 @media (max-width: 1536px) {

@@ -73,7 +73,7 @@
                     <head class= "grafico">
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Gráfico de Pedidos por Serviço</title>
+                        <title>Dashboard</title>
                         <!-- Adicione o Chart.js -->
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     </head>
@@ -158,16 +158,48 @@
 
 
         <div class="partes">
-        <h2 style="color: #004AAD">Últimas perguntas</h2>
-                <div class="perguntas"></div>
-        </div>
+        <h2 style="color: #004AAD">Profissionais e serviços</h2>
+                        <div class="avaliacoes"></div>
+                        <div class="graficopro">
+                        <div>
+            <canvas id="mygrafico"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+            const ctx = document.getElementById('mygrafico');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+                },
+                options: {
+                scales: {
+                    y: {
+                    beginAtZero: true
+                    }
+                }
+                }
+            });
+            </script>
+                            </div>
+                    </div>
+
+
         <div class="partes1">
             <h2 style="color: #004AAD">Crescimento de usúarios</h2>
 
 
             <div class="grafico2">
     <canvas id="veigh" style="width: 500px; height: 280px;"></canvas>
-                </div>
+                </div>a
                 <script>
                 const ctx = document.getElementById('veigh');
 
@@ -202,6 +234,8 @@ new Chart(ctx, {
 });
 
                 </script>
+
+        <h2 style="color: #004AAD; margin-bottom: 3vh;">Funções diretas</h2>
 
             <div class="botoes">
                 <a href="/users">
