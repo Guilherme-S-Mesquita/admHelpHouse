@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfissionalApiController;
 use App\Http\Controllers\ContratanteController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ServicoController;
-use App\Http\Controllers\PusherAuthController;
+use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\AvaliacaoController;
 
 
@@ -71,3 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/avaliacoes', [AvaliacaoController::class, 'index']);
     Route::get('/avaliacoes/{idContratado}', [AvaliacaoController::class, 'getAvaliacoesByContratado']);
 
+// -------------------------------------- ROTA DE DENUNCIAS -----------------------
+
+Route::middleware('auth:sanctum')->group(function () {
+
+Route::post('/denuncia', [AtendimentoController::class, 'store']);
+
+
+});

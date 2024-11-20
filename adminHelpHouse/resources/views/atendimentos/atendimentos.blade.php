@@ -8,18 +8,18 @@
 <div class="main p-3">
     <link rel="stylesheet" href="{{ asset('css/atendimento.css') }}">
 
-    
+
             <div class="inicio">
             <div class="header mb-4 ">
                 <p>Olá,<span style="color: #ff6347; font-size:30px ">{{$user->name}}</span></p>
             </div>
             </div>
-           
-            
+
+
             <div class="title">
                 <p class="titleservico">Atendimentos | Denúncias</p>
             </div>
-           
+
 
     <div class="tudo">
     <div class="containerEstadoCli">
@@ -117,6 +117,22 @@
     document.getElementById(sectionId + '-section').style.display = 'block';
     document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
 }.
+
+function showSection(sectionId) {
+    // Oculta todas as seções
+    document.querySelectorAll('.table-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Remove a classe 'active' de todos os botões
+    document.querySelectorAll('.btn-nav').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Exibe a seção específica e destaca o botão
+    document.getElementById(sectionId + '-section').style.display = 'block';
+    document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+}
 </script>
 
 </body>

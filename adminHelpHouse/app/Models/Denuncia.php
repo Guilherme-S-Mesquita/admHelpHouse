@@ -8,7 +8,7 @@ class Denuncia extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbDenuncia';
+    protected $table = 'tb_denuncia';
 
     protected $primaryKey = 'id';
 
