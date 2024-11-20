@@ -22,7 +22,8 @@ class SuporteController extends Controller
             'idContratado'=> 'required|uuid',
             'idContratante'=>'required|uuid',
             'categoria'=>'required|string',
-            'status'=>'emAnalise'
+            'status'=>'emAnalise',
+            'imagemDenuncia'=>"nullable|string",
         ]);
 
         try{
@@ -50,7 +51,6 @@ class SuporteController extends Controller
 
             ], 201);
         }catch (\Exception $e) {
-            // Tratar erros
             $erro = $e;
             Log::info("Mensagem criada: " . $erro);
             return response()->json(['error' => 'Erro ao criar o pedido: ' . $e->getMessage()], 500);

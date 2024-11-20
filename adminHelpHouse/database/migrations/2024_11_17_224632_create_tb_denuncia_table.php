@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('descricao');
             $table->string('categoria');
             $table->enum('status', ['emAberto', 'emAnalise', 'concluido', 'cancelado'])->default('emAberto');
+            $table->string('imagemDenuncia', 999)->nullable();
             $table->timestamps();
         });
     }
