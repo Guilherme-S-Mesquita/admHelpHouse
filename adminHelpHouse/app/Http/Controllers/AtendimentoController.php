@@ -29,7 +29,7 @@ class AtendimentoController extends Controller
                 ->where('status', 'emAberto')
                 ->get();
 
-                
+
 
             if ($denuncias->isEmpty()) {
                     return response()->json(['message' => 'Nenhum pedido foi realizado a você']);
@@ -53,7 +53,6 @@ class AtendimentoController extends Controller
         $validateData = $request->validate([
             'descricao' => 'required|string|max:300',
             'idContratado' => 'required|uuid',
-            'idContratante' => 'required|uuid',
             'categoria' => 'required|string',
             'status' => 'required|string|in:emAberto', // Validação corrigida
         ]);
