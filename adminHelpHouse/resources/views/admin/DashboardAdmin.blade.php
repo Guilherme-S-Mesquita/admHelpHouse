@@ -159,12 +159,13 @@
 
         <div class="partes">
         <h2 style="color: #004AAD">Profissionais e serviços</h2>
-                        <div class="avaliacoes"></div>
                         <div class="graficopro">
                         <div>
             <canvas id="mygrafico"></canvas>
             </div>
-
+                        <div class="avaliacoes">
+                            <h3 style="color: #fff">Média de avaliações: 4.7 <i class= "icon fa fa-star"></i></h3>
+                        </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
