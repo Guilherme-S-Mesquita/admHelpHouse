@@ -74,5 +74,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/denuncia', [AtendimentoController::class, 'store']);
 
-
 });

@@ -13,34 +13,31 @@ use Illuminate\Support\Facades\Auth;
 class AtendimentoController extends Controller
 {
     public function index()
-    {
-         $user = auth()->user();
+{
+    $user = auth()->user();
 
+    // Filtra denúncias por status
+    $denunciasEmAberto = Denuncia::with(['contratante', 'contratado'])
+        ->where('status', 'emAberto')
+        ->get();
 
+    $denunciasEmAndamento = Denuncia::with(['contratante', 'contratado'])
+        ->where('status', 'emAnalise')
+        ->get();
 
-            $denuncias = Denuncia::with([
-                'contratado' => function ($query){
-                    $query->select('idContratado','nomeContratado', 'emailContratado');
-                },
-                'contratante'=> function ($query){
-                    $query->select('idContratante','nomeContratante', 'emailContratante');
-                }
-            ])
-                ->where('status', 'emAberto')
-                ->get();
+    $denunciasConcluidas = Denuncia::with(['contratante', 'contratado'])
+        ->where('status', 'concluido')
+        ->get();
 
+    // Retorna as denúncias filtradas para a view
+    return view('atendimentos.atendimentos', compact(
+        'user',
+        'denunciasEmAberto',
+        'denunciasEmAndamento',
+        'denunciasConcluidas'
+    ));
+}
 
-
-            if ($denuncias->isEmpty()) {
-                    return response()->json(['message' => 'Nenhum pedido foi realizado a você']);
-                }
-                $denuncias = Denuncia::all();
-
-
-        return view('atendimentos.atendimentos', compact(
-             'user' , 'deuncias'
-        ));
-    }
 
     public function store(Request $request)
     {
@@ -80,35 +77,31 @@ class AtendimentoController extends Controller
 
     public function acaoAnalise($idDenuncia, Request $request)
     {
-
-        // Carregar a denúncia junto com o contratante associado
-        $denuncia = Denuncia::with('contratante') // Garante que o contratante está carregado
+        $denuncia = Denuncia::with('contratante')
             ->select('id', 'descricao', 'categoria', 'status', 'idContratante', 'created_at')
             ->where('id', $idDenuncia)
             ->firstOrFail();
 
-        // Verificar a ação solicitada
         $acao = $request->input('acao');
 
-        if ($acao === 'emAnalise') {
-            $denuncia->status = 'emAnalise';
+        if (in_array($acao, ['emAnalise', 'concluido'])) {
+            $denuncia->status = $acao;
             $denuncia->save();
 
-            // Obter o e-mail do contratante
             $emailContratante = $denuncia->contratante->emailContratante ?? null;
 
             if ($emailContratante) {
-                $msg = 'O pedido de denúncia está em análise. Por favor, aguarde 2 dias úteis para uma resposta.';
+                $msg = $acao === 'emAnalise'
+                    ? 'O pedido de denúncia está em análise. Por favor, aguarde 2 dias úteis para uma resposta.'
+                    : 'A denúncia foi concluída. Obrigado por utilizar nossos serviços.';
 
-                // Enviar o e-mail
                 Mail::to($emailContratante)->send(new DenunciaTratadaMail($msg));
-
-                return response()->json(['message' => 'Denúncia atualizada para "em análise" e e-mail enviado ao contratante.']);
-            } else {
-                return response()->json(['error' => 'O e-mail do contratante não foi encontrado.'], 404);
             }
-        }
 
+
+            
+            return response()->json(['message' => "Denúncia atualizada para \"$acao\" com sucesso!"]);
+        }
         return response()->json(['error' => 'Ação inválida.'], 400);
     }
 

@@ -6,7 +6,7 @@
 
 
     <div class="inicio">
-        
+
             <div class="header mb-4 ">
                 <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
             </div>
@@ -17,8 +17,8 @@
             </div>
 
             </div>
-           
-            
+
+
             <div class="title">
                 <p class="titleservico">Controle de usuários</p>
             </div>
@@ -48,7 +48,7 @@
 
     <!-- Seções das tabelas -->
     <div class="conteudo">
-        
+
         <div id="clientes-section" class="table-section" style=" ">
             <h3>Clientes</h3>
             <table class="table table-striped">
@@ -60,7 +60,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
@@ -68,13 +68,13 @@
 
                     <tr>
                         <td>
-                            <img src="{{ $contratante->imagemContratante }}" 
-                                 alt="Imagem do Contratante" 
+                            <img src="{{ $contratante->imagemContratante }}"
+                                 alt="Imagem do Contratante"
                                  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-                        </td>      
+                        </td>
                         <td>{{$contratante->id}}</td>
                         <td>{{$contratante->nomeContratante}}</td>
-                        <td>25/02/1977</td>
+                        <td>{{$contratante->nascContratante}}</td>
                         <td>{{$contratante->cpfContratante}}</td>
                         <td>{{$contratante->emailContratante}}</td>
                         <td>
@@ -92,7 +92,7 @@
         <div id="profissionais-section" class="table-section" style="display: none; ">
             <h3>Profissionais</h3>
 
-            
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -102,7 +102,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                     
+
                     </tr>
                 </thead>
                 <tbody>
@@ -110,8 +110,8 @@
                     <tr>
                         {{-- <td>{{$contratado->id}}</td> --}}
                         <td>
-                            <img src="{{ $contratado->imagemContratado }}" 
-                                 alt="Imagem do Contratado" 
+                            <img src="{{ $contratado->imagemContratado }}"
+                                 alt="Imagem do Contratado"
                                  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
                         </td>
                         <td>{{$contratado->id}}</td>
@@ -139,7 +139,7 @@
                         <th>Data nas.</th>
                         <th>CPF</th>
                         <th>Email</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>

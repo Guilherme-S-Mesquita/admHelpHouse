@@ -1,149 +1,247 @@
 @extends('layouts.main')
 
-@section('title', 'clientes')
+@section('title', 'Gerenciamento de Denúncias')
 
 @section('contentAdmin')
-
 
 <div class="main p-3">
     <link rel="stylesheet" href="{{ asset('css/atendimento.css') }}">
 
-
-            <div class="inicio">
-            <div class="header mb-4 ">
-                <p>Olá,<span style="color: #ff6347; font-size:30px ">{{$user->name}}</span></p>
-            </div>
-            </div>
-
-
-            <div class="title">
-                <p class="titleservico">Atendimentos | Denúncias</p>
-            </div>
-
-
-    <div class="tudo">
-    <div class="containerEstadoCli">
-
-        <button class="btn-aberto active" onclick="showSection('Aberto')">
-        <i class="bi bi-exclamation-triangle-fill"></i>  Em aberto
-        </button>
-        <br>
-        <button class="btn-andamento" onclick="showSection('Andamento')">
-        <i class="bi bi-clock-fill"></i>   Em andamento
-        </button>
-        <br>
-        <button class="btn-concluidas" onclick="showSection('concluidas')">
-        <i class="bi bi-check-circle-fill"></i> Concluídas
-        </button>
+    <div class="inicio">
+        <div class="header mb-4">
+            <p>Olá, <span style="color: #ff6347; font-size:30px">{{ $user->name }}</span></p>
+        </div>
     </div>
 
+    <div class="title">
+        <p class="titleservico">Gerenciamento de Denúncias</p>
+    </div>
 
-    <div class="linha"></div>
+    <div class="tudo">
+        <!-- Menu lateral para as categorias de denúncias -->
+        <div class="containerEstadoCli">
+            <button class="btn-aberto active" onclick="showSection('emAberto')">
+                <i class="fas fa-folder-open"></i> Em Aberto
+            </button>
+            <button class="btn-andamento" onclick="showSection('emAndamento')">
+                <i class="fas fa-tasks"></i> Em Andamento
+            </button>
+            <button class="btn-concluidas" onclick="showSection('concluidas')">
+                <i class="fas fa-check-circle"></i> Concluídas
+            </button>
+        </div>
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atendimentos</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+        <div class="linha"></div>
 
+        <!-- Seção de denúncias -->
+        <div class="denuncias">
+            <h3 class="denuncias-title">Denúncias</h3>
 
-    <div class="denuncias">
-            <div id="containerPergunta">
-                <div class="pergunta" id="pergunta1">
-                    <div class="imgCliente"></div>
-                    <div class="conteudoPergunta">
-                        <p class="nomeCliente">Aline Mendonça</p>
-                        <p class="textoPergunta">Como cancelar um serviço após já ter fechado?</p>
-                    </div>
-                    <p class="dataPergunta">25/10/2024</p>
+            <!-- Tabela de Denúncias em Aberto -->
+            <div id="emAberto-section" class="table-section">
+                <h4>Denúncias em Aberto</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Contratante</th>
+                            <th>Contratado</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($denunciasEmAberto as $denuncia)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
+                            <td>{{ $denuncia->contratado->nomeContratado }}</td>
+                            <td>{{ $denuncia->descricao }}</td>
+                            <td>{{ $denuncia->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <button
+                                    class="btn btn-sm btn-success"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalAnalise"
+                                    onclick="setModalData(
+                                        '{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}',
+                                        '{{ $denuncia->descricao }}',
+                                        '{{ $denuncia->created_at->format('d/m/Y') }}',
+                                        '{{ $denuncia->id }}')">
+                                    Analisar
+                                </button>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6">Nenhuma denúncia em aberto.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela de Denúncias em Análise -->
+            <div id="emAndamento-section" class="table-section">
+                <h4>Denúncias em Análise</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Contratante</th>
+                            <th>Contratado</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($denunciasEmAndamento as $denuncia)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
+                            <td>{{ $denuncia->contratado->nomeContratado }}</td>
+                            <td>{{ $denuncia->descricao }}</td>
+                            <td>{{ $denuncia->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <button
+                                    class="btn btn-sm btn-danger"
+                                    onclick="handleConclusao(this)"
+                                    data-id="{{ $denuncia->id }}">
+                                    Concluir
+                                </button>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6">Nenhuma denúncia em análise.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela de Denúncias Concluídas -->
+            <div id="concluidas-section" class="table-section">
+                <h4>Denúncias Concluídas</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Contratante</th>
+                            <th>Contratado</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($denunciasConcluidas as $denuncia)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
+                            <td>{{ $denuncia->contratado->nomeContratado }}</td>
+                            <td>{{ $denuncia->descricao }}</td>
+                            <td>{{ $denuncia->created_at->format('d/m/Y') }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5">Nenhuma denúncia concluída.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAnalise" tabindex="-1" aria-labelledby="modalAnaliseLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1d4ed8; color: white;">
+                    <h5 class="modal-title" id="modalAnaliseLabel">Analisar Denúncia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-
-            </div>
-
-            <!-- Estrutura do Modal -->
-            <div id="modalPergunta" class="modal">
-                <div class="modal-content">
-                    <h4>Pergunta de Aline Mendonça</h4>
-                    <p>Como cancelar um serviço após já ter fechado?</p>
-                    <p><strong>Enviada por:</strong> <span style="color: #ff914d;">HelpHouse</span></p>
-                    <p><strong>Data:</strong> 25/10/2024</p>
-                    <div class="modal-footer">
-                        <textarea id="resposta" rows="4" placeholder="Digite sua resposta aqui..."></textarea>
-                        <div class="button-group">
-                            <button class="btn fechar" id="closeModal">Fechar</button>
-                            <button class="btn enviar" >Enviar</button>
+                <div class="modal-body">
+                    <div class="d-flex align-items-start mb-3">
+                        <img src="https://via.placeholder.com/50" alt="Perfil" class="rounded-circle me-3">
+                        <div>
+                            <h6 class="fw-bold" id="contratanteNome">Nome do Contratante</h6>
+                            <p id="denunciaDescricao">Descrição</p>
+                            <p class="text-muted">
+                                Enviada em <span id="denunciaData">Data</span>
+                            </p>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button
+                        class="btn btn-sm btn-success"
+                        onclick="handleAnalise(this)"
+                        data-id="">
+                        Enviar para análise
+                    </button>
+                </div>
             </div>
-
+        </div>
+    </div>
 </div>
 
 <script>
-    // Abre o modal ao clicar na pergunta
-    document.getElementById('pergunta1').addEventListener('click', function() {
-        document.getElementById('modalPergunta').style.display = 'block';
-    });
-
-    // Fecha o modal ao clicar no botão de fechar
-    document.getElementById('closeModal').addEventListener('click', function() {
-        document.getElementById('modalPergunta').style.display = 'none';
-    });
-
-    // Fecha o modal ao clicar fora dele
-    window.onclick = function(event) {
-        var modal = document.getElementById('modalPergunta');
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
     function showSection(sectionId) {
-    // Oculta todas as seções
-    document.querySelectorAll('.table-section').forEach(section => {
-        section.style.display = 'none';
-    });
+        document.querySelectorAll('.table-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        document.querySelectorAll('.btn-aberto, .btn-andamento, .btn-concluidas').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(sectionId + '-section').style.display = 'block';
+        document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+    }
 
-    // Remove a classe 'active' de todos os botões
-    document.querySelectorAll('.btn-nav').forEach(btn => {
-        btn.classList.remove('active');
-    });
+    function setModalData(contratanteNome, denunciaDescricao, denunciaData, idDenuncia) {
+        document.getElementById('contratanteNome').textContent = contratanteNome;
+        document.getElementById('denunciaDescricao').textContent = denunciaDescricao;
+        document.getElementById('denunciaData').textContent = denunciaData;
 
-    // Exibe a seção específica e destaca o botão
-    document.getElementById(sectionId + '-section').style.display = 'block';
-    document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
-}.
+        // Definir o ID da denúncia no botão
+        document.querySelector('#modalAnalise .btn-success').setAttribute('data-id', idDenuncia);
+    }
 
-function showSection(sectionId) {
-    // Oculta todas as seções
-    document.querySelectorAll('.table-section').forEach(section => {
-        section.style.display = 'none';
-    });
+    function handleAnalise(button) {
+        const idDenuncia = button.getAttribute('data-id');
 
-    // Remove a classe 'active' de todos os botões
-    document.querySelectorAll('.btn-nav').forEach(btn => {
-        btn.classList.remove('active');
-    });
+        fetch(`/denuncia/${idDenuncia}/acao`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ acao: 'emAnalise' })
+        }).then(response => response.json())
+          .then(data => {
+              alert(data.message || data.error);
+              location.reload();
+          });
+    }
 
-    // Exibe a seção específica e destaca o botão
-    document.getElementById(sectionId + '-section').style.display = 'block';
-    document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
-}
+    function handleConclusao(button) {
+        const idDenuncia = button.getAttribute('data-id');
+
+        fetch(`/denuncia/${idDenuncia}/acao`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ acao: 'concluido' })
+        }).then(response => response.json())
+          .then(data => {
+              alert(data.message || data.error);
+              location.reload();
+          });
+    }
 </script>
 
-</body>
-</html>
-
-
-
-
-</div>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<script src="{{ asset('js/clientes.js') }}"></script>
+@endsection

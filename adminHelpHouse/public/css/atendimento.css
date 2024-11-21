@@ -20,7 +20,7 @@
     font-style: normal;
     margin-left: 15vh;
     margin-top: -3vh;
-   
+
 }
 
 .tudo {
@@ -30,14 +30,14 @@
     height: 800px;
     margin-right: 20%;
   }
-  
+
 
 .containerEstadoCli {
-   
+
     flex-direction: column;
     display:flex ;
-    width: 25%;  
-    height: 500px; 
+    width: 25%;
+    height: 500px;
     justify-content: center;
 }
 
@@ -90,3 +90,4 @@ button {
     height: 900px;
     border-radius: 30px;
 }
+
