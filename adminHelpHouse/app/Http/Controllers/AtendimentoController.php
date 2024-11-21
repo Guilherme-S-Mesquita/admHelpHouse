@@ -49,9 +49,11 @@ class AtendimentoController extends Controller
         // Valida os campos do request
         $validateData = $request->validate([
             'descricao' => 'required|string|max:300',
+            'idContratante' => 'required|uuid',
             'idContratado' => 'required|uuid',
             'categoria' => 'required|string',
             'status' => 'required|string|in:emAberto', // Validação corrigida
+            'imagemDenuncia'=>"nullable|string",
         ]);
 
         try {
