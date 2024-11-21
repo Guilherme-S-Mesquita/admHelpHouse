@@ -158,14 +158,17 @@
 
 
         <div class="partes">
-        <h2 style="color: #004AAD">Profissionais e serviços</h2>
+        <h2 style="color: #004AAD">Sobre usuários e serviços</h2>
+
+                        <div class="avaliacoes">
+                            <p style="color: #fff">Média de avaliações: 4.7 <i class= "icon fa fa-star"></i></p>
+                        </div>
+
                         <div class="graficopro">
                         <div>
             <canvas id="mygrafico"></canvas>
             </div>
-                        <div class="avaliacoes">
-                            <h3 style="color: #fff">Média de avaliações: 4.7 <i class= "icon fa fa-star"></i></h3>
-                        </div>
+                        
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
@@ -174,14 +177,16 @@
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Zona Leste', 'Zona Oeste', 'Zona Sul', 'Zona Norte'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [12, 19, 3, 5],
                     borderWidth: 1
                 }]
                 },
                 options: {
+                    indexAxis: 'y',
+                
                 scales: {
                     y: {
                     beginAtZero: true
@@ -191,6 +196,34 @@
             });
             </script>
                             </div>
+
+                
+                        <div class="topPro">
+                            <p>Top profissionais do mês</p>
+
+                            <div class="ranking" style="background-color: #fee267;">
+                                <div class="top1" >
+                                    <h2>1</h2>
+                                    <div class="nomePro" ><p style="color: white">Izaudi Mesquita |</p></div>
+                                    <div class="categoriaPro"><p style="color: #5e5e5e">Pedreiro</p></div>
+                                </div>
+                            </div>
+
+                            <div class="ranking" style="background-color: #ffeea1;">
+                            <div class="top2" >
+                                    <h2>2</h2>
+                                    <div class="nomePro" ><p style="color: white;">José Dias |</p></div>
+                                    <div class="categoriaPro"><p style="color: #5e5e5e">Mecânico</p></div>
+                                </div>
+                            </div>
+                            <div class="ranking"  style="background-color: #f9c397;">
+                            <div class="top3">
+                                    <h2>3</h2>
+                                    <div class="nomePro"  ><p style="color: white">Fernando Silva |</p></div>
+                                    <div class="categoriaPro"><p style="color: #5e5e5e">Eletricista</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 
