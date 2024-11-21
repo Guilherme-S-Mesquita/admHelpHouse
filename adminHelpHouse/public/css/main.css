@@ -159,14 +159,28 @@ body {
 
         }
 
-.infosadd h3, h5 {
+.infosadd h5 {
 
     color: #fff;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     font-style: normal;
+    flex-direction: column;
+    display: flex;
+    margin-top: -2vh;
+    
 }
 
+.infosadd p {
+    
+    color: #fff;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    flex-direction: column;
+    display: flex;
+    font-size: 30px;
+}
 
 #sidebar{
     width: 80px;

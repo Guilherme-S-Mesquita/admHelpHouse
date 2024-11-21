@@ -74,6 +74,18 @@ button {
     border:none
 }
 
+
+h4 {
+    color: #004AAD;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 2vh;
+    margin-left: 3vh;
+    margin-bottom: 2vh;
+    font-family: "Poppins", sans-serif;
+}
+
+
 .linha {
     position: absolute;
     top: 180px;

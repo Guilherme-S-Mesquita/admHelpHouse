@@ -35,7 +35,6 @@
 
         <!-- Seção de denúncias -->
         <div class="denuncias">
-            <h3 class="denuncias-title">Denúncias</h3>
 
             <!-- Tabela de Denúncias em Aberto -->
             <div id="emAberto-section" class="table-section">
