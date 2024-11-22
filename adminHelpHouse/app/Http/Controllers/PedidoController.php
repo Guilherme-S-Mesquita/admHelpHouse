@@ -59,7 +59,7 @@ class PedidoController extends Controller
     }
 
     // Método para listar pedidos pendentes
-    public function pedidosPendentes()
+    public function pedidosPendentes(Request $request)
     {
         $profissional['idContratado'] = Auth::user()->idContratado;
 
@@ -90,6 +90,9 @@ class PedidoController extends Controller
     ]);
     }
 
+
+
+
     // Método para responder a um pedido
     public function meusPedidos()
     {
@@ -101,10 +104,12 @@ class PedidoController extends Controller
         $contratante = Contratante::with([
             'pedidos' => function ($query) {
                 $query->select('idSolicitarPedido', 'tituloPedido', 'idContratado', 'idContratante')
-                    ->with(['contratado:idContratado,nomeContratado']);
+                    ->with(['contratado:idContratado,nomeContratado'])
+                    ->where('andamentoPedido', 'pendente');
             }
         ])
             ->where('idContratante', $idContratante)
+
             ->first();
 
         if (!$contratante) {
@@ -113,6 +118,8 @@ class PedidoController extends Controller
 
         return response()->json($contratante);
     }
+
+
     public function pedido($idSolicitarPedido)
     {
         $pedido = Pedido::find($idSolicitarPedido);
@@ -359,7 +366,11 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
                 ->where('status', 'aceito');
+            },
+            'contratado' => function ($query) {
+                $query->select('idContratado','nomeContratado');
             }
+
         ])
              ->where('idContratante', $idContratante)
              ->where('statusPedido', 'aceito')
@@ -378,11 +389,13 @@ class PedidoController extends Controller
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
-        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'idContratante')
+        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao')
+
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
             'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
         ])
+        
         ->where('andamentoPedido', 'concluido')
         ->get();
 

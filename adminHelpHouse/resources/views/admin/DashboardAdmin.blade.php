@@ -174,13 +174,17 @@
             <script>
             const ctx = document.getElementById('mygrafico');
 
+            const labels = {!! json_encode($labelRegiao) !!};
+            const data = {!! json_encode($dataNumRegiao) !!};
+
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                labels: ['Zona Leste', 'Zona Oeste', 'Zona Sul', 'Zona Norte'],
+                labels: [labels],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5],
+                    label: 'Número de Profissionais por Região',
+                    data: [data],
+
                     borderWidth: 1
                 }]
                 },
@@ -233,39 +237,46 @@
 
             <div class="grafico2">
     <canvas id="veigh" style="width: 500px; height: 280px;"></canvas>
-                </div>a
-                <script>
-                const ctx = document.getElementById('veigh');
+                </div>
 
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [{{ $cadastroMes }}],
-        datasets: [
-            {
-                label: 'Profissionais',
-                data: [{{ $profissionalTotal }}],
-                borderColor: '#004AAD',
-                backgroundColor: '#004AAD',
-                borderWidth: 1
-            },
-            {
-                label: 'Clientes',
-                data: [{{ $contratanteTotal }}],
-                borderColor: '#FF914D',
-                backgroundColor: '#FF914D',
-                borderWidth: 1
-            }
-        ]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+
+
+                <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById('veigh').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {!! json_encode($cadastroMes) !!}, // Labels para os meses
+            datasets: [
+                {
+                    label: 'Profissionais',
+                    data: {!! json_encode($profissionalTotal) !!}, // Dados de profissionais
+                    borderColor: '#004AAD',
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Clientes',
+                    data: {!! json_encode($contratanteTotal) !!}, // Dados de clientes
+                    borderColor: '#FF914D',
+                    backgroundColor: 'rgba(255, 145, 77, 0.2)',
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
+    });
 });
+
+                  
 
                 </script>
 
