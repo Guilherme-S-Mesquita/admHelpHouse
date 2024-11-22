@@ -46,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get( '/contratos/recebidos/{idContratante}', [PedidoController::class , 'meusContratos']);
     Route::patch('/contratos/{idSolicitarPedido}/acao', [PedidoController::class, 'acaoContrato']);
     Route::get( '/pedidos/finalizados/{idContratante}', [PedidoController::class , 'meusPedidosFinalizadosCliente']);
+
+    
     Route::get( '/pedidos/finalizados', [PedidoController::class , 'meusPedidosFinalizadosProfissional']);
 
 
