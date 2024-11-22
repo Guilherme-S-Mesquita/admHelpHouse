@@ -150,7 +150,7 @@
                 </div>
                 <div class="oncinha">
                     <h3>Serviços <span style="color:#009245">Concluidos</span> </h3>
-                    <h3 class="numero" style="color:#009245">24</h3>
+                    <h3 class="numero" style="color:#009245">{{$concluidosCount}}</h3>
                 </div>
             </div>
         </div>
@@ -168,7 +168,7 @@
                         <div>
             <canvas id="mygrafico"></canvas>
             </div>
-                        
+
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
@@ -186,7 +186,7 @@
                 },
                 options: {
                     indexAxis: 'y',
-                
+
                 scales: {
                     y: {
                     beginAtZero: true
@@ -197,7 +197,7 @@
             </script>
                             </div>
 
-                
+
                         <div class="topPro">
                             <p>Top profissionais do mês</p>
 

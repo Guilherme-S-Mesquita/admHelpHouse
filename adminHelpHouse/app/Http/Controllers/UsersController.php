@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profissional;
 use App\Models\Contratante;
-use App\Http\Controllers\loginController;
+use App\Models\Pedido;
+
 
 class UsersController extends Controller
 {

@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
-
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -139,7 +136,6 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
                 ->where('status', 'aceito');
-
             }
         ])
             ->where( 'statusPedido', 'aceito')
@@ -373,25 +369,29 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
-    public function meusPedidosFinalizadosProfissional ($idContratado){
 
-        $idContratado = Auth::user()->idContratado;
 
-        $pedido = Pedido::with([
+    public function meusPedidosFinalizadosProfissional($idContratado)
+    {
+        // Confirme que $idContratado foi recebido corretamente
+        if (!$idContratado) {
+            return response()->json(['error' => 'ID do contratado não fornecido.'], 400);
+        }
 
+        $pedidos = Pedido::with([
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
-                ->where('status', 'aceito');
+                      ->where('status', 'aceito'); // Confirme o valor correto no banco
             }
         ])
-             ->where('idContratante', $idContratado)
-             ->where('statusPedido', 'aceito')
-             ->where('andamentoPedido','concluido')
-             ->get();
+        ->where('idContratado', $idContratado)
+        ->where('statusPedido', 'aceito') // Verifique o valor correto
+        ->where('andamentoPedido', 'concluido') // Verifique o valor correto
+        ->get();
 
-             return response()->json($pedido);
-
+        return response()->json($pedidos);
     }
+
 
 
 }

@@ -29,6 +29,8 @@ class AdminController extends Controller
         $contadorPedidos = Pedido ::count();
 
 
+
+
         $contadorServicosPedidos = Pedido::join('tbservicos', 'tbSolicitarPedido.idServicos', '=', 'tbservicos.idServicos')
             ->select('tbservicos.nomeServicos', DB::raw('count(tbSolicitarPedido.idSolicitarPedido) as total'))
             ->groupBy('tbservicos.nomeServicos')
@@ -81,10 +83,16 @@ $cadastroMes = implode(',', $mes);
 $contratanteTotal = implode(',', $totalContratantes);
 $profissionalTotal = implode(',', $totalProfissionais);
 
+
+
+$concluidosCount = Pedido::where('andamentoPedido', 'concluido')->count();
+
+
+
 return view('/admin/DashboardAdmin', compact(
-    'acountContratantes', 'contadorServicos', 'profissionalTotal', 
-    'acountContratados', 'contratanteTotal', 'contadorServicosPedidos', 
-    'contadorPedidos', 'cadastroMes', 'labels', 'data', 'user'
+    'acountContratantes', 'contadorServicos', 'profissionalTotal',
+    'acountContratados', 'contratanteTotal', 'contadorServicosPedidos',
+    'contadorPedidos', 'cadastroMes', 'labels', 'data','concluidosCount', 'user'
 ));
     }
     }
