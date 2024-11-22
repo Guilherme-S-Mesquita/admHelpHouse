@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
+
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -136,6 +139,7 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
                 ->where('status', 'aceito');
+
             }
         ])
             ->where( 'statusPedido', 'aceito')
@@ -369,28 +373,25 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
+    public function meusPedidosFinalizadosProfissional ($idContratado){
 
+        $idContratado = Auth::user()->idContratado;
 
-    public function meusPedidosFinalizadosProfissional()
-    {
-        // Obtém o profissional autenticado
-        $profissional = Auth::user();
+        $pedido = Pedido::with([
 
-        // Carrega os pedidos relacionados ao profissional que estão concluídos
-        $pedidosFinalizados = $profissional->pedidos()
-        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'idContratante')
-        ->with([
-            'contratante:idContratante,nomeContratante,emailContratante',
-            'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
+            'contrato' => function ($query) {
+                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
+                ->where('status', 'aceito');
+            }
         ])
-        ->where('andamentoPedido', 'concluido')
-        ->get();
+             ->where('idContratante', $idContratado)
+             ->where('statusPedido', 'aceito')
+             ->where('andamentoPedido','concluido')
+             ->get();
 
+             return response()->json($pedido);
 
-        // Retorna os pedidos finalizados no formato JSON
-        return response()->json($pedidosFinalizados, 200);
     }
-
 
 
 }
