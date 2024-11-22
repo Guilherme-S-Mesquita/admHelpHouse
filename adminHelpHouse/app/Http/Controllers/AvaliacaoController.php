@@ -32,6 +32,18 @@ class AvaliacaoController extends Controller
         ]);
 
         try {
+            // Verifica se já existe uma avaliação do contratante para o contratado
+            $avaliacaoExistente = Avaliacao::where('idContratado', $validated['idContratado'])
+                ->where('idContratante', $validated['idContratante'])
+                ->first();
+
+            if ($avaliacaoExistente) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Você já avaliou este profissional.',
+                ], 400);
+            }
+
             // Cria a avaliação
             $avaliacao = Avaliacao::create([
                 'idContratado' => $validated['idContratado'],
@@ -56,6 +68,7 @@ class AvaliacaoController extends Controller
             ], 500);
         }
     }
+
 
 
 

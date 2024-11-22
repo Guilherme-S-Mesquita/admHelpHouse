@@ -13,26 +13,27 @@ class Avaliacao extends Model
 
     protected $table = 'tbavaliacao';
 
-    protected $fillable = ['idContratado',
-                            'idContratante',
-                            'ratingAvaliacao',
-                            'descavaliacao',
-                            'imagem',
-                            'nome',
-                          ];
-
-
-                          public function contratado()
-                          {
-                              return $this->belongsTo(Contratado::class, 'idContratado');
-                          }
-                          
-    public function contratante()
-{
-    return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
-}
-                          
-
+    protected $fillable = [
+        'idContratado',
+        'idContratante',
+        'ratingAvaliacao',
+        'descavaliacao',
+        'imagem',
+        'nome',
+    ];
     public $timestamps = false;
+
+
+    public function contratante()
+    {
+        return $this->belongsTo(Contratante::class, 'idContratante', 'idContratante');
+    }
+
+    public function contratado()
+    {
+        return $this->belongsTo(Profissional::class, 'idContratado', 'idContratado');
+    }
+
+
 
 }

@@ -371,25 +371,24 @@ class PedidoController extends Controller
     }
 
 
-    public function meusPedidosFinalizadosProfissional($idContratado)
+    public function meusPedidosFinalizadosProfissional()
     {
-        // Confirme que $idContratado foi recebido corretamente
-        if (!$idContratado) {
-            return response()->json(['error' => 'ID do contratado não fornecido.'], 400);
-        }
+        // Obtém o profissional autenticado
+        $profissional = Auth::user();
 
-        $pedidos = Pedido::with([
-            'contrato' => function ($query) {
-                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
-                      ->where('status', 'aceito'); // Confirme o valor correto no banco
-            }
+        // Carrega os pedidos relacionados ao profissional que estão concluídos
+        $pedidosFinalizados = $profissional->pedidos()
+        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'idContratante')
+        ->with([
+            'contratante:idContratante,nomeContratante,emailContratante',
+            'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
         ])
-        ->where('idContratado', $idContratado)
-        ->where('statusPedido', 'aceito') // Verifique o valor correto
-        ->where('andamentoPedido', 'concluido') // Verifique o valor correto
+        ->where('andamentoPedido', 'concluido')
         ->get();
 
-        return response()->json($pedidos);
+
+        // Retorna os pedidos finalizados no formato JSON
+        return response()->json($pedidosFinalizados, 200);
     }
 
 
