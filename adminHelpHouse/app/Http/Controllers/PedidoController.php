@@ -390,17 +390,6 @@ class PedidoController extends Controller
 
         $pedido = Pedido::with([
 
-<<<<<<< HEAD
-            'contrato' => function ($query) {
-                $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
-                ->where('status', 'aceito');
-            }
-        ])
-             ->where('idContratante', $idContratado)
-             ->where('statusPedido', 'aceito')
-             ->where('andamentoPedido','concluido')
-             ->get();
-=======
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
         ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao')
@@ -412,7 +401,6 @@ class PedidoController extends Controller
         
         ->where('andamentoPedido', 'concluido')
         ->get();
->>>>>>> origin/main
 
              return response()->json($pedido);
 
