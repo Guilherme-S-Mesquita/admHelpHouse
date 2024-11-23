@@ -23,13 +23,24 @@
     <form action="{{ route('inserir.servico') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="nomeServicos">Nome do Serviço:</label>
-            <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" required>
-        </div>
-        <div class="form-group">
-            <label for="categoriaServicos">Categoria:</label>
-            <input type="text" class="form-control" id="categoriaServicos" name="categoriaServicos" required>
-        </div>
+    <label for="nomeServicos">Nome do Serviço:</label>
+    <input type="text" class="form-control" id="nomeServicos" name="nomeServicos" required>
+</div>
+
+<div class="form-group">
+    <label for="categoriaServicos">Categoria:</label>
+    <input list="categorias" class="form-control" id="categoriaServicos" name="categoriaServicos" required>
+    <datalist id="categorias">
+        <option value="Manutenção e Reparos Domésticos">
+        <option value="Construção e Reformas">
+        <option value="Serviços Automotivos">
+        <option value="Tecnologia da Informação">
+        <option value="Design e Multimídia">
+        <option value="Serviços Domésticos e Pessoais">
+        <option value="Consultoria e Assessoria">
+    </datalist>
+</div>
+
         
         <div class="form-group">
             <label for="descricao">Descrição:</label>
