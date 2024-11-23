@@ -79,7 +79,13 @@
                         <td>{{$contratante->emailContratante}}</td>
                         <td>
                             <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
-                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <form action="{{ route('users.deleteContratante', $contratante->idContratante) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     <!-- Adicione mais linhas conforme necessário -->
@@ -121,7 +127,13 @@
                         <td>{{$contratado->emailContratado}}</td>
                         <td>
                             <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
-                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <form action="{{ route('users.deleteContratado', $contratado->idContratado) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -152,7 +164,13 @@
                         <td>{{$user->email}}</td>
                         <td>
                             <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
-                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <form action="{{ route('users.deleteAdmin', $user->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

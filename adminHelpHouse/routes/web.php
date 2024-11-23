@@ -7,6 +7,7 @@ use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\InfosGeraisController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\ContratanteController;
 use App\Livewire\Auth;
 use App\Livewire\Contact;
 use App\Livewire\RealtimeMessage;
@@ -40,8 +41,13 @@ Route::get('/criarServico', [ServicoController::class, 'create'])->name('criar.s
 Route::post('/adicionar', [ServicoController::class, 'store'])->name('inserir.servico');
 
 
+
 //--------------------------------- USUARIOS -------------------------------------------
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::delete('/users/contratante/{idContratante}', [UsersController::class, 'destroy'])->name('users.deleteContratante');
+Route::delete('/users/contratado/{idContratado}', [UsersController::class, 'destroyContratado'])->name('users.deleteContratado');
+Route::delete('/users/admin/{idAdmin}', [UsersController::class, 'destroyAdmin'])->name('users.deleteAdmin');
+
 
 
 // --------------------------------USUARIOS PAGINA ADM----------------------------------
