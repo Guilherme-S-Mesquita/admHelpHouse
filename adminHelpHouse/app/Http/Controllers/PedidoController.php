@@ -384,11 +384,10 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
-    public function meusPedidosFinalizadosProfissional ($idContratado){
-
-        $idContratado = Auth::user()->idContratado;
-
-        $pedido = Pedido::with([
+   public function meusPedidosFinalizadosProfissional()
+    {
+        // Obtém o profissional autenticado
+        $profissional = Auth::user();
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
@@ -396,14 +395,15 @@ class PedidoController extends Controller
 
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
-            'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
+            'contrato:id,idSolicitarPedido,status,valor,data,hora,forma_pagamento',
         ])
-        
+
         ->where('andamentoPedido', 'concluido')
         ->get();
 
-             return response()->json($pedido);
 
+        // Retorna os pedidos finalizados no formato JSON
+        return response()->json($pedidosFinalizados, 200);
     }
 
 
