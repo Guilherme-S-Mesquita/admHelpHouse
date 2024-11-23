@@ -64,14 +64,41 @@ class UsersController extends Controller
         }
     }
 
-    public function delete($id){
+    public function destroy($idContratante){
+        try {
+            $contratante = Contratante::findOrFail($idContratante);
+            $contratante->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
 
-
-        User::findOrFail($id)->delete();
-
-        return redirect()->route('users.admins')->with('msg', 'Serviço excluido com sucesso!');
+            return redirect()->back()->withErrors('Erro ao excluir o contratante: ' . $e->getMessage());
+        }
     }
 
+
+
+    public function destroyContratado($idContratado){
+        try {
+            $contratado = Profissional::findOrFail($idContratado);
+            $contratado->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao excluir o contratado: ' . $e->getMessage());
+        }
+    }
+
+    public function destroyAdmin($idAdmin){
+        try {
+            $adm = User::findOrFail($idAdmin);
+            $adm->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao excluir o contratado: ' . $e->getMessage());
+        }
+    }
+    
 
     public function clientes(){
     // users é o caminho da pasta, e os clientes é o nome da pagina

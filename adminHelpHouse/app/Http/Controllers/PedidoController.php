@@ -380,9 +380,7 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
-
-
-    public function meusPedidosFinalizadosProfissional()
+   public function meusPedidosFinalizadosProfissional()
     {
         // Obtém o profissional autenticado
         $profissional = Auth::user();
@@ -393,13 +391,14 @@ class PedidoController extends Controller
 
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
-            'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
+            'contrato:id,idSolicitarPedido,status,valor,data,hora,forma_pagamento',
         ])
-        
+
         ->where('andamentoPedido', 'concluido')
         ->get();
 
 
+        // Retorna os pedidos finalizados no formato JSON
         return response()->json($pedidosFinalizados, 200);
     }
 
