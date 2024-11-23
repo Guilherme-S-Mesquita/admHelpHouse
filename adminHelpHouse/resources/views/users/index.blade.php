@@ -78,7 +78,6 @@
                         <td>{{$contratante->cpfContratante}}</td>
                         <td>{{$contratante->emailContratante}}</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
                             <form action="{{ route('users.deleteContratante', $contratante->idContratante) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
@@ -126,7 +125,6 @@
                         <td>{{$contratado->cpfContratado}}</td>
                         <td>{{$contratado->emailContratado}}</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
                             <form action="{{ route('users.deleteContratado', $contratado->idContratado) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
@@ -163,7 +161,6 @@
                         <td>{{$user->cpf}}</td>
                         <td>{{$user->email}}</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-pencil-alt"></i></button>
                             <form action="{{ route('users.deleteAdmin', $user->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
