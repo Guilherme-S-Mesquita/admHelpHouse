@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
-
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -146,7 +143,6 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
                 ->where('status', 'aceito');
-
             }
         ])
             ->where( 'statusPedido', 'aceito')
@@ -384,11 +380,12 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
-    public function meusPedidosFinalizadosProfissional ($idContratado){
 
-        $idContratado = Auth::user()->idContratado;
 
-        $pedido = Pedido::with([
+    public function meusPedidosFinalizadosProfissional()
+    {
+        // Obtém o profissional autenticado
+        $profissional = Auth::user();
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
@@ -402,9 +399,10 @@ class PedidoController extends Controller
         ->where('andamentoPedido', 'concluido')
         ->get();
 
-             return response()->json($pedido);
 
+        return response()->json($pedidosFinalizados, 200);
     }
+
 
 
 }
