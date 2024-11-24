@@ -391,13 +391,13 @@ class PedidoController extends Controller
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
-        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao')
-
+        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'andamentoPedido')
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
             'contrato:id,idSolicitarPedido,status,valor,data,hora,forma_pagamento',
         ])
-
+        
+        
         ->where('andamentoPedido', 'concluido')
         ->get();
 
