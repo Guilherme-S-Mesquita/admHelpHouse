@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
-
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -146,7 +143,6 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
                 ->where('status', 'aceito');
-
             }
         ])
             ->where( 'statusPedido', 'aceito')
@@ -218,7 +214,10 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
                 ->where('status', 'pendente');
-            }
+            },
+            'contratado' => function ($query) {
+                $query->select('idContratado','nomeContratado');
+            },
         ])
              ->where('idContratante', $idContratante)
              ->where('statusPedido', 'aceito')
@@ -373,7 +372,8 @@ class PedidoController extends Controller
             },
             'contratado' => function ($query) {
                 $query->select('idContratado','nomeContratado');
-            }
+            },
+         
 
         ])
              ->where('idContratante', $idContratante)
@@ -405,6 +405,7 @@ class PedidoController extends Controller
         // Retorna os pedidos finalizados no formato JSON
         return response()->json($pedidosFinalizados, 200);
     }
+
 
 
 }
