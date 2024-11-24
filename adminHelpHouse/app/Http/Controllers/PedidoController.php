@@ -214,7 +214,10 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
                 ->where('status', 'pendente');
-            }
+            },
+            'contratado' => function ($query) {
+                $query->select('idContratado','nomeContratado');
+            },
         ])
              ->where('idContratante', $idContratante)
              ->where('statusPedido', 'aceito')
@@ -369,7 +372,8 @@ class PedidoController extends Controller
             },
             'contratado' => function ($query) {
                 $query->select('idContratado','nomeContratado');
-            }
+            },
+         
 
         ])
              ->where('idContratante', $idContratante)
