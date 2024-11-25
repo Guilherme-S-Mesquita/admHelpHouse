@@ -178,26 +178,36 @@
             const data = {!! json_encode($dataNumRegiao) !!};
 
             new Chart(ctx, {
-                type: 'bar',
-                data: {
-                labels: [labels],
-                datasets: [{
-                    label: 'Número de Profissionais por Região',
-                    data: [data],
-
-                    borderWidth: 1
-                }]
-                },
-                options: {
-                    indexAxis: 'y',
-
-                scales: {
-                    y: {
+        type: 'bar',
+        data: {
+            labels: labels, // Corrigido para usar diretamente o array de labels
+            datasets: [{
+                label: 'Número de Profissionais por Região',
+                data: data, // Corrigido para usar diretamente o array de dados
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)', // Cor para cada barra
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'x', // Altera o gráfico para colunas (se necessário)
+            scales: {
+                y: {
                     beginAtZero: true
-                    }
                 }
-                }
-            });
+            }
+        }
+    });
             </script>
                             </div>
 
@@ -276,7 +286,7 @@
     });
 });
 
-                  
+
 
                 </script>
 

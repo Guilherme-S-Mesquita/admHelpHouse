@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignUuid('idContratado')->nullable()
             ->constrained('tbcontratado', 'idContratado')
             ->onUpdate('cascade')->onDelete('set null');
-
+            $table->string('motivo');
             $table->string('descricao');
             $table->string('categoria');
             $table->enum('status', ['emAberto', 'emAnalise', 'concluido', 'cancelado'])->default('emAberto');

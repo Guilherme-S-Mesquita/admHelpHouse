@@ -105,7 +105,8 @@ class PedidoController extends Controller
             'pedidos' => function ($query) {
                 $query->select('idSolicitarPedido', 'tituloPedido', 'idContratado', 'idContratante')
                     ->with(['contratado:idContratado,nomeContratado'])
-                    ->where('andamentoPedido', 'pendente');
+                    ->whereIn('andamentoPedido', ['a_caminho', 'ReceberPagamento', 'pendente'])
+                    ->whereIn('statusPedido', ['aceito','pendente']);
             }
         ])
             ->where('idContratante', $idContratante)
@@ -395,7 +396,7 @@ class PedidoController extends Controller
             'contratante:idContratante,nomeContratante,emailContratante',
             'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
         ])
-        
+
         ->where('andamentoPedido', 'concluido')
         ->get();
 

@@ -35,7 +35,6 @@
 
         <!-- Seção de denúncias -->
         <div class="denuncias">
-
             <!-- Tabela de Denúncias em Aberto -->
             <div id="emAberto-section" class="table-section">
                 <h4>Denúncias em Aberto</h4>
@@ -54,6 +53,11 @@
                         @forelse ($denunciasEmAberto as $denuncia)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ $denuncia->contratante->imagemContratante }}"
+                                     alt="Imagem do Contratante"
+                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                            </td>
                             <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
                             <td>{{ $denuncia->contratado->nomeContratado }}</td>
                             <td>{{ $denuncia->descricao }}</td>
@@ -64,6 +68,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalAnalise"
                                     onclick="setModalData(
+
                                         '{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}',
                                         '{{ $denuncia->descricao }}',
                                         '{{ $denuncia->created_at->format('d/m/Y') }}',
@@ -82,7 +87,7 @@
             </div>
 
             <!-- Tabela de Denúncias em Análise -->
-            <div id="emAndamento-section" class="table-section">
+            <div id="emAndamento-section" class="table-section" style="display: none;">
                 <h4>Denúncias em Análise</h4>
                 <table class="table table-striped">
                     <thead>
@@ -99,17 +104,25 @@
                         @forelse ($denunciasEmAndamento as $denuncia)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ $denuncia->contratante->imagemContratante }}"
+                                     alt="Imagem do Contratante"
+                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                            </td>
                             <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
                             <td>{{ $denuncia->contratado->nomeContratado }}</td>
                             <td>{{ $denuncia->descricao }}</td>
                             <td>{{ $denuncia->created_at->format('d/m/Y') }}</td>
                             <td>
-                                <button
-                                    class="btn btn-sm btn-danger"
-                                    onclick="handleConclusao(this)"
-                                    data-id="{{ $denuncia->id }}">
-                                    Concluir
-                                </button>
+                                <form action="{{ route('atendimento.send', ['id' => $denuncia->id ?? '']) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="acao" value="concluido">
+                                    <input type="hidden" name="denuncia_id" id="denunciaIdInputConclusao">
+                                    <input type="hidden" name="suspender_profissional" id="suspenderProfissionalInput">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Concluir denúncia
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty
@@ -122,7 +135,7 @@
             </div>
 
             <!-- Tabela de Denúncias Concluídas -->
-            <div id="concluidas-section" class="table-section">
+            <div id="concluidas-section" class="table-section" style="display: none;">
                 <h4>Denúncias Concluídas</h4>
                 <table class="table table-striped">
                     <thead>
@@ -138,6 +151,11 @@
                         @forelse ($denunciasConcluidas as $denuncia)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ $denuncia->contratante->imagemContratante }}"
+                                     alt="Imagem do Contratante"
+                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                            </td>
                             <td>{{ $denuncia->contratante->nomeContratante ?? 'N/A' }}</td>
                             <td>{{ $denuncia->contratado->nomeContratado }}</td>
                             <td>{{ $denuncia->descricao }}</td>
@@ -154,38 +172,77 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="modalAnalise" tabindex="-1" aria-labelledby="modalAnaliseLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg"> <!-- Usando modal-lg para largura maior -->
             <div class="modal-content">
+                <!-- Cabeçalho do Modal -->
                 <div class="modal-header" style="background-color: #1d4ed8; color: white;">
                     <h5 class="modal-title" id="modalAnaliseLabel">Analisar Denúncia</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
+                <!-- Corpo do Modal -->
                 <div class="modal-body">
+                    <!-- Informações da denúncia -->
                     <div class="d-flex align-items-start mb-3">
-                        <img src="https://via.placeholder.com/50" alt="Perfil" class="rounded-circle me-3">
+                        <img src="{{ $denuncia->contratante->imagemContratante }}"
+                             alt="Imagem do Contratante"
+                             style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+
                         <div>
-                            <h6 class="fw-bold" id="contratanteNome">Nome do Contratante</h6>
-                            <p id="denunciaDescricao">Descrição</p>
-                            <p class="text-muted">
-                                Enviada em <span id="denunciaData">Data</span>
+                            <h6 class="fw-bold" id="contratanteNome">{{ $denuncia->contratante->nomeContratante }}</h6>
+                            <p id="denunciaDescricao">{{ $denuncia->descricao }}</p>
+                            <p class="text-muted mb-0">
+                                Enviada em <span id="denunciaData">{{ $denuncia->created_at->format('d/m/Y H:i') }}</span>
                             </p>
                         </div>
                     </div>
+
+                    <!-- Campo para o motivo de suspensão -->
+                    <label for="motivoSuspensao" class="form-label">Motivo da Suspensão</label>
+                    <textarea class="form-control"
+                              id="motivoSuspensao"
+                              name="motivo"
+                              rows="3"
+                              placeholder="Digite o motivo da suspensão (opcional)..."></textarea>
+
+                    <!-- Checkbox para suspender profissional -->
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="1" id="suspenderProfissional" name="suspender_profissional">
+                        <label class="form-check-label" for="suspenderProfissional">
+                            Suspender profissional associado a esta denúncia
+                        </label>
+                    </div>
                 </div>
+
+                <!-- Rodapé do Modal -->
                 <div class="modal-footer">
-                    <button
-                        class="btn btn-sm btn-success"
-                        onclick="handleAnalise(this)"
-                        data-id="">
-                        Enviar para análise
-                    </button>
+                    <!-- Botão de "Enviar para análise" -->
+                    <form action="{{ route('atendimento.send', ['id' => $denuncia->id ?? '']) }}" method="POST" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="acao" value="emAnalise">
+                        <input type="hidden" name="denuncia_id" id="denunciaIdInput">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            Enviar para análise
+                        </button>
+                    </form>
+
+                    <!-- Botão de "Concluir denúncia" -->
+                    <form action="{{ route('atendimento.send', ['id' => $denuncia->id ?? '']) }}" method="POST" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="acao" value="concluido">
+                        <input type="hidden" name="denuncia_id" id="denunciaIdInputConclusao">
+                        <input type="hidden" name="suspender_profissional" id="suspenderProfissionalInput">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Concluir denúncia
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
 
 <script>
     function showSection(sectionId) {
@@ -195,21 +252,34 @@
         document.querySelectorAll('.btn-aberto, .btn-andamento, .btn-concluidas').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.getElementById(sectionId + '-section').style.display = 'block';
-        document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+
+        const targetSection = document.getElementById(sectionId + '-section');
+        if (targetSection) {
+            targetSection.style.display = 'block';
+            document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
     }
 
     function setModalData(contratanteNome, denunciaDescricao, denunciaData, idDenuncia) {
-        document.getElementById('contratanteNome').textContent = contratanteNome;
-        document.getElementById('denunciaDescricao').textContent = denunciaDescricao;
-        document.getElementById('denunciaData').textContent = denunciaData;
+    document.getElementById('contratanteNome').textContent = contratanteNome;
+    document.getElementById('denunciaDescricao').textContent = denunciaDescricao;
+    document.getElementById('denunciaData').textContent = denunciaData;
 
-        // Definir o ID da denúncia no botão
-        document.querySelector('#modalAnalise .btn-success').setAttribute('data-id', idDenuncia);
-    }
+    // Atualiza os inputs hidden nos formulários
+    document.getElementById('denunciaIdInput').value = idDenuncia;
+    document.getElementById('denunciaIdInputConclusao').value = idDenuncia;
+}
+
+
 
     function handleAnalise(button) {
         const idDenuncia = button.getAttribute('data-id');
+        const motivo = document.getElementById('motivoSuspensao').value.trim();
+
+        if (!motivo) {
+            alert('Por favor, insira o motivo da suspensão.');
+            return;
+        }
 
         fetch(`/denuncia/${idDenuncia}/acao`, {
             method: 'PATCH',
@@ -217,12 +287,17 @@
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ acao: 'emAnalise' })
-        }).then(response => response.json())
-          .then(data => {
-              alert(data.message || data.error);
-              location.reload();
-          });
+            body: JSON.stringify({ acao: 'emAnalise', motivo })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message || data.error);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            alert('Erro na requisição. Veja o console para mais detalhes.');
+        });
     }
 
     function handleConclusao(button) {
@@ -235,11 +310,16 @@
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
             body: JSON.stringify({ acao: 'concluido' })
-        }).then(response => response.json())
-          .then(data => {
-              alert(data.message || data.error);
-              location.reload();
-          });
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message || data.error);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            alert('Erro na requisição. Veja o console para mais detalhes.');
+        });
     }
 </script>
 

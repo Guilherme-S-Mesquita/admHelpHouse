@@ -94,8 +94,8 @@ class AdminController extends Controller
             ->get();
 
 
-        $labelRegiao = $zonaProfissionais->pluck('regiaoContratado');
-        $dataNumRegiao = $zonaProfissionais->pluck('total');
+        $labelRegiao = $zonaProfissionais->pluck('regiaoContratado')->toArray();
+        $dataNumRegiao = $zonaProfissionais->pluck('total')->toArray();
 
 
 

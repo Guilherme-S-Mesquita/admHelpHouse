@@ -64,8 +64,7 @@ Route::get('/infosgerais' ,[InfosGeraisController::class, 'indexInfos']) ->name(
 
 Route::get('/atendimentos' ,[AtendimentoController::class, 'index']) ->name('atendimento');
 Route::patch('/denuncia/{id}/acao', [AtendimentoController::class, 'acaoAnalise']);
-
-
+Route::post('/denuncia/{id}/enviar-email', [AtendimentoController::class, 'send'])->name('atendimento.send');
 
 
 
