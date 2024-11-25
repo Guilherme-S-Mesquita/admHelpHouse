@@ -228,15 +228,22 @@
                     </form>
 
                     <!-- Botão de "Concluir denúncia" -->
-                    <form action="{{ route('atendimento.send', ['id' => $denuncia->id ?? '']) }}" method="POST" class="d-inline">
-                        @csrf
-                        <input type="hidden" name="acao" value="concluido">
-                        <input type="hidden" name="denuncia_id" id="denunciaIdInputConclusao">
-                        <input type="hidden" name="suspender_profissional" id="suspenderProfissionalInput">
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Concluir denúncia
+                  <!-- Botão de "Concluir denúncia" -->
+                  <form action="{{ route('denuncia.toggleSuspension', ['id' => $denuncia->id]) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    @if ($denuncia->contratado->is_suspended)
+                        <button type="submit" class="btn btn-sm btn-outline-success" title="Ativar Profissional">
+                            <i class="fas fa-check-circle"></i> Ativar Profissional
                         </button>
-                    </form>
+                    @else
+                        <button type="submit" class="btn btn-sm btn-outline-warning" title="Suspender Profissional">
+                            <i class="fas fa-ban"></i> Suspender Profissional
+                        </button>
+                    @endif
+                </form>
+
+
                 </div>
             </div>
         </div>
@@ -260,6 +267,12 @@
         }
     }
 
+    document.getElementById('suspenderProfissional').addEventListener('change', function () {
+        const suspenderProfissionalInput = document.getElementById('suspenderProfissionalInput');
+        suspenderProfissionalInput.value = this.checked ? '1' : '0'; // Define 1 (true) ou 0 (false)
+    });
+
+
     function setModalData(contratanteNome, denunciaDescricao, denunciaData, idDenuncia) {
     document.getElementById('contratanteNome').textContent = contratanteNome;
     document.getElementById('denunciaDescricao').textContent = denunciaDescricao;
@@ -272,55 +285,7 @@
 
 
 
-    function handleAnalise(button) {
-        const idDenuncia = button.getAttribute('data-id');
-        const motivo = document.getElementById('motivoSuspensao').value.trim();
 
-        if (!motivo) {
-            alert('Por favor, insira o motivo da suspensão.');
-            return;
-        }
-
-        fetch(`/denuncia/${idDenuncia}/acao`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ acao: 'emAnalise', motivo })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message || data.error);
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-            alert('Erro na requisição. Veja o console para mais detalhes.');
-        });
-    }
-
-    function handleConclusao(button) {
-        const idDenuncia = button.getAttribute('data-id');
-
-        fetch(`/denuncia/${idDenuncia}/acao`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ acao: 'concluido' })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message || data.error);
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-            alert('Erro na requisição. Veja o console para mais detalhes.');
-        });
-    }
 </script>
 
 @endsection

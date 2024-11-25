@@ -7,13 +7,22 @@
 
     <div class="inicio">
 
+        @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+
             <div class="header mb-4 ">
                 <p>Olá,<span style="color: #ff6347; font-size:35px ">{{$user->name}}</span></p>
             </div>
 
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Pesquisar...">
-                <button class="search-btn"><i class="bi bi-search"></i></button>
+                <form method="GET" action="{{ route('users.index') }}">
+                <input type="text" class="search-input" placeholder="Pesquisar..."  name="search" value="{{ request('search') }}" >
+                <button type="submit" class="search-btn"><i class="bi bi-search"></i></button>
+            </form>
             </div>
 
             </div>
@@ -112,28 +121,35 @@
                 </thead>
                 <tbody>
                     @foreach ($contratados as $contratado)
-                    <tr>
-                        {{-- <td>{{$contratado->id}}</td> --}}
+                    <tr @if ($contratado->is_suspended) style="background-color: #f8d7da;" @endif>
                         <td>
                             <img src="{{ $contratado->imagemContratado }}"
                                  alt="Imagem do Contratado"
                                  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
                         </td>
-                        <td>{{$contratado->id}}</td>
-                        <td>{{$contratado->nomeContratado}}</td>
-                        <td>{{$contratado->nascContratado}}</td>
-                        <td>{{$contratado->cpfContratado}}</td>
-                        <td>{{$contratado->emailContratado}}</td>
+                        <td>{{ $contratado->id }}</td>
+                        <td>{{ $contratado->nomeContratado }}</td>
+                        <td>{{ $contratado->nascContratado }}</td>
+                        <td>{{ $contratado->cpfContratado }}</td>
+                        <td>{{ $contratado->emailContratado }}</td>
+                        <!-- Botão de suspensão -->
                         <td>
-                            <form action="{{ route('users.deleteContratado', $contratado->idContratado) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('users.toggleSuspension', $contratado->idContratado) }}" method="POST" style="display: inline;">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                @method('PUT')
+                                @if ($contratado->is_suspended)
+                                    <button type="submit" class="btn btn-sm btn-outline-success" title="Ativar">
+                                        <i class="fas fa-check-circle"></i>
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn btn-sm btn-outline-warning" title="Suspender">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                @endif
                             </form>
                         </td>
                     </tr>
+
                     @endforeach
                 </tbody>
             </table>

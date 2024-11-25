@@ -160,9 +160,13 @@
         <div class="partes">
         <h2 style="color: #004AAD">Sobre usuários e serviços</h2>
 
+
+        
                         <div class="avaliacoes">
                             <p style="color: #fff">Média de avaliações: 4.7 <i class= "icon fa fa-star"></i></p>
                         </div>
+
+
 
                         <div class="graficopro">
                         <div>
@@ -212,33 +216,31 @@
                             </div>
 
 
-                        <div class="topPro">
-                            <p>Top profissionais do mês</p>
+                            <div class="topPro">
+                                <p>Top profissionais do mês</p>
 
-                            <div class="ranking" style="background-color: #fee267;">
-                                <div class="top1" >
-                                    <h2>1</h2>
-                                    <div class="nomePro" ><p style="color: white">Izaudi Mesquita |</p></div>
-                                    <div class="categoriaPro"><p style="color: #5e5e5e">Pedreiro</p></div>
-                                </div>
+                                @foreach ($topProfissionais as $index => $profissional)
+                                    <div class="ranking"
+                                        style="background-color: {{ $index == 0 ? '#fee267' : ($index == 1 ? '#ffeea1' : '#f9c397') }};">
+                                        <div class="top{{ $index + 1 }}">
+                                            <h2>{{ $index + 1 }}</h2>
+                                            <div class="nomePro">
+                                                <p style="color: white">{{ $profissional->nomeContratado }} |</p>
+                                            </div>
+                                            <div class="categoriaPro">
+                                                <p style="color: #5e5e5e">{{ $profissional->profissaoContratado }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
 
-                            <div class="ranking" style="background-color: #ffeea1;">
-                            <div class="top2" >
-                                    <h2>2</h2>
-                                    <div class="nomePro" ><p style="color: white;">José Dias |</p></div>
-                                    <div class="categoriaPro"><p style="color: #5e5e5e">Mecânico</p></div>
-                                </div>
-                            </div>
-                            <div class="ranking"  style="background-color: #f9c397;">
-                            <div class="top3">
-                                    <h2>3</h2>
-                                    <div class="nomePro"  ><p style="color: white">Fernando Silva |</p></div>
-                                    <div class="categoriaPro"><p style="color: #5e5e5e">Eletricista</p></div>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+
                     </div>
+
 
 
         <div class="partes1">

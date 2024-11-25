@@ -99,19 +99,15 @@ class AtendimentoController extends Controller
         $denuncia->status = $acao;
         $denuncia->save();
 
-        // Verifica se é necessário suspender o profissional
-        if ($acao === 'concluido') {
-            $profissional = $denuncia->contratado;
-
-            if ($profissional) {
-                // Suspender o profissional
-                $profissional->status = 'suspenso'; // Considerando que a tabela de profissionais tenha o campo 'status'
-                $profissional->save();
-
-                // Log ou notificação opcional
-                Log::info("Profissional {$profissional->id} suspenso devido à denúncia concluída.");
-            }
+        // Suspender o profissional ao concluir a denúncia
+    if ($acao === 'concluido') {
+        $profissional = $denuncia->contratado;
+        if ($profissional) {
+            $profissional->is_suspend = true; // Suspender a conta
+            $profissional->save();
+            Log::info("Profissional {$profissional->id} suspenso devido à denúncia concluída.");
         }
+    }
 
         // E-mails para contratante e contratado
         $emailContratante = $denuncia->contratante->emailContratante ?? null;
@@ -149,52 +145,49 @@ class AtendimentoController extends Controller
 
 
 
-    public function suspenderContaPro($idContratado, Request $request)
+    public function toggleSuspensionFromDenuncia($id)
     {
-        // Validação opcional para o motivo
-        $motivo = $request->input('motivo', 'Sua conta foi suspensa devido a uma denúncia em análise.');
+        $denuncia = Denuncia::with('contratado')->findOrFail($id);
 
-        // Obtenção do profissional
-        $profissional = Profissional::findOrFail($idContratado);
+        // Obtém o profissional relacionado à denúncia
+        $profissional = $denuncia->contratado;
 
-        // Atualização do status de suspensão
-        $profissional->is_suspend = true;
-        $profissional->save();
-        $subject="Suspensão";
-        $mensagem = "Sua conta foi suspensa. Motivo: $motivo. Entre em contato com o suporte para mais informações.";
-          try {
-              Mail::to($profissional->emailContratado)->send(
-                  new DenunciaTratadaMail($mensagem, $subject ));
-         } catch (\Exception $e) {
-          Log::error("Erro ao enviar e-mail de suspensão: {$e->getMessage()}");
-          }
+        if ($profissional) {
+            // Alterna o estado de suspensão
+            $profissional->is_suspended = !$profissional->is_suspended;
+            $profissional->save();
 
-        //  Retorno de sucesso
-        return response()->json(['message' => 'A conta foi suspensa com sucesso e o e-mail foi enviado.'], 200);
+            // Mensagem de feedback
+            $status = $profissional->is_suspended ? 'suspenso' : 'ativado';
+
+            // Adiciona log opcional
+            Log::info("Profissional {$profissional->idContratado} foi {$status} via denúncia {$denuncia->id}.");
+
+            return redirect()->route('atendimento')->with('success', "Profissional {$status} com sucesso!");
+        }
+
+        return redirect()->route('atendimento')->with('error', 'Profissional associado à denúncia não encontrado.');
     }
 
+
     public function reativarContaPro($idContratado)
-{
-    // Obtenção do profissional
-    $profissional = Profissional::findOrFail($idContratado);
+    {
+        $profissional = Profissional::findOrFail($idContratado);
+        $profissional->is_suspend = false; // Reativa a conta
+        $profissional->save();
 
-    // Atualização do status de suspensão
-    $profissional->is_suspend = false;
-    $profissional->save();
-    $mensagem = "Sua conta foi reativada com sucesso. Obrigado por utilizar nossa plataforma.";
-    $assunto = "Suspensão retirada";
-    // Envio de e-mail para o profissional
-     try {
-         Mail::to($profissional->emailContratado)->send(
-             new DenunciaTratadaMail( $mensagem, $assunto)
-         );
-     } catch (\Exception $e) {
-         Log::error("Erro ao enviar e-mail de reativação: {$e->getMessage()}");
-     }
+        $mensagem = "Sua conta foi reativada com sucesso.";
+        $assunto = "Reativação de Conta";
 
-    // Retorno de sucesso
-    return response()->json(['message' => 'A conta foi reativada com sucesso e o e-mail foi enviado.'], 200);
-}
+        try {
+            Mail::to($profissional->emailContratado)->send(new DenunciaTratadaMail($mensagem, $assunto));
+        } catch (\Exception $e) {
+            Log::error("Erro ao enviar e-mail de reativação: {$e->getMessage()}");
+        }
+
+        return response()->json(['message' => 'Conta reativada com sucesso e e-mail enviado.'], 200);
+    }
+
 
 
         public function mostrarDenunciasEmAnalise (){

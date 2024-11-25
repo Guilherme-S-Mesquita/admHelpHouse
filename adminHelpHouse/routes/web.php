@@ -56,6 +56,7 @@ Route::get('/adm' ,[UsersController::class, 'userAdm']) ->name('users.admins');
 Route::get('/editadmin/{id}' ,[UsersController::class, 'edit']) ->name('edit.admins');
 Route::put('/editadmin/{id}' ,[UsersController::class, 'update']) ->name('update.admins');
 Route::delete('/editadmin/{id}' ,[UsersController::class, 'delete']) ->name('delete.admins');
+Route::put('/users/suspend/{id}', [UsersController::class, 'toggleSuspension'])->name('users.toggleSuspension');
 
 
 // --------------------------------USUARIOS PAGINA USUARIOS----------------------------------
@@ -72,6 +73,7 @@ Route::get('/infosgerais' ,[InfosGeraisController::class, 'indexInfos']) ->name(
 Route::get('/atendimentos' ,[AtendimentoController::class, 'index']) ->name('atendimento');
 Route::patch('/denuncia/{id}/acao', [AtendimentoController::class, 'acaoAnalise']);
 Route::post('/denuncia/{id}/enviar-email', [AtendimentoController::class, 'send'])->name('atendimento.send');
+Route::put('/denuncia/{id}/toggle-suspension', [AtendimentoController::class, 'toggleSuspensionFromDenuncia'])->name('denuncia.toggleSuspension');
 
 
 

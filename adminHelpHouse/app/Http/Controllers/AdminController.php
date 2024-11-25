@@ -98,6 +98,10 @@ class AdminController extends Controller
         $dataNumRegiao = $zonaProfissionais->pluck('total')->toArray();
 
 
+        $topProfissionais = Profissional::query()
+        ->orderByDesc('valorTotalRecebido') // Ordena em ordem decrescente
+        ->take(3) // Limita a 3 resultados
+        ->get();
 
 
 
@@ -117,7 +121,8 @@ class AdminController extends Controller
             'user',
             'zonaProfissionais',
             'labelRegiao',
-            'dataNumRegiao'
+            'dataNumRegiao',
+            'topProfissionais'
         ));
     }
 }
