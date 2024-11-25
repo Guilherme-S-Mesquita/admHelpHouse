@@ -7,6 +7,7 @@ use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\InfosGeraisController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\ContratanteController;
 use App\Livewire\Auth;
 use App\Livewire\Contact;
 use App\Livewire\RealtimeMessage;
@@ -31,6 +32,7 @@ Route::post('/login/processo-registro',[loginController::class, 'processoDeRegis
 
 // -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
+Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos.index');
 Route::get('/editServico/{idServicos}', [ServicoController::class, 'edit'])->name('edit.servico');
 Route::put('/editServico/{idServicos}', [ServicoController::class, 'update'])->name('update.servico');
 Route::delete('/editServico/{idServicos}', [ServicoController::class, 'destroy'])->name('delete.servico');
@@ -40,8 +42,13 @@ Route::get('/criarServico', [ServicoController::class, 'create'])->name('criar.s
 Route::post('/adicionar', [ServicoController::class, 'store'])->name('inserir.servico');
 
 
+
 //--------------------------------- USUARIOS -------------------------------------------
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::delete('/users/contratante/{idContratante}', [UsersController::class, 'destroy'])->name('users.deleteContratante');
+Route::delete('/users/contratado/{idContratado}', [UsersController::class, 'destroyContratado'])->name('users.deleteContratado');
+Route::delete('/users/admin/{idAdmin}', [UsersController::class, 'destroyAdmin'])->name('users.deleteAdmin');
+
 
 
 // --------------------------------USUARIOS PAGINA ADM----------------------------------

@@ -215,7 +215,10 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
                 ->where('status', 'pendente');
-            }
+            },
+            'contratado' => function ($query) {
+                $query->select('idContratado','nomeContratado');
+            },
         ])
              ->where('idContratante', $idContratante)
              ->where('statusPedido', 'aceito')
@@ -370,7 +373,8 @@ class PedidoController extends Controller
             },
             'contratado' => function ($query) {
                 $query->select('idContratado','nomeContratado');
-            }
+            },
+
 
         ])
              ->where('idContratante', $idContratante)
@@ -381,22 +385,18 @@ class PedidoController extends Controller
              return response()->json($pedido);
 
     }
-
-
-    public function meusPedidosFinalizadosProfissional()
+   public function meusPedidosFinalizadosProfissional()
     {
         // Obtém o profissional autenticado
         $profissional = Auth::user();
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
-        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao')
-
+        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'andamentoPedido')
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
-            'contrato:id,idSolicitarPedido,status,valor,data,forma_pagamento',
+            'contrato:id,idSolicitarPedido,status,valor,data,hora,forma_pagamento',
         ])
-
         ->where('andamentoPedido', 'concluido')
         ->get();
 
