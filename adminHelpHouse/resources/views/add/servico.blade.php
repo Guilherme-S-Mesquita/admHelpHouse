@@ -15,9 +15,12 @@
                 <p>Olá,<span style="color: #ff6347; font-size:30px ">{{$user->name}}</span></p>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Pesquisar...">
-                <button class="search-btn"><i class="bi bi-search"></i></button>
+                <form action="{{ route('servicos.index') }}" method="GET" style="display: flex;">
+                    <input type="text" name="search" class="search-input" placeholder="Pesquisar..." value="{{ request('search') }}">
+                    <button type="submit" class="search-btn"><i class="bi bi-search"></i></button>
+                </form>
             </div>
+            
             </div>
            
             

@@ -32,6 +32,7 @@ Route::post('/login/processo-registro',[loginController::class, 'processoDeRegis
 
 // -------------------------------ADD SERVICO----------------------------------------
 Route::get('add/servico', [ServicoController::class, 'servico'])->name('add.servico');
+Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos.index');
 Route::get('/editServico/{idServicos}', [ServicoController::class, 'edit'])->name('edit.servico');
 Route::put('/editServico/{idServicos}', [ServicoController::class, 'update'])->name('update.servico');
 Route::delete('/editServico/{idServicos}', [ServicoController::class, 'destroy'])->name('delete.servico');
