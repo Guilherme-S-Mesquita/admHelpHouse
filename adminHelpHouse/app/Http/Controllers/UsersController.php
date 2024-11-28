@@ -13,12 +13,42 @@ use App\Models\Pedido;
 class UsersController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request){
 
         $users = User::all();
 
         $contratantes = Contratante::all();
         $contratados = Profissional::all();
+
+       // Obtém o termo de busca
+    $search = $request->input('search');
+
+    // Busca em Contratantes
+    $contratantes = Contratante::query()
+        ->when($search, function ($query, $search) {
+            $query->where('nomeContratante', 'like', "%{$search}%")
+                  ->orWhere('emailContratante', 'like', "%{$search}%")
+                  ->orWhere('cpfContratante', 'like', "%{$search}%");
+        })
+        ->get();
+
+    // Busca em Profissionais
+    $contratados = Profissional::query()
+        ->when($search, function ($query, $search) {
+            $query->where('nomeContratado', 'like', "%{$search}%")
+                  ->orWhere('emailContratado', 'like', "%{$search}%")
+                  ->orWhere('cpfContratado', 'like', "%{$search}%");
+        })
+        ->get();
+
+    // Busca em Administradores (Usuários gerais)
+    $users = User::query()
+        ->when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('cpf', 'like', "%{$search}%");
+        })
+        ->get();
 
 
 
@@ -29,6 +59,20 @@ class UsersController extends Controller
         $user = auth()->user();
         return view('users.index', compact('user' ,'users', 'contratantes', 'contratados'));
     }
+
+    public function toggleSuspension($id)
+    {
+        $profissional = Profissional::findOrFail($id);
+
+        // Alterna o estado de suspensão
+        $profissional->is_suspended = !$profissional->is_suspended;
+        $profissional->save();
+
+        // Mensagem de feedback
+        $status = $profissional->is_suspended ? 'suspenso' : 'ativado';
+        return redirect()->route('users.index')->with('success', "Profissional {$status} com sucesso!");
+    }
+
 
     public function userAdm(){
 
@@ -64,12 +108,39 @@ class UsersController extends Controller
         }
     }
 
-    public function delete($id){
+    public function destroy($idContratante){
+        try {
+            $contratante = Contratante::findOrFail($idContratante);
+            $contratante->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao excluir o contratante: ' . $e->getMessage());
+        }
+    }
 
 
-        User::findOrFail($id)->delete();
 
-        return redirect()->route('users.admins')->with('msg', 'Serviço excluido com sucesso!');
+    public function destroyContratado($idContratado){
+        try {
+            $contratado = Profissional::findOrFail($idContratado);
+            $contratado->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao excluir o contratado: ' . $e->getMessage());
+        }
+    }
+
+    public function destroyAdmin($idAdmin){
+        try {
+            $adm = User::findOrFail($idAdmin);
+            $adm->delete();
+            return redirect()->back()->with('msg', '');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao excluir o contratado: ' . $e->getMessage());
+        }
     }
 
 

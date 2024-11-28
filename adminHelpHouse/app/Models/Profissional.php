@@ -43,6 +43,8 @@ class Profissional extends Authenticatable
         'ufContratado',
         'cidadeContratado',
         'imagemContratado',
+        'is_suspended',
+        'valorTotalRecebido',
         'portifilioPro1',
         'portifilioPro2',
         'portifilioPro3',
@@ -74,6 +76,10 @@ class Profissional extends Authenticatable
         }
 
         return $granted;
+    }
+    public function isSuspended()
+    {
+        return $this->is_suspended;
     }
 
     public static function boot() {

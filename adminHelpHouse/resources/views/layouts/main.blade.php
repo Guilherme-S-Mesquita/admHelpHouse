@@ -59,23 +59,23 @@
                         <div class="foto"></div>
                 </div>
                 <div class="infosadd">
-                   
+
                 <div class="nomeuser">
-                  <p>{{$user->name}}</p>  
+               <p>{{$user->name}}</p>
                 </div>
-                    
+
                     <h5>Administrador</h5>
 
-                    
+
                 </div>
-                
+
             </div>
 
             <div class="fio"></div>
 
                 <li class="sidebar-item">
                     <a href="{{route('dashboard')}}" class="sidebar-link">
-                    <<i class="bi bi-columns-gap style="color: #ffffff;""></i> 
+                    <<i class="bi bi-columns-gap style="color: #ffffff;""></i>
                         <span>Dashboard</span>
                     </a>
                 </li>

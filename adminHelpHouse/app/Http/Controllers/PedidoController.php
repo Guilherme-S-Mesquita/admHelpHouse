@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profissional;
 use App\Models\Contratante;
-
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -108,7 +105,8 @@ class PedidoController extends Controller
             'pedidos' => function ($query) {
                 $query->select('idSolicitarPedido', 'tituloPedido', 'idContratado', 'idContratante')
                     ->with(['contratado:idContratado,nomeContratado'])
-                    ->where('andamentoPedido', 'pendente');
+                    ->whereIn('andamentoPedido', ['a_caminho', 'ReceberPagamento', 'pendente'])
+                    ->whereIn('statusPedido', ['aceito','pendente']);
             }
         ])
             ->where('idContratante', $idContratante)
@@ -146,7 +144,6 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'valor', 'data', 'hora', 'desc_servicoRealizado', 'forma_pagamento', 'status')
                 ->where('status', 'aceito');
-
             }
         ])
             ->where( 'statusPedido', 'aceito')
@@ -218,7 +215,10 @@ class PedidoController extends Controller
             'contrato' => function ($query) {
                 $query->select('id', 'idSolicitarPedido', 'status', 'desc_servicoRealizado', 'hora', 'valor', 'data', 'forma_pagamento')
                 ->where('status', 'pendente');
-            }
+            },
+            'contratado' => function ($query) {
+                $query->select('idContratado','nomeContratado');
+            },
         ])
              ->where('idContratante', $idContratante)
              ->where('statusPedido', 'aceito')
@@ -373,7 +373,8 @@ class PedidoController extends Controller
             },
             'contratado' => function ($query) {
                 $query->select('idContratado','nomeContratado');
-            }
+            },
+
 
         ])
              ->where('idContratante', $idContratante)
@@ -391,13 +392,11 @@ class PedidoController extends Controller
 
         // Carrega os pedidos relacionados ao profissional que estão concluídos
         $pedidosFinalizados = $profissional->pedidos()
-        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao')
-
+        ->select('idSolicitarPedido', 'tituloPedido', 'descricaoPedido', 'data_conclusao', 'andamentoPedido')
         ->with([
             'contratante:idContratante,nomeContratante,emailContratante',
             'contrato:id,idSolicitarPedido,status,valor,data,hora,forma_pagamento',
         ])
-
         ->where('andamentoPedido', 'concluido')
         ->get();
 
@@ -405,6 +404,7 @@ class PedidoController extends Controller
         // Retorna os pedidos finalizados no formato JSON
         return response()->json($pedidosFinalizados, 200);
     }
+
 
 
 }

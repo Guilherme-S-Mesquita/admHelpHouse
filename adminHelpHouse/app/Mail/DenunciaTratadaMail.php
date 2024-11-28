@@ -14,25 +14,32 @@ class DenunciaTratadaMail extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $mensagem;
+    public $mailMensagem;
+
+    public $subject;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($mensagem)
+    public function __construct($mensagem, $subject)
     {
-        $this->mensagem = $mensagem;
+        $this->mailMensagem = $mensagem;
+        $this->subject = $subject;
     }
 
     public function build()
     {
-        return $this->subject('Atualização sobre sua denúncia')
-                    ->view('emails.denuncia-tratada')
-                    ->with(['mensagem' => $this->mensagem]);
+        return $this
+        ->subject($this->subject) // Assunto do e-mail
+        ->view('atendimentos.email-atendimento') // View do e-mail
+        ->with([
+            'mensagem' => $this->mailMensagem, // Variável passada para a view
+        ]);
     }
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Denuncia Tratada Mail',
+            subject: 'Welcome email',
         );
     }
 
@@ -42,7 +49,7 @@ class DenunciaTratadaMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'atendimentos.email-atendimento',
         );
     }
 
@@ -51,6 +58,8 @@ class DenunciaTratadaMail extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
+
+
     public function attachments(): array
     {
         return [];
